@@ -27,4 +27,6 @@ public class Asset {
     private int createdBy; // 등록자
     private LocalDateTime updatedAt; // 수정일
     private int updatedBy; // 수정자
+
+    // private int ca_number;  // Fk CATEGORY_ca_number
 }
