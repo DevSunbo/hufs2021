@@ -1,6 +1,5 @@
 package hufs2021.jeongbo.model.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,28 +9,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 @Entity
-public class Major {
+public class TeamProject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int mCode; // 전공 구분 코드 PK
+    private int pNumber;
 
-    private String mName; // 전공 이름
+    private String pField;
 
-    private LocalDateTime createdAt; // 등록일
+    private String pName;
 
-    private int createdBy; // 등록자
+    private int pMin;
 
-    private LocalDateTime updatedAt;// 수정일
+    private int pMax;
 
-    private int updatedBy;// 수정자
+    private LocalDate pDeadline;
+
+    private String pMainLanguage;
+
+    private String pLocation;
+
+    private String pContent;
+
+    private LocalDateTime createdAt;
+
+    private int createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private int updatedBy;
+
+
 
 }
