@@ -18,16 +18,16 @@ import java.time.LocalDateTime;
 public class AssetHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ahNumber; // 구분키 PK
-    private int aiNumber; // Asset Inventory ai_number FK
+    private Integer ahNumber; // 구분키 PK
+    private Integer aiNumber; // Asset Inventory ai_number FK
 
     private LocalDate ahApplicationdate; // 신청한 날
     private LocalDate ahReturndate; // 반납한 날
 
     private LocalDateTime createdAt; // 등록일 = 신청한 날
-    private int createdBy; // 등록한 사람 = 신청한 사람
+    private Integer createdBy; // 등록한 사람 = 신청한 사람
     private LocalDateTime updatedAt; // 수정일 = 반납한 날
-    private int updatedBy; // 수정한 사람 = 관리자
+    private Integer updatedBy; // 수정한 사람 = 관리자
 
     //private int USER_student_id; // 신청한 사람 학번 FK
 }

@@ -16,6 +16,6 @@ import javax.persistence.Id;
 public class AssetAllowedList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int caNumber; // 카테고리 번호 Fk
-    private int studentId; // 학번 FK
+    private Integer caNumber; // 카테고리 번호 Fk
+    private Integer studentId; // 학번 FK
 }
