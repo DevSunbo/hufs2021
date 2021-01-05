@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
@@ -18,20 +16,22 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
+@Accessors(chain = true)
 public class Major {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int mCode; // 전공 구분 코드 PK
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) //키를 직접 설정하는 것, 키 값을 직접 설정할 때는 없어도 됨
+//    @Column(name = "m_code")
+    private Integer mCode; // 전공 구분 코드 PK
 
     private String mName; // 전공 이름
 
     private LocalDateTime createdAt; // 등록일
 
-    private int createdBy; // 등록자
+    private Integer createdBy; // 등록자
 
     private LocalDateTime updatedAt;// 수정일
 
-    private int updatedBy;// 수정자
+    private Integer updatedBy;// 수정자
 
 }
