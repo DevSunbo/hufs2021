@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Major {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) //키를 직접 설정하는 것, 키 값을 직접 설정할 때는 없어도 됨
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //키를 직접 설정하는 것, 키 값을 직접 설정할 때는 없어도 됨
 //    @Column(name = "m_code")
     private Integer mCode; // 전공 구분 코드 PK
 

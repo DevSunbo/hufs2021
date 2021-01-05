@@ -20,7 +20,7 @@ class MajorRepositoryTest extends JeongboApplicationTests {
     public void create(){
 
         Major major = Major.builder()
-                .mCode(7)
+//                .mCode(7)
                 .mName("정보통신공학과")
                 .createdAt(LocalDateTime.now())
                 .createdBy(1234)
