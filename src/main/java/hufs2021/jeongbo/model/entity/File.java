@@ -20,17 +20,17 @@ public class File {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fId;
+    private Integer fId;
 
-    private int fNumber;
+    private Integer fNumber;
 
     private String fName;
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
 }

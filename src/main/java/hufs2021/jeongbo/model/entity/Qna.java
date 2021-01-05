@@ -20,9 +20,9 @@ public class Qna {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int qaNumber;
+    private Integer qaNumber;
 
-    private int qaPrivate;
+    private Integer qaPrivate;
 
     private String qaName;
 

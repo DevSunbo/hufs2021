@@ -20,7 +20,7 @@ public class TeamProjectApply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paNumber;
+    private Integer paNumber;
 
     private String paContent;
 
@@ -28,11 +28,11 @@ public class TeamProjectApply {
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
 
 
 }

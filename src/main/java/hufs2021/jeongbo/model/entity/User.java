@@ -20,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int studentId;
+    private Integer studentId;
 
     private String name;
 
@@ -30,9 +30,9 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
 }

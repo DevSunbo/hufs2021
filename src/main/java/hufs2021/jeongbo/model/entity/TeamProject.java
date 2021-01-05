@@ -21,15 +21,15 @@ public class TeamProject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int pNumber;
+    private Integer pNumber;
 
     private String pField;
 
     private String pName;
 
-    private int pMin;
+    private Integer pMin;
 
-    private int pMax;
+    private Integer pMax;
 
     private LocalDate pDeadline;
 
@@ -41,11 +41,11 @@ public class TeamProject {
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
 
 
 

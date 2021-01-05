@@ -22,16 +22,16 @@ public class Major {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int mCode; // 전공 구분 코드 PK
+    private Integer mCode; // 전공 구분 코드 PK
 
     private String mName; // 전공 이름
 
     private LocalDateTime createdAt; // 등록일
 
-    private int createdBy; // 등록자
+    private Integer createdBy; // 등록자
 
     private LocalDateTime updatedAt;// 수정일
 
-    private int updatedBy;// 수정자
+    private Integer updatedBy;// 수정자
 
 }
