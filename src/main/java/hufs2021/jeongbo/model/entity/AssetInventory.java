@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "asset_inventory")
 public class AssetInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,7 @@ public class AssetInventory {
     private int aiSerial; // 기자재 바코드
     private LocalDate aiExpiration; // 기자재 만료일
 
+    // 대여가능 : 1, 대여중 : 2, 대여 대기 : 3
     private Integer aiStatus; // Enum 기자재 상태
 
     private Integer aiRoom; // 기자재 위치 Location room_location Fk

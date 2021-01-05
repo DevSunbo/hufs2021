@@ -19,6 +19,7 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roomLocation; // 호실 PK
 
+    // 스터디룸 : 1, 강의실 : 2, 사무실 : 3
     private Integer roomPupose; // Enum 방의 사용 목적
 
     private String manager; // 방 관리자 이름

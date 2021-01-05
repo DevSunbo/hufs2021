@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,15 +13,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class StudyRoom {
+@IdClass(StudyRoomPK.class)
+public class StudyRoom extends StudyRoomPK {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rId; // 호실번호 Location room_location Fk
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer r_number; // 스터디룸 방번호 rId 에 따라 AI
 
+    //예약가능 : 1, 예약중 : 2, 예약 불가 : 3
     private Integer rStatus; // Enum 스터디룸 예약 상태
     private LocalDate rDate; // 스터디룸 날짜
     private LocalDateTime rFrom; // 스터디룸 오픈시간
