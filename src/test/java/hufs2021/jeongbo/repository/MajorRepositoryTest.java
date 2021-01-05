@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Transactional
 class MajorRepositoryTest extends JeongboApplicationTests {
@@ -29,4 +30,22 @@ class MajorRepositoryTest extends JeongboApplicationTests {
         Assertions.assertNotNull(newMajor);
 //        System.out.println(major.getMCode() + " " + major.getMName() + " " + major.getCreatedAt() + " " + major.getCreatedBy());
     }
+
+    @Test
+    public void read() {
+        List<Major> majorList = majorRepository.findAll();
+
+        if (majorList != null) {
+            majorList.stream().forEach(major -> {
+                System.out.println("전공 번호: " + major.getMCode());
+                System.out.println("전공 명: " + major.getMName());
+                System.out.println("등록일: " + major.getCreatedAt());
+                System.out.println("등록자: " + major.getCreatedBy());
+                System.out.println("--------------------------");
+            });
+        }
+
+        Assertions.assertNotNull(majorList);
+    }
+
 }
