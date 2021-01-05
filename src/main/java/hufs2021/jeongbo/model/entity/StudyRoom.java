@@ -24,6 +24,7 @@ public class StudyRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer r_number; // 스터디룸 방번호 rId 에 따라 AI
 
+    //예약가능 : 1, 예약중 : 2, 예약 불가 : 3
     private Integer rStatus; // Enum 스터디룸 예약 상태
     private LocalDate rDate; // 스터디룸 날짜
     private LocalDateTime rFrom; // 스터디룸 오픈시간

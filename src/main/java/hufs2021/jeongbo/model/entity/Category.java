@@ -19,9 +19,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer caNumber; // 카테고리 구분 번호 PK
 
-    private Integer caRental; // Enum 대여가능 여부
-    private Integer caKind; // Enum 기자재 종류
-    private Integer caName; // Enum 기자재 이름
+    private String caRental; //  대여가능 여부
+    private String caKind; //  기자재 종류
+    private String caName; //  기자재 이름
     
     private LocalDateTime createdAt; // 등록일
     private Integer createdBy; // 등록자
