@@ -15,17 +15,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Asset {
+public class AssetInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer aId; // Asset PK 구분하기 위해 사용
-    private String aMajor; // 해당 Asset을 사용할 수 있는 전공
-    private LocalDate aDeadline; // Asset 반납일
+    private int aiNumber; // 기자재 구분 번호 PK
+
+    private int aiSerial; // 기자재 바코드
+    private LocalDate aiExpiration; // 기자재 만료일
+
+    private Integer aiStatus; // Enum 기자재 상태
+
+    private Integer aiRoom; // 기자재 위치 Location room_location Fk
+    private Integer aiUser; // 기자재를 빌린 사람
+    private Integer caNumber; // 기자재 카테고리 CATEGORY ca_number FK
 
     private LocalDateTime createdAt; // 등록일
     private Integer createdBy; // 등록자
     private LocalDateTime updatedAt; // 수정일
     private Integer updatedBy; // 수정자
 
-    // private int ca_number;  // Fk CATEGORY_ca_number
 }

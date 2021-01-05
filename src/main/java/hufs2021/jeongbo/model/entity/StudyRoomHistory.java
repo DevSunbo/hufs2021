@@ -15,17 +15,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Asset {
+public class StudyRoomHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer aId; // Asset PK 구분하기 위해 사용
-    private String aMajor; // 해당 Asset을 사용할 수 있는 전공
-    private LocalDate aDeadline; // Asset 반납일
+    private Integer rhNumber; // 구분 번호 PK
+
+    private LocalDate rhDate; // 예약한 날짜
+    private LocalDateTime rhFrom; // 예약 시작시간
+    private LocalDateTime rhEnd; // 예약 끝시간
 
     private LocalDateTime createdAt; // 등록일
-    private Integer createdBy; // 등록자
-    private LocalDateTime updatedAt; // 수정일
+    private Integer createdBy; // 등록자 = 예약한 사람 학번번
+   private LocalDateTime updatedAt; // 수정일
     private Integer updatedBy; // 수정자
-
-    // private int ca_number;  // Fk CATEGORY_ca_number
 }
