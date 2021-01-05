@@ -22,7 +22,9 @@ public class AssetInventory {
 
     private int aiSerial; // 기자재 바코드
     private LocalDate aiExpiration; // 기자재 만료일
-    private Integer aiStatus; // 기자재 상태
+
+    private Integer aiStatus; // Enum 기자재 상태
+
     private Integer aiRoom; // 기자재 위치 Location room_location Fk
     private Integer aiUser; // 기자재를 빌린 사람
     private Integer caNumber; // 기자재 카테고리 CATEGORY ca_number FK
