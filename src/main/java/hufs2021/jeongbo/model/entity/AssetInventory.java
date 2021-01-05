@@ -18,9 +18,9 @@ import java.time.LocalDateTime;
 public class AssetInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int aiNumber; // 기자재 구분 번호 PK
+    private Integer aiNumber; // 기자재 구분 번호 PK
 
-    private int aiSerial; // 기자재 바코드
+    private Integer aiSerial; // 기자재 바코드
     private LocalDate aiExpiration; // 기자재 만료일
 
     // 대여가능 : 1, 대여중 : 2, 대여 대기 : 3
