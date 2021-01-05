@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "asset_inventory")
 public class AssetInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
