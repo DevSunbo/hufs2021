@@ -1,6 +1,8 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.Major;
+import hufs2021.jeongbo.network.Header;
+import hufs2021.jeongbo.network.response.MajorResponse;
 import hufs2021.jeongbo.repository.MajorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,42 +12,77 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/major")
-public class MajorController{
+public class MajorController  {
 
     @Autowired
     private MajorRepository majorRepository;
 
-    @GetMapping("")
-    public String test() {
-        return "하이헬로우";
-    }
-
     @GetMapping("/create")
-    public String create() {
+    public Header<MajorResponse> create() {
+
         Major major = Major.builder()
-                .mName("통계학과")
+//                .mCode(majorRequest.getMCode())
+                .mName("컴퓨터 공학부")
                 .createdAt(LocalDateTime.now())
                 .createdBy(1234)
                 .build();
 
-        Major newMajor = majorRepository.save(major);
+       Major newMajor = majorRepository.save(major);
 
         if(newMajor!=null)
-            return "성공";
+            return Header.OK(response(newMajor));
         else
-            return "실패";
+            return Header.ERROR();
+
+    }
+
+    @GetMapping("/readall")
+    public Header<MajorResponse> readAll() {
+       List<Major> majorList = majorRepository.findAll();
+
+        if(majorList!=null){
+            majorList.stream().forEach(major -> {
+                System.out.println("전공 번호: " + major.getMCode());
+                System.out.println("전공 명: " + major.getMName());
+                System.out.println("등록일: " + major.getCreatedAt());
+                System.out.println("등록자: " + major.getCreatedBy());
+                System.out.println("--------------------------");
+            });
+            return Header.OK();
+        }
+        else
+            return Header.ERROR();
+
     }
 
     @GetMapping("/read")
-    public List<Major> read() {
-        List<Major> majorList = majorRepository.findAll();
+    public Header<MajorResponse> read() {
+        Optional<Major> majorOptional = majorRepository.findById(3);
 
-        if (majorList != null) {
-            return majorList;
-        } else return null;
+        return majorOptional.map(major -> {
+            System.out.println("전공 번호: " + major.getMCode());
+            System.out.println("전공 명: " + major.getMName());
+            System.out.println("등록일: " + major.getCreatedAt());
+            System.out.println("등록자: " + major.getCreatedBy());
+            return Header.OK(response(major));
+        }).orElseGet(Header::ERROR);
+
+
+
     }
+
+    private MajorResponse response(Major major) {
+        return MajorResponse.builder()
+                .mCode(major.getMCode())
+                .mName(major.getMName())
+                .createdAt(major.getCreatedAt())
+                .createdBy(major.getCreatedBy())
+                .build();
+    }
+
 }
