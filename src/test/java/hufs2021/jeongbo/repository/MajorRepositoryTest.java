@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 class MajorRepositoryTest extends JeongboApplicationTests {
@@ -32,7 +33,7 @@ class MajorRepositoryTest extends JeongboApplicationTests {
     }
 
     @Test
-    public void read() {
+    public void readAll() {
         List<Major> majorList = majorRepository.findAll();
 
         if (majorList != null) {
@@ -46,6 +47,49 @@ class MajorRepositoryTest extends JeongboApplicationTests {
         }
 
         Assertions.assertNotNull(majorList);
+    }
+
+    @Test
+    public void read() {
+        Optional<Major> majorOption = majorRepository.findById(3);
+
+        majorOption.ifPresent(selectMajor -> {
+            System.out.println("전공 번호: " + selectMajor.getMCode());
+            System.out.println("전공 명: " + selectMajor.getMName());
+            System.out.println("등록일: " + selectMajor.getCreatedAt());
+            System.out.println("등록자: " + selectMajor.getCreatedBy());
+        });
+        Assertions.assertNotNull(majorOption);
+    }
+
+    @Test
+    public void update() {
+        Optional<Major> majorOptional = majorRepository.findById(3);
+
+        majorOptional.ifPresent(selectMajor -> {
+            selectMajor.setMName("AI학부");
+            selectMajor.setCreatedAt(LocalDateTime.now());
+            selectMajor.setCreatedBy(1234);
+
+            Major newMajor = majorRepository.save(selectMajor);
+            Assertions.assertNotNull(newMajor);
+        });
+        Assertions.assertNotNull(majorOptional);
+    }
+
+    @Test
+    public void delete() {
+        Optional<Major> majorOptional = majorRepository.findById(3);
+
+        Assertions.assertTrue(majorOptional.isPresent());
+
+        majorOptional.ifPresent(selectMajor -> {
+            majorRepository.delete(selectMajor);
+        });
+
+        Optional<Major> deleteMajor = majorRepository.findById(3);
+
+        Assertions.assertFalse(deleteMajor.isPresent());
     }
 
 }
