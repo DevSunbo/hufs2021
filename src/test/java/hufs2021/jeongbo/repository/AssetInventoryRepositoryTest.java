@@ -26,6 +26,8 @@ class AssetInventoryRepositoryTest extends JeongboApplicationTests {
         assetInventory.setCaNumber(1);
         assetInventory.setCreatedAt(LocalDateTime.now());
         assetInventory.setCreatedBy(1234);
+
+        AssetInventory newAssetInventory = assetInventoryRepository.save(assetInventory);
     }
     @Test
     public void read(){
