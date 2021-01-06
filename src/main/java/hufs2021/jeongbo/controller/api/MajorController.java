@@ -71,9 +71,32 @@ public class MajorController  {
             System.out.println("등록자: " + major.getCreatedBy());
             return Header.OK(response(major));
         }).orElseGet(Header::ERROR);
+    }
 
+    @GetMapping("/update")
+    public Header<MajorResponse> update() {
+        Major newMajor = Major.builder()
+                .mName("전자정보공학과")
+                .updatedAt(LocalDateTime.now())
+                .updatedBy(1234)
+                .build();
 
+        return majorRepository.findById(3).map(major -> {
+            major.setMName(newMajor.getMName());
+            major.setUpdatedAt(newMajor.getUpdatedAt());
+            major.setUpdatedBy(newMajor.getUpdatedBy());
 
+            Major updatedMajor = majorRepository.save(major);
+            return Header.OK(response(updatedMajor));
+        }).orElseGet(Header::ERROR);
+    }
+
+    @GetMapping("/delete")
+    public Header<MajorResponse> delete() {
+        return majorRepository.findById(3).map(major -> {
+            majorRepository.delete(major);
+            return Header.OK(response(major));
+        }).orElseGet(Header::ERROR);
     }
 
     private MajorResponse response(Major major) {
