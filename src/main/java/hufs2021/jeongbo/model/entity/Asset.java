@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,6 +19,7 @@ public class Asset {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer aId; // Asset PK 구분하기 위해 사용
     private String aMajor; // 해당 Asset을 사용할 수 있는 전공
+    private Integer aGrade; // Asset 학년 제한
     private LocalDate aDeadline; // Asset 반납일
 
     private LocalDateTime createdAt; // 등록일
@@ -29,5 +27,6 @@ public class Asset {
     private LocalDateTime updatedAt; // 수정일
     private Integer updatedBy; // 수정자
 
-    // private int ca_number;  // Fk CATEGORY_ca_number
+    @Column(name = "Category_ca_number")
+    private Integer caNumber;  // Fk CATEGORY_ca_number
 }
