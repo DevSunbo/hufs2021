@@ -2,13 +2,12 @@ package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.Major;
 import hufs2021.jeongbo.network.Header;
+import hufs2021.jeongbo.network.request.MajorRequest;
 import hufs2021.jeongbo.network.response.MajorResponse;
 import hufs2021.jeongbo.repository.MajorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,14 +21,14 @@ public class MajorController  {
     @Autowired
     private MajorRepository majorRepository;
 
-    @GetMapping("/create")
-    public Header<MajorResponse> create() {
+    @PostMapping("/create")
+    @ResponseBody
+    public Header<MajorResponse> create(@RequestBody MajorRequest majorRequest) {
 
         Major major = Major.builder()
-//                .mCode(majorRequest.getMCode())
-                .mName("컴퓨터 공학부")
+                .mName(majorRequest.getMName())
                 .createdAt(LocalDateTime.now())
-                .createdBy(1234)
+                .createdBy(majorRequest.getCreatedBy())
                 .build();
 
        Major newMajor = majorRepository.save(major);
@@ -38,10 +37,10 @@ public class MajorController  {
             return Header.OK(response(newMajor));
         else
             return Header.ERROR();
-
     }
 
     @GetMapping("/readall")
+    @ResponseBody
     public Header<MajorResponse> readAll() {
        List<Major> majorList = majorRepository.findAll();
 
@@ -61,8 +60,9 @@ public class MajorController  {
     }
 
     @GetMapping("/read")
-    public Header<MajorResponse> read() {
-        Optional<Major> majorOptional = majorRepository.findById(3);
+    @ResponseBody
+    public Header<MajorResponse> read(@RequestParam Integer id) {
+        Optional<Major> majorOptional = majorRepository.findById(id);
 
         return majorOptional.map(major -> {
             System.out.println("전공 번호: " + major.getMCode());
@@ -73,18 +73,14 @@ public class MajorController  {
         }).orElseGet(Header::ERROR);
     }
 
-    @GetMapping("/update")
-    public Header<MajorResponse> update() {
-        Major newMajor = Major.builder()
-                .mName("전자정보공학과")
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(1234)
-                .build();
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<MajorResponse> update(@RequestBody MajorRequest majorRequest) {
 
-        return majorRepository.findById(3).map(major -> {
-            major.setMName(newMajor.getMName());
-            major.setUpdatedAt(newMajor.getUpdatedAt());
-            major.setUpdatedBy(newMajor.getUpdatedBy());
+        return majorRepository.findById(majorRequest.getMCode()).map(major -> {
+            major.setMName(majorRequest.getMName());
+            major.setUpdatedAt(LocalDateTime.now());
+            major.setUpdatedBy(majorRequest.getUpdatedBy());
 
             Major updatedMajor = majorRepository.save(major);
             return Header.OK(response(updatedMajor));
@@ -92,8 +88,8 @@ public class MajorController  {
     }
 
     @GetMapping("/delete")
-    public Header<MajorResponse> delete() {
-        return majorRepository.findById(3).map(major -> {
+    public Header<MajorResponse> delete(@RequestParam Integer id) {
+        return majorRepository.findById(id).map(major -> {
             majorRepository.delete(major);
             return Header.OK(response(major));
         }).orElseGet(Header::ERROR);
