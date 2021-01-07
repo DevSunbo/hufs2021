@@ -19,7 +19,7 @@ public class StudyRoom extends StudyRoomPK {
     private Integer rId; // 호실번호 Location room_location Fk
 
     @Id
-    private Integer r_number; // 스터디룸 방번호 rId 에 따라 AI
+    private Integer rNumber; // 스터디룸 방번호 rId 에 따라 AI
 
     //예약가능 : 1, 예약중 : 2, 예약 불가 : 3
     private Integer rStatus; // Enum 스터디룸 예약 상태

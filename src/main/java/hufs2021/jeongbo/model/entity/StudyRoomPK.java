@@ -15,5 +15,10 @@ public class StudyRoomPK implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id
-    private Integer r_number; // 스터디룸 방번호 rId 에 따라 AI
+    private Integer rNumber; // 스터디룸 방번호 rId 에 따라 AI
+
+    public StudyRoomPK(Integer rId, Integer rNumber) {
+        this.rId = rId;
+        this.rNumber = rNumber;
+    }
 }
