@@ -2,6 +2,7 @@ package hufs2021.jeongbo.repository;
 
 import hufs2021.jeongbo.JeongboApplicationTests;
 import hufs2021.jeongbo.model.entity.Qna;
+import hufs2021.jeongbo.model.key.QnaId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 class QnaRepositoryTest extends JeongboApplicationTests {
@@ -55,6 +57,24 @@ class QnaRepositoryTest extends JeongboApplicationTests {
         }
 
         Assertions.assertNotNull(qnaList);
+    }
+
+    @Test
+    public void read() {
+        Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(2, 0));
+
+        qnaOptional.ifPresent(selectQna -> {
+            System.out.println(selectQna.getQaNumber());
+            System.out.println(selectQna.getQaDivision());
+            System.out.println(selectQna.getQaPrivate());
+            System.out.println(selectQna.getQaField());
+            System.out.println(selectQna.getQaName());
+            System.out.println(selectQna.getQaContent());
+            System.out.println(selectQna.getCreatedAt());
+            System.out.println(selectQna.getCreatedBy());
+            System.out.println(selectQna.getStudent_id());
+        });
+        Assertions.assertNotNull(qnaOptional);
     }
 
 }
