@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,9 +19,11 @@ import java.time.LocalDateTime;
 @IdClass(StudyRoomPK.class)
 public class StudyRoom extends StudyRoomPK {
     @Id
+    @Column(name = "r_id")
     private Integer rId; // 호실번호 Location room_location Fk
 
     @Id
+    @Column(name = "r_number")
     private Integer rNumber; // 스터디룸 방번호 rId 에 따라 AI
 
     //예약가능 : 1, 예약중 : 2, 예약 불가 : 3
@@ -37,4 +40,5 @@ public class StudyRoom extends StudyRoomPK {
     private Integer createdBy; // 등록자
     private LocalDateTime updatedAt; // 수정일
     private Integer updatedBy; // 수정자
+
 }
