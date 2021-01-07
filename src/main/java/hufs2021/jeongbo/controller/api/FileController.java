@@ -2,6 +2,7 @@ package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.File;
 import hufs2021.jeongbo.network.Header;
+import hufs2021.jeongbo.network.request.FileRequest;
 import hufs2021.jeongbo.network.response.FileResponse;
 import hufs2021.jeongbo.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +19,19 @@ public class FileController {
     @Autowired
     private FileRepository fileRepository;
 
-    @GetMapping("/create")
+    @PostMapping("/create")
     @ResponseBody
-    public Header<FileResponse> create() {
+    public Header<FileResponse> create(@RequestBody FileRequest fileRequest) {
+
         File file = File.builder()
-                .fNumber(3)
-                .fName("김정호의 회사 지원서")
+                .fNumber(fileRequest.getFNumber())
+                .fName(fileRequest.getFName())
                 .createdAt(LocalDateTime.now())
-                .createdBy(1234)
+                .createdBy(4321)
                 .build();
 
-//        System.out.println(file.getFNumber() + " " + file.getFName());
-
-//        File file = File.builder()
-//                .fNumber(fileRequest.getFNumber())
-//                .fName(fileRequest.getFName())
-//                .createdAt(LocalDateTime.now())
-//                .createdBy(1234)
-//                .build();
-
-//        System.out.println(file.getFName() + " " + file.getFName() + " ");
-
         File newFile = fileRepository.save(file);
-//
+
         if(newFile!=null)
             return Header.OK(response(newFile));
         else
