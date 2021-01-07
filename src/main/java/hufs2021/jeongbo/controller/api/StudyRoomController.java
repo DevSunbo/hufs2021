@@ -33,7 +33,7 @@ public class StudyRoomController {
     @ResponseBody
     public void create(@RequestBody StudyRoom sr){
         System.out.println("create");
-        StudyRoom studyRoomC = StudyRoom.builder()
+        StudyRoom studyRoom = StudyRoom.builder()
                 .rId(sr.getRId())
                 .rNumber(sr.getRNumber())
                 .rStatus(sr.getRStatus())
@@ -48,7 +48,7 @@ public class StudyRoomController {
                 .updatedBy(sr.getUpdatedBy())
                 .build();
 
-        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomC);
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoom);
 
     }
 
@@ -56,7 +56,7 @@ public class StudyRoomController {
     public void updatePut(@RequestBody StudyRoom sr){
         System.out.println("updatePut");
         StudyRoomPK studyRoomPK = new StudyRoomPK(sr.getRId(), sr.getRNumber());
-        StudyRoom studyRoomUPt = StudyRoom.builder()
+        StudyRoom studyRoom = StudyRoom.builder()
                 .rId(sr.getRId())
                 .rNumber(sr.getRNumber())
                 .rStatus(sr.getRStatus())
@@ -71,14 +71,14 @@ public class StudyRoomController {
                 .updatedBy(sr.getUpdatedBy())
                 .build();
 
-        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomUPt);
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoom);
     }
 
     @PatchMapping("") // 일부 수정
     public void updatePatch(@RequestBody StudyRoom sr){
         System.out.println("updatePatch");
         StudyRoomPK studyRoomPK = new StudyRoomPK(sr.getRId(), sr.getRNumber());
-        StudyRoom studyRoomUPh = StudyRoom.builder()
+        StudyRoom studyRoom = StudyRoom.builder()
                 .rId(sr.getRId())
                 .rNumber(sr.getRNumber())
                 .rStatus(sr.getRStatus())
@@ -88,12 +88,12 @@ public class StudyRoomController {
                 .updatedBy(sr.getUpdatedBy())
                 .build();
 
-        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomUPh);
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoom);
     }
 
     @DeleteMapping("")
     public void delete(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
-        System.out.println("delete");
+        System.out.println("delete " +id + "  n " + number);
         StudyRoomPK studyRoomPK = new StudyRoomPK(id, number);
          studyRoomRepository.deleteById(studyRoomPK);
     }
