@@ -6,6 +6,9 @@ import hufs2021.jeongbo.repository.StudyRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,23 +30,71 @@ public class StudyRoomController {
     }
 
     @PostMapping("")
+    @ResponseBody
     public void create(@RequestBody StudyRoom sr){
         System.out.println("create");
-        StudyRoom studyRoom = StudyRoom
+        StudyRoom studyRoomC = StudyRoom.builder()
+                .rId(sr.getRId())
+                .rNumber(sr.getRNumber())
+                .rStatus(sr.getRStatus())
+                .rDate(sr.getRDate())
+                .rFrom(sr.getRFrom())
+                .rEnd(sr.getREnd())
+                .rMajor(sr.getRMajor())
+                .rMax(sr.getRMax())
+                .createdAt(LocalDateTime.now())
+                .createdBy(sr.getCreatedBy())
+                .updatedAt(sr.getUpdatedAt())
+                .updatedBy(sr.getUpdatedBy())
+                .build();
+
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomC);
+
     }
 
-    @PutMapping("")
-    public void updatePut(){
+   @PutMapping("") // 전체 수정
+    public void updatePut(@RequestBody StudyRoom sr){
         System.out.println("updatePut");
+        StudyRoomPK studyRoomPK = new StudyRoomPK(sr.getRId(), sr.getRNumber());
+        StudyRoom studyRoomUPt = StudyRoom.builder()
+                .rId(sr.getRId())
+                .rNumber(sr.getRNumber())
+                .rStatus(sr.getRStatus())
+                .rDate(sr.getRDate())
+                .rFrom(sr.getRFrom())
+                .rEnd(sr.getREnd())
+                .rMajor(sr.getRMajor())
+                .rMax(sr.getRMax())
+                .createdAt(studyRoomRepository.findById(studyRoomPK).get().getCreatedAt())
+                .createdBy(studyRoomRepository.findById(studyRoomPK).get().getCreatedBy())
+                .updatedAt(LocalDateTime.now())
+                .updatedBy(sr.getUpdatedBy())
+                .build();
+
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomUPt);
     }
 
-    @PatchMapping("")
-    public void updatePatch(){
+    @PatchMapping("") // 일부 수정
+    public void updatePatch(@RequestBody StudyRoom sr){
         System.out.println("updatePatch");
+        StudyRoomPK studyRoomPK = new StudyRoomPK(sr.getRId(), sr.getRNumber());
+        StudyRoom studyRoomUPh = StudyRoom.builder()
+                .rId(sr.getRId())
+                .rNumber(sr.getRNumber())
+                .rStatus(sr.getRStatus())
+                .createdAt(studyRoomRepository.findById(studyRoomPK).get().getCreatedAt())
+                .createdBy(studyRoomRepository.findById(studyRoomPK).get().getCreatedBy())
+                .updatedAt(LocalDateTime.now())
+                .updatedBy(sr.getUpdatedBy())
+                .build();
+
+        StudyRoom newStudyRoom = studyRoomRepository.save(studyRoomUPh);
     }
 
     @DeleteMapping("")
-    public void delete(){
+    public void delete(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
         System.out.println("delete");
+        StudyRoomPK studyRoomPK = new StudyRoomPK(id, number);
+         studyRoomRepository.deleteById(studyRoomPK);
     }
 }
