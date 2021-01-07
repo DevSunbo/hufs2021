@@ -27,7 +27,7 @@ public class FileController {
                 .fNumber(fileRequest.getFNumber())
                 .fName(fileRequest.getFName())
                 .createdAt(LocalDateTime.now())
-                .createdBy(4321)
+                .createdBy(1234)
                 .build();
 
         File newFile = fileRepository.save(file);
@@ -57,8 +57,8 @@ public class FileController {
         return Header.ERROR();
     }
 
-    @GetMapping("/read/{f_id}")
-    public Header<FileResponse> read(@PathVariable(name = "f_id") Integer id) {
+    @GetMapping("/read")
+    public Header<FileResponse> read(@RequestParam Integer id) {
         return fileRepository.findById(id).map(file -> {
             System.out.println("파일 아디: " + file.getFId());
             System.out.println("파일 번호: " + file.getFNumber());
@@ -70,28 +70,23 @@ public class FileController {
         }).orElseGet(Header::ERROR);
     }
 
-    @GetMapping("/update")
-    public Header<FileResponse> update() {
-        File newFile = File.builder()
-                .fNumber(2)
-                .fName("회사 지원서 파일")
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(4321)
-                .build();
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<FileResponse> update(@RequestBody FileRequest fileRequest) {
 
-        return fileRepository.findById(3).map(file -> {
-            file.setFNumber(newFile.getFNumber());
-            file.setFName(newFile.getFName());
-            file.setUpdatedAt(newFile.getUpdatedAt());
-            file.setUpdatedBy(newFile.getUpdatedBy());
+        return fileRepository.findById(fileRequest.getFId()).map(file -> {
+            file.setFNumber(fileRequest.getFNumber());
+            file.setFName(fileRequest.getFName());
+            file.setUpdatedAt(LocalDateTime.now());
+            file.setUpdatedBy(fileRequest.getUpdatedBy());
 
             File updatedFile = fileRepository.save(file);
             return Header.OK(response(updatedFile));
         }).orElseGet(Header::ERROR);
     }
 
-    @DeleteMapping("/delete/{f_id}")
-    public Header<FileResponse> delete(@PathVariable(name = "f_id") Integer id){
+    @DeleteMapping("/delete")
+    public Header<FileResponse> delete(@RequestParam Integer id){
         return fileRepository.findById(id).map(file -> {
             fileRepository.delete(file);
             return Header.OK(response(file));
