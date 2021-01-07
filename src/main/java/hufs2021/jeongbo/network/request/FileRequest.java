@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 public class FileRequest {
     private Integer fId;
 
-    private Integer fNumber;
-
     private String fName;
 
     private LocalDateTime createdAt;

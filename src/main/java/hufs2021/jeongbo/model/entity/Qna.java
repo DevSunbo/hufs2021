@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -41,4 +38,10 @@ public class Qna {
     private LocalDateTime updatedAt;
 
     private int updatedBy;
+
+    @ManyToOne //좀 이상함
+    private File file;
+
+    @ManyToOne
+    private User user;
 }
