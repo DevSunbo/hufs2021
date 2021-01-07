@@ -99,6 +99,14 @@ public class FileController {
         }).orElseGet(Header::ERROR);
     }
 
+    @DeleteMapping("/delete/{f_id}")
+    public Header<FileResponse> delete(@PathVariable(name = "f_id") Integer id){
+        return fileRepository.findById(id).map(file -> {
+            fileRepository.delete(file);
+            return Header.OK(response(file));
+        }).orElseGet(Header::ERROR);
+    }
+
     private FileResponse response(File file) {
         return FileResponse.builder()
                 .fId(file.getFId())
