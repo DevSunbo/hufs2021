@@ -79,7 +79,25 @@ public class FileController {
         }).orElseGet(Header::ERROR);
     }
 
-    @GetMapping
+    @GetMapping("/update")
+    public Header<FileResponse> update() {
+        File newFile = File.builder()
+                .fNumber(2)
+                .fName("회사 지원서 파일")
+                .updatedAt(LocalDateTime.now())
+                .updatedBy(4321)
+                .build();
+
+        return fileRepository.findById(3).map(file -> {
+            file.setFNumber(newFile.getFNumber());
+            file.setFName(newFile.getFName());
+            file.setUpdatedAt(newFile.getUpdatedAt());
+            file.setUpdatedBy(newFile.getUpdatedBy());
+
+            File updatedFile = fileRepository.save(file);
+            return Header.OK(response(updatedFile));
+        }).orElseGet(Header::ERROR);
+    }
 
     private FileResponse response(File file) {
         return FileResponse.builder()
