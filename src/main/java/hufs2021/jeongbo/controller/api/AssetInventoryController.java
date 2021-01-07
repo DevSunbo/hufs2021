@@ -28,7 +28,7 @@ public class AssetInventoryController {
         return assetInventoryRepository.findById(id);
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/")
     @ResponseBody
     public void create(@RequestBody AssetInventory ai){
 
