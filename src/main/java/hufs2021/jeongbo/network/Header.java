@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +21,8 @@ public class Header<T> {
     private String description;
 
     private T data;
+
+    private List<T> dataList;
 
     public static <T> Header<T> OK() {
         return (Header<T>) Header.builder()
@@ -38,6 +41,14 @@ public class Header<T> {
                 .build();
     }
 
+    public static <T> Header<T> OK(List<T> dataList){
+        return (Header<T>) Header.builder()
+                .transactionTime(LocalDateTime.now())
+                .resultCode("OK")
+                .description("OK")
+                .dataList((List<Object>) dataList)
+                .build();
+    }
     public static <T> Header<T> ERROR() {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())

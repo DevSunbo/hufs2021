@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -65,16 +66,53 @@ public class FileController {
             });
             return Header.OK();
         }
-        else
-            return Header.ERROR();
+        return Header.ERROR();
+    }
+
+    @GetMapping("/read")
+    public Header<FileResponse> read() {
+        return fileRepository.findById(3).map(file -> {
+            System.out.println("파일 아디: " + file.getFId());
+            System.out.println("파일 번호: " + file.getFNumber());
+            System.out.println("파일 명: " + file.getFName());
+            System.out.println("등록일: " + file.getCreatedAt());
+            System.out.println("등록자: " + file.getCreatedBy());
+            System.out.println("---------------");
+            return Header.OK(response(file));
+        }).orElseGet(Header::ERROR);
     }
 
     private FileResponse response(File file) {
         return FileResponse.builder()
+                .fId(file.getFId())
                 .fNumber(file.getFNumber())
                 .fName(file.getFName())
                 .createdAt(file.getCreatedAt())
                 .createdBy(file.getCreatedBy())
+                .updatedAt(file.getUpdatedAt())
+                .updatedBy(file.getUpdatedBy())
                 .build();
     }
+
+    private FileResponse response(List<File> fileList) { //안됨
+        List<FileResponse> fileResponseList = new ArrayList<>();
+
+        fileList.stream().forEach(file -> {
+            FileResponse fileResponse = FileResponse.builder()
+                    .fId(file.getFId())
+                    .fNumber(file.getFNumber())
+                    .fName(file.getFName())
+                    .createdAt(file.getCreatedAt())
+                    .createdBy(file.getCreatedBy())
+                    .updatedAt(file.getUpdatedAt())
+                    .updatedBy(file.getUpdatedBy())
+                    .build();
+
+            fileResponseList.add(fileResponse);
+        });
+
+        return (FileResponse) fileResponseList;
+    }
+
+
 }
