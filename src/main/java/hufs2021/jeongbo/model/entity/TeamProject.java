@@ -39,6 +39,8 @@ public class TeamProject {
 
     private String pContent;
 
+    private Integer fId;
+
     private LocalDateTime createdAt;
 
     private int createdBy;

@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -33,5 +34,8 @@ public class Major {
     private LocalDateTime updatedAt;// 수정일
 
     private Integer updatedBy;// 수정자
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "major")
+    private List<User> userList;
 
 }

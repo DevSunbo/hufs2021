@@ -1,28 +1,31 @@
-package hufs2021.jeongbo.model.entity;
+package hufs2021.jeongbo.network.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-@Entity
-public class File {
+public class QnaResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer qaNumber;
+
+    private Integer qaDivision;
+
+    private Integer qaPrivate;
+
+    private String qaName;
+
+    private String qaField;
+
+    private String qaContent;
+
     private Integer fId;
-
-    private String fName;
 
     private LocalDateTime createdAt;
 
@@ -31,4 +34,6 @@ public class File {
     private LocalDateTime updatedAt;
 
     private Integer updatedBy;
+
+    private Integer studentId;
 }

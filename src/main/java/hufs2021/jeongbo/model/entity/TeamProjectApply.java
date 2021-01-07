@@ -26,6 +26,8 @@ public class TeamProjectApply {
 
     private String paApproved;
 
+    private Integer fId;
+
     private LocalDateTime createdAt;
 
     private int createdBy;

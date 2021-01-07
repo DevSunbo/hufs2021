@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int studentId;
+    private Integer studentId;
 
     private String name;
 
@@ -28,16 +27,16 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
 
-    @OneToOne
+    @ManyToOne
     private Major major;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Qna> qnaList;
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Qna> qnaList;*/
 
 }
