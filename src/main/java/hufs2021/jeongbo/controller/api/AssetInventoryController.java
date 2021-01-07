@@ -12,23 +12,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api") // localhost:8080/api
-public class AssetController {
+@RequestMapping("/api/assetInventory") // localhost:8080/api/assetInventory
+public class AssetInventoryController {
     @Autowired
     AssetInventoryRepository assetInventoryRepository;
 
-    @GetMapping("assetInventories")
+    @GetMapping("/all")
     @ResponseBody
     public List<AssetInventory> read(){
         return assetInventoryRepository.findAll();
     }
 
-    @GetMapping("assetInventory")
+    @GetMapping("/")
     public Optional<AssetInventory> readId(@RequestParam(name = "id") Integer id){
         return assetInventoryRepository.findById(id);
     }
 
-    @PostMapping("assetInventory/insert")
+    @PostMapping("/insert")
     @ResponseBody
     public void create(@RequestBody AssetInventory ai){
 
@@ -50,7 +50,7 @@ public class AssetController {
         return ;
     }
 
-    @GetMapping("assetInventory/update")
+    @GetMapping("/update")
     public void update(@RequestParam(name = "id") Integer id, @RequestParam(name = "user") Integer user){
         Optional<AssetInventory> assetInventoryById = assetInventoryRepository.findById(id); // 한 raw 데이터 받기
 
@@ -72,7 +72,7 @@ public class AssetController {
         AssetInventory newAssetInventory = assetInventoryRepository.save(assetInventory);
     }
 
-    @GetMapping("assetInventory/delete/{id}")
+    @GetMapping("/delete/{id}")
     public void delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
         assetInventoryRepository.deleteById(id);
