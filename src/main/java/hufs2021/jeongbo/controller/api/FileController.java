@@ -5,10 +5,7 @@ import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.response.FileResponse;
 import hufs2021.jeongbo.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -69,9 +66,9 @@ public class FileController {
         return Header.ERROR();
     }
 
-    @GetMapping("/read")
-    public Header<FileResponse> read() {
-        return fileRepository.findById(3).map(file -> {
+    @GetMapping("/read/{f_id}")
+    public Header<FileResponse> read(@PathVariable(name = "f_id") Integer id) {
+        return fileRepository.findById(id).map(file -> {
             System.out.println("파일 아디: " + file.getFId());
             System.out.println("파일 번호: " + file.getFNumber());
             System.out.println("파일 명: " + file.getFName());
@@ -81,6 +78,8 @@ public class FileController {
             return Header.OK(response(file));
         }).orElseGet(Header::ERROR);
     }
+
+    @GetMapping
 
     private FileResponse response(File file) {
         return FileResponse.builder()
