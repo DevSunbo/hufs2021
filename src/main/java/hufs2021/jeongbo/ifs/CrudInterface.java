@@ -4,13 +4,13 @@ import hufs2021.jeongbo.network.Header;
 
 public interface CrudInterface<Req, Res> {
 
-    Header<Res> create(Header<Req> request);
+    Header<Res> create();
 
 //    Header<Res> readAll();
 
-    Header<Res> read(Integer id);
+    Header<Res> read();
 
-    Header<Res> update(Header<Req> request);
+    Header<Res> update();
 
-    Header delete(Integer id);
+    Header delete();
 }
