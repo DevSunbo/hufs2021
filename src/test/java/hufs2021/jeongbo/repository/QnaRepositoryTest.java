@@ -77,4 +77,33 @@ class QnaRepositoryTest extends JeongboApplicationTests {
         Assertions.assertNotNull(qnaOptional);
     }
 
+    @Test
+    public void update() {
+        Qna qna = Qna.builder()
+                .qaNumber(2)
+                .qaDivision(0)
+                .qaPrivate(1)
+                .qaName("팀플 질문이요")
+                .qaField("팀프로젝트")
+                .qaContent("팀플 신청 어떻게 해요")
+                .updatedBy(4321)
+                .build();
+
+        Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(qna.getQaNumber(), qna.getQaDivision()));
+
+        qnaOptional.ifPresent(selectQna -> {
+            selectQna.setQaPrivate(qna.getQaPrivate());
+            selectQna.setQaName(qna.getQaName());
+            selectQna.setQaField(qna.getQaField());
+            selectQna.setQaContent(qna.getQaContent());
+            selectQna.setUpdatedAt(LocalDateTime.now());
+            selectQna.setUpdatedBy(qna.getUpdatedBy());
+
+            Qna updatedQna = qnaRepository.save(selectQna);
+            Assertions.assertNotNull(updatedQna);
+        });
+
+        Assertions.assertNotNull(qnaOptional);
+    }
+
 }
