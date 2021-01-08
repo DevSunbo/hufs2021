@@ -40,11 +40,11 @@ public class TeamProjectApply {
     private Integer pNumber;
 
     @ManyToOne
-    @JoinColumn(name = "USER_student_id")
+    @JoinColumn(name = "USER_student_id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "TEAM_PROJECT_p_number")
+    @JoinColumn(name = "TEAM_PROJECT_p_number", insertable = false, updatable = false)
     private TeamProject teamProject;
 
 

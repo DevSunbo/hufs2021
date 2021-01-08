@@ -50,7 +50,7 @@ public class TeamProject {
     private Integer studentId;
 
     @ManyToOne
-    @JoinColumn(name = "USER_student_id")
+    @JoinColumn(name = "USER_student_id", insertable = false, updatable = false)
     private User user;
 
 }
