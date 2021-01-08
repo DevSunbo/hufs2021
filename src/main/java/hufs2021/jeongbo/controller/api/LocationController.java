@@ -69,7 +69,7 @@ public class LocationController {
         return ;
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
         locationRepository.deleteById(id);

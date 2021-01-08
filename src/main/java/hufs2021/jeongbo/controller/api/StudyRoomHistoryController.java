@@ -70,7 +70,7 @@ public class StudyRoomHistoryController {
         return ;
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
         studyRoomHistoryRepository.deleteById(id);

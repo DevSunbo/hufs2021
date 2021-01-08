@@ -1,10 +1,8 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetAllowedList;
-import hufs2021.jeongbo.model.entity.AssetAllowedList;
 import hufs2021.jeongbo.model.entity.AssetAllowedListPK;
 import hufs2021.jeongbo.repository.AssetAllowedListRepository;
-import hufs2021.jeongbo.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +12,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/assetAllowedList") // localhost:8080/api/asset
+@RequestMapping("/api/assetAllowedList") // localhost:8080/api/assetAllowedList
 public class AssetAllowedListController {
     @Autowired
     AssetAllowedListRepository assetAllowedListRepository;
@@ -66,7 +64,7 @@ public class AssetAllowedListController {
         return ;
     }
 
-    @GetMapping("")
+    @DeleteMapping("")
     public void delete(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
         AssetAllowedListPK assetAllowedListPK = new AssetAllowedListPK(id, number);
         System.out.println("Delete id : "+id);
