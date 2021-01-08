@@ -45,7 +45,7 @@ public class StudyRoomHistoryController {
                 .updatedBy(rh.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        StudyRoomHistory newAssetInventory = studyRoomHistoryRepository.save(studyRoomHistory);
+        StudyRoomHistory newStudyRoomHistory = studyRoomHistoryRepository.save(studyRoomHistory);
         return ;
     }
 
@@ -66,7 +66,7 @@ public class StudyRoomHistoryController {
                 .updatedBy(rh.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        StudyRoomHistory newAssetInventory = studyRoomHistoryRepository.save(studyRoomHistory);
+        StudyRoomHistory newStudyRoomHistory = studyRoomHistoryRepository.save(studyRoomHistory);
         return ;
     }
 

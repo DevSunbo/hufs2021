@@ -42,7 +42,7 @@ public class AssetHistoryController {
                 .updatedBy(ah.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetHistory newAssetInventory = assetHistoryRepository.save(assetHistory);
+        AssetHistory newAssetHistory = assetHistoryRepository.save(assetHistory);
         return ;
     }
 
@@ -61,7 +61,7 @@ public class AssetHistoryController {
                 .updatedBy(ah.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetHistory newAssetInventory = assetHistoryRepository.save(assetHistory);
+        AssetHistory newAssetHistory = assetHistoryRepository.save(assetHistory);
         return ;
     }
 

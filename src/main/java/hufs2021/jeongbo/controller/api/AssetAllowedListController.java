@@ -43,7 +43,7 @@ public class AssetAllowedListController {
                 .build();
 
         //System.out.println(ai.getAiNumber());
-        AssetAllowedList newAssetInventory = assetAllowedListRepository.save(assetAllowedList);
+        AssetAllowedList newAssetAllowedList = assetAllowedListRepository.save(assetAllowedList);
         return ;
     }
 
@@ -60,7 +60,7 @@ public class AssetAllowedListController {
                 .updatedBy(aal.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetAllowedList newAssetInventory = assetAllowedListRepository.save(assetAllowedList);
+        AssetAllowedList newAssetAllowedList = assetAllowedListRepository.save(assetAllowedList);
         return ;
     }
 

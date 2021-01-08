@@ -43,7 +43,7 @@ public class AssetNoticeController {
                 .updatedBy(an.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetNotice newAssetInventory = assetNoticeRepository.save(assetNotice);
+        AssetNotice newAssetNotice = assetNoticeRepository.save(assetNotice);
         return ;
     }
 
@@ -61,7 +61,7 @@ public class AssetNoticeController {
                 .build();
 
         //System.out.println(ai.getAiNumber());
-        AssetNotice newAssetInventory = assetNoticeRepository.save(assetNotice);
+        AssetNotice newAssetNotice = assetNoticeRepository.save(assetNotice);
         return ;
     }
 

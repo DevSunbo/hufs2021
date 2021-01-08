@@ -43,7 +43,7 @@ public class AssetController {
                 .updatedBy(a.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Asset newAssetInventory = assetRepository.save(asset);
+        Asset newAsset = assetRepository.save(asset);
         return ;
     }
 
@@ -63,7 +63,7 @@ public class AssetController {
                 .updatedBy(a.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Asset newAssetInventory = assetRepository.save(asset);
+        Asset newAsset = assetRepository.save(asset);
         return ;
     }
 

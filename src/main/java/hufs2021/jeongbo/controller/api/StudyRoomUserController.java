@@ -45,7 +45,7 @@ public class StudyRoomUserController {
                 .updatedBy(ru.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        StudyRoomUser newAssetInventory = studyRoomUserRepository.save(studyRoomUser);
+        StudyRoomUser newStudyRoomUser = studyRoomUserRepository.save(studyRoomUser);
         return ;
     }
 
@@ -65,7 +65,7 @@ public class StudyRoomUserController {
                 .updatedBy(ru.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        StudyRoomUser newAssetInventory = studyRoomUserRepository.save(studyRoomUser);
+        StudyRoomUser newStudyRoomUser = studyRoomUserRepository.save(studyRoomUser);
         return ;
     }
 

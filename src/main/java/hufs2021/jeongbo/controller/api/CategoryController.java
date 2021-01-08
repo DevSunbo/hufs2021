@@ -44,7 +44,7 @@ public class CategoryController {
                 .updatedBy(ca.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Category newAssetInventory = categoryRepository.save(category);
+        Category newCategory = categoryRepository.save(category);
         return ;
     }
 
@@ -63,7 +63,7 @@ public class CategoryController {
                 .updatedBy(ca.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Category newAssetInventory = categoryRepository.save(category);
+        Category newCategory = categoryRepository.save(category);
         return ;
     }
 

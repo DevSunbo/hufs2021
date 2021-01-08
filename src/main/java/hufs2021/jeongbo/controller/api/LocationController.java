@@ -45,7 +45,7 @@ public class LocationController {
                 .updatedBy(lo.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Location newAssetInventory = locationRepository.save(location);
+        Location newLocation = locationRepository.save(location);
         return ;
     }
 
@@ -65,7 +65,7 @@ public class LocationController {
                 .updatedBy(lo.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        Location newAssetInventory = locationRepository.save(location);
+        Location newLocation = locationRepository.save(location);
         return ;
     }
 
