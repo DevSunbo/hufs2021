@@ -106,4 +106,20 @@ class QnaRepositoryTest extends JeongboApplicationTests {
         Assertions.assertNotNull(qnaOptional);
     }
 
+    @Test
+    public void delete() {
+        Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(2, 0));
+
+        Assertions.assertTrue(qnaOptional.isPresent());
+
+        qnaOptional.ifPresent(selectQna -> {
+            qnaRepository.delete(selectQna);
+        });
+
+        Optional<Qna> deletedQna = qnaRepository.findById(new QnaId(2, 0));
+
+        Assertions.assertFalse(deletedQna.isPresent());
+
+    }
+
 }
