@@ -1,6 +1,8 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetInventory;
+import hufs2021.jeongbo.model.entity.StudyRoom;
+import hufs2021.jeongbo.model.entity.StudyRoomPK;
 import hufs2021.jeongbo.repository.AssetInventoryRepository;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,12 @@ public class AssetInventoryController {
         return assetInventoryRepository.findAll();
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public Optional<AssetInventory> readId(@RequestParam(name = "id") Integer id){
         return assetInventoryRepository.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseBody
     public void create(@RequestBody AssetInventory ai){
 
@@ -50,29 +52,29 @@ public class AssetInventoryController {
         return ;
     }
 
-    @GetMapping("/update")
-    public void update(@RequestParam(name = "id") Integer id, @RequestParam(name = "user") Integer user){
-        Optional<AssetInventory> assetInventoryById = assetInventoryRepository.findById(id); // 한 raw 데이터 받기
-
+    @PutMapping("")
+    public void updatePut(@RequestBody AssetInventory ai){
+        System.out.println("updatePut");
         AssetInventory assetInventory = AssetInventory.builder()
-                .aiNumber(assetInventoryById.get().getAiNumber())
-                .aiSerial(assetInventoryById.get().getAiSerial())
-                .aiExpiration(LocalDate.of(2021, 1, 30))
-                .aiStatus(assetInventoryById.get().getAiStatus())
-                .aiRoom(assetInventoryById.get().getAiRoom())
-                .aiUser(user)
-                .caNumber(assetInventoryById.get().getCaNumber())
-                .createdAt(LocalDateTime.now())
-                .createdBy(1234)
+                .aiNumber(ai.getAiNumber())
+                .aiSerial(ai.getAiSerial())
+                .aiExpiration(ai.getAiExpiration())
+                .aiStatus(ai.getAiStatus())
+                .aiRoom(ai.getAiRoom())
+                .aiUser(ai.getAiUser())
+                .caNumber(ai.getCaNumber())
+                .createdAt(assetInventoryRepository.findById(ai.getAiNumber()).get().getCreatedAt())
+                .createdBy(assetInventoryRepository.findById(ai.getAiNumber()).get().getCreatedBy())
                 .updatedAt(LocalDateTime.now())
-                .updatedBy(1234)
+                .updatedBy(ai.getUpdatedBy())
                 .build();
-
-        System.out.println(assetInventory.getAiUser());
+        //System.out.println(ai.getAiNumber());
         AssetInventory newAssetInventory = assetInventoryRepository.save(assetInventory);
+        return ;
     }
 
-    @GetMapping("/delete/{id}")
+
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
         assetInventoryRepository.deleteById(id);
