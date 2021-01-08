@@ -13,9 +13,11 @@ import java.io.Serializable;
 public class AssetAllowedListPK implements Serializable {
     @EqualsAndHashCode.Include
     @Id
-    private Integer caNumber; // 카테고리 번호 Fk
+    private Integer studentId; // 학번 FK
 
     @EqualsAndHashCode.Include
     @Id
-    private Integer studentId; // 학번 FK
+    private Integer caNumber; // 카테고리 번호 Fk
+
+
 }
