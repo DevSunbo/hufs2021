@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/qna")
@@ -109,6 +110,20 @@ public class QnaController {
         }).map(qna -> qnaRepository.save(qna))
                 .map(qna -> Header.OK(response(qna)))
                 .orElseGet(Header::ERROR);
+    }
+
+    @DeleteMapping("/delete")
+    public Header<QnaResponse> delete(@RequestParam Integer number, @RequestParam Integer division) {
+        Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(number, division));
+
+        qnaOptional.ifPresent(qna -> qnaRepository.delete(qna));
+
+        Optional<Qna> deletedQna = qnaRepository.findById(new QnaId(number, division));
+
+        if(deletedQna==null)
+            return Header.OK();
+        else
+            return Header.ERROR();
     }
 
     private QnaResponse response(Qna qna) {
