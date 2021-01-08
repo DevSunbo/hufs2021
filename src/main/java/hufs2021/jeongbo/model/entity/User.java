@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,7 +37,13 @@ public class User {
     @ManyToOne
     private Major major;
 
-    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Qna> qnaList;*/
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<TeamProject> teamProjectList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Qna> qnaList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<TeamProjectApply> teamProjectApplyList;
 
 }

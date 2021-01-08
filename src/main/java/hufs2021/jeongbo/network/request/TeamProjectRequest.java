@@ -1,23 +1,19 @@
-package hufs2021.jeongbo.model.entity;
+package hufs2021.jeongbo.network.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-@Entity
-public class TeamProject {
+public class TeamProjectRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pNumber;
 
     private String pField;
@@ -46,11 +42,5 @@ public class TeamProject {
 
     private Integer updatedBy;
 
-    @Column(name = "USER_student_id")
     private Integer studentId;
-
-    @ManyToOne
-    @JoinColumn(name = "USER_student_id")
-    private User user;
-
 }

@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -20,7 +17,7 @@ public class TeamProjectApply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paNumber;
+    private Integer paNumber;
 
     private String paContent;
 
@@ -30,11 +27,25 @@ public class TeamProjectApply {
 
     private LocalDateTime createdAt;
 
-    private int createdBy;
+    private Integer createdBy;
 
     private LocalDateTime updatedAt;
 
-    private int updatedBy;
+    private Integer updatedBy;
+
+    @Column(name = "USER_student_id")
+    private Integer studentId;
+
+    @Column(name = "TEAM_PROJECT_p_number")
+    private Integer pNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_student_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_PROJECT_p_number")
+    private TeamProject teamProject;
 
 
 }
