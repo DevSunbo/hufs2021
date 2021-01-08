@@ -92,6 +92,25 @@ public class QnaController {
                 .orElseGet(Header::ERROR);
     }
 
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<QnaResponse> update(@RequestBody QnaRequest qnaRequest) {
+
+        return qnaRepository.findById(new QnaId(qnaRequest.getQaNumber(), qnaRequest.getQaDivision())).map(qna -> {
+            qna.setQaPrivate(qnaRequest.getQaPrivate());
+            qna.setQaName(qnaRequest.getQaName());
+            qna.setQaField(qnaRequest.getQaField());
+            qna.setQaContent(qnaRequest.getQaContent());
+            qna.setFId(qnaRequest.getFId());
+            qna.setUpdatedAt(LocalDateTime.now());
+            qna.setUpdatedBy(qnaRequest.getUpdatedBy());
+            qna.setStudent_id(qnaRequest.getStudentId());
+            return qna;
+        }).map(qna -> qnaRepository.save(qna))
+                .map(qna -> Header.OK(response(qna)))
+                .orElseGet(Header::ERROR);
+    }
+
     private QnaResponse response(Qna qna) {
         return QnaResponse.builder()
                 .qaNumber(qna.getQaNumber())
