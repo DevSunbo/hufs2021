@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/qna")
@@ -39,7 +40,33 @@ public class QnaController {
             return Header.OK(response(qna));
         else
             return Header.ERROR();
+    }
 
+    @GetMapping("/readall")
+    @ResponseBody
+    public Header<QnaResponse> readAll() {
+        List<Qna> qnaList = qnaRepository.findAll();
+
+        if (qnaList != null) {
+            qnaList.stream().forEach(qna -> {
+                System.out.println(qna.getQaName());
+                System.out.println(qna.getQaDivision());
+                System.out.println(qna.getQaPrivate());
+                System.out.println(qna.getQaName());
+                System.out.println(qna.getQaField());
+                System.out.println(qna.getQaContent());
+                System.out.println(qna.getFId());
+                System.out.println(qna.getCreatedAt());
+                System.out.println(qna.getCreatedBy());
+                System.out.println(qna.getUpdatedAt());
+                System.out.println(qna.getUpdatedBy());
+                System.out.println(qna.getStudent_id());
+                System.out.println("----------------------------");
+            });
+            return Header.OK();
+        }
+        else
+            return Header.ERROR();
     }
 
     private QnaResponse response(Qna qna) {
