@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/assetAllowedList") // localhost:8080/api/assetAllowedList
+@RequestMapping("/api/asset/allowedlist") // localhost:8080/api/asset/allowedlist
 public class AssetAllowedListController {
     @Autowired
     AssetAllowedListRepository assetAllowedListRepository;

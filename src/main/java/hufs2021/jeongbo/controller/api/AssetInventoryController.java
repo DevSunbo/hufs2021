@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/assetInventory") // localhost:8080/api/assetInventory
+@RequestMapping("/api/asset/inventory") // localhost:8080/api/asset/inventory
 public class AssetInventoryController {
     @Autowired
     AssetInventoryRepository assetInventoryRepository;

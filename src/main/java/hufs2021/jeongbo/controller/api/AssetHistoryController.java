@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/assetHistory/history") // localhost:8080/api/assetHistory/history
+@RequestMapping("/api/asset/history") // localhost:8080/api/asset/history
 public class AssetHistoryController {
     @Autowired
     AssetHistoryRepository assetHistoryRepository;
