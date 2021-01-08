@@ -1,6 +1,7 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.Qna;
+import hufs2021.jeongbo.model.key.QnaId;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.QnaRequest;
 import hufs2021.jeongbo.network.response.QnaResponse;
@@ -49,7 +50,7 @@ public class QnaController {
 
         if (qnaList != null) {
             qnaList.stream().forEach(qna -> {
-                System.out.println(qna.getQaName());
+                System.out.println(qna.getQaNumber());
                 System.out.println(qna.getQaDivision());
                 System.out.println(qna.getQaPrivate());
                 System.out.println(qna.getQaName());
@@ -67,6 +68,28 @@ public class QnaController {
         }
         else
             return Header.ERROR();
+    }
+
+    @GetMapping("/read")
+    @ResponseBody
+    public Header<QnaResponse> read(@RequestParam Integer number, @RequestParam Integer division) {
+        return qnaRepository.findById(new QnaId(number, division))
+                .map(qna -> {
+                    System.out.println(qna.getQaNumber());
+                    System.out.println(qna.getQaDivision());
+                    System.out.println(qna.getQaPrivate());
+                    System.out.println(qna.getQaName());
+                    System.out.println(qna.getQaField());
+                    System.out.println(qna.getQaContent());
+                    System.out.println(qna.getFId());
+                    System.out.println(qna.getCreatedAt());
+                    System.out.println(qna.getCreatedBy());
+                    System.out.println(qna.getUpdatedAt());
+                    System.out.println(qna.getUpdatedBy());
+                    System.out.println(qna.getStudent_id());
+                    return qna;
+                }).map(qna -> Header.OK(response(qna)))
+                .orElseGet(Header::ERROR);
     }
 
     private QnaResponse response(Qna qna) {
