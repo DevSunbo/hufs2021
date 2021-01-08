@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/studyRoom") //localhost:8080/api/studyRoom
+@RequestMapping("/api/studyroom") //localhost:8080/api/studyroom
 public class StudyRoomController {
     @Autowired
     StudyRoomRepository studyRoomRepository;
