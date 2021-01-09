@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/team-project")
@@ -118,6 +119,18 @@ public class TeamProjectController {
                 }).map(teamProject -> teamProjectRepository.save(teamProject))
                 .map(teamProject -> Header.OK(response(teamProject)))
                 .orElseGet(Header::ERROR);
+    }
+
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public Header<TeamProjectResponse> delete(@RequestParam Integer number) {
+        Optional<TeamProject> teamProjectOptional = teamProjectRepository.findById(number);
+
+        teamProjectOptional.ifPresent(teamProject -> teamProjectRepository.delete(teamProject));
+
+        Optional<TeamProject> deletedTeamProject = teamProjectRepository.findById(number);
+
+        return Header.OK();
     }
 
     private TeamProjectResponse response(TeamProject teamProject) {

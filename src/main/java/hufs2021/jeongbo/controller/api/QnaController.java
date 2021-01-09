@@ -118,12 +118,7 @@ public class QnaController {
 
         qnaOptional.ifPresent(qna -> qnaRepository.delete(qna));
 
-        Optional<Qna> deletedQna = qnaRepository.findById(new QnaId(number, division));
-
-        if(deletedQna==null)
-            return Header.OK();
-        else
-            return Header.ERROR();
+        return Header.OK();
     }
 
     private QnaResponse response(Qna qna) {
