@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -31,5 +28,6 @@ public class AssetHistory {
     private LocalDateTime updatedAt; // 수정일 = 반납한 날
     private Integer updatedBy; // 수정한 사람 = 관리자
 
-    //private int USER_student_id; // 신청한 사람 학번 FK
+    @Column(name = "USER_student_id")
+    private int studentId; // 신청한 사람 학번 FK
 }
