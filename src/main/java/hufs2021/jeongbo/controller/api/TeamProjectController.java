@@ -97,7 +97,27 @@ public class TeamProjectController {
                     return teamProject;
                 }).map(teamProject -> Header.OK(response(teamProject)))
                 .orElseGet(Header::ERROR);
+    }
 
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<TeamProjectResponse> update(@RequestBody TeamProjectRequest teamProjectRequest) {
+        return teamProjectRepository.findById(teamProjectRequest.getPNumber())
+                .map(teamProject -> {
+                    teamProject.setPName(teamProjectRequest.getPName());
+                    teamProject.setPMin(teamProjectRequest.getPMin());
+                    teamProject.setPMax(teamProjectRequest.getPMax());
+                    teamProject.setPDeadline(teamProjectRequest.getPDeadline());
+                    teamProject.setPMainLanguage(teamProjectRequest.getPMainLanguage());
+                    teamProject.setPLocation(teamProjectRequest.getPLocation());
+                    teamProject.setPContent(teamProjectRequest.getPContent());
+                    teamProject.setFId(teamProjectRequest.getFId());
+                    teamProject.setUpdatedAt(LocalDateTime.now());
+                    teamProject.setUpdatedBy(teamProjectRequest.getUpdatedBy());
+                    return teamProject;
+                }).map(teamProject -> teamProjectRepository.save(teamProject))
+                .map(teamProject -> Header.OK(response(teamProject)))
+                .orElseGet(Header::ERROR);
     }
 
     private TeamProjectResponse response(TeamProject teamProject) {

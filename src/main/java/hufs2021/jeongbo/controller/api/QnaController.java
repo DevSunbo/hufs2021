@@ -105,7 +105,7 @@ public class QnaController {
             qna.setFId(qnaRequest.getFId());
             qna.setUpdatedAt(LocalDateTime.now());
             qna.setUpdatedBy(qnaRequest.getUpdatedBy());
-            qna.setStudent_id(qnaRequest.getStudentId());
+//            qna.setStudent_id(qnaRequest.getStudentId());
             return qna;
         }).map(qna -> qnaRepository.save(qna))
                 .map(qna -> Header.OK(response(qna)))
