@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -37,6 +38,52 @@ public class UserController {
             return Header.OK();
         else
             return Header.ERROR();
+    }
+
+    @GetMapping("/readall")
+    @ResponseBody
+    public Header<UserResponse> readAll() {
+        List<User> userList = userRepository.findAll();
+
+        if (userList != null) {
+            userList.stream().forEach(user -> {
+                System.out.println(user.getStudentId());
+                System.out.println(user.getName());
+                System.out.println(user.getPhoneNumber());
+                System.out.println(user.getEmail());
+                System.out.println(user.getPassword());
+                System.out.println(user.getCreatedAt());
+                System.out.println(user.getCreatedBy());
+                System.out.println(user.getUpdatedAt());
+                System.out.println(user.getUpdatedBy());
+                System.out.println(user.getMCode());
+                System.out.println("-----------------------------");
+            });
+            return Header.OK();
+        }
+        else
+            return Header.ERROR();
+    }
+
+    @GetMapping("/read")
+    @ResponseBody
+    public Header<UserResponse> read(@RequestParam Integer id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    System.out.println(user.getStudentId());
+                    System.out.println(user.getName());
+                    System.out.println(user.getPhoneNumber());
+                    System.out.println(user.getEmail());
+                    System.out.println(user.getPassword());
+                    System.out.println(user.getCreatedAt());
+                    System.out.println(user.getCreatedBy());
+                    System.out.println(user.getUpdatedAt());
+                    System.out.println(user.getUpdatedBy());
+                    System.out.println(user.getMCode());
+                    System.out.println("-----------------------------");
+                    return user;
+                }).map(user -> Header.OK(response(user)))
+                .orElseGet(Header::ERROR);
     }
 
     private UserResponse response(User user) {
