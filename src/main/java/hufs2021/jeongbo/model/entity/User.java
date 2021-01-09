@@ -17,7 +17,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentId;
 
     private String name;
@@ -25,6 +25,8 @@ public class User {
     private String phoneNumber;
 
     private String email;
+
+    private String password;
 
     private LocalDateTime createdAt;
 
@@ -34,7 +36,11 @@ public class User {
 
     private Integer updatedBy;
 
+    @Column(name = "major_m_code")
+    private Integer mCode;
+
     @ManyToOne
+    @JoinColumn(name = "major_m_code", insertable = false, updatable = false)
     private Major major;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
