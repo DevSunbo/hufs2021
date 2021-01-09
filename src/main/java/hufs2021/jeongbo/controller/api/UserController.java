@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
@@ -84,6 +85,34 @@ public class UserController {
                     return user;
                 }).map(user -> Header.OK(response(user)))
                 .orElseGet(Header::ERROR);
+    }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<UserResponse> update(@RequestBody UserRequest userRequest) {
+        return userRepository.findById(userRequest.getStudentId())
+                .map(user -> {
+                    user.setStudentId(userRequest.getStudentId());
+                    user.setName(userRequest.getName());
+                    user.setPhoneNumber(userRequest.getPhoneNumber());
+                    user.setEmail(userRequest.getEmail());
+                    user.setPassword(userRequest.getPassword());
+                    user.setUpdatedAt(LocalDateTime.now());
+                    user.setUpdatedBy(userRequest.getUpdatedBy());
+                    user.setMCode(userRequest.getMCode());
+                    return user;
+                }).map(user -> userRepository.save(user))
+                .map(user -> Header.OK(response(user)))
+                .orElseGet(Header::ERROR);
+    }
+
+    @DeleteMapping("/delete")
+    public Header<UserResponse> delete(@RequestParam Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        userOptional.ifPresent(user -> userRepository.delete(user));
+
+        return Header.OK();
     }
 
     private UserResponse response(User user) {
