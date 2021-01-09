@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/team-project-apply")
@@ -84,8 +85,31 @@ public class TeamProjectApplyController {
                     return teamProjectApply;
                 }).map(teamProjectApply -> Header.OK(response(teamProjectApply)))
                 .orElseGet(Header::ERROR);
+    }
 
+    @PutMapping("/update")
+    @ResponseBody
+    public Header<TeamProjectApplyResponse> update(@RequestBody TeamProjectApplyRequest teamProjectApplyRequest) {
+        return teamProjectApplyRepository.findById(teamProjectApplyRequest.getPaNumber())
+                .map(teamProjectApply -> {
+                    teamProjectApply.setPaContent(teamProjectApplyRequest.getPaContent());
+                    teamProjectApply.setPaApproved(teamProjectApplyRequest.getPaApproved());
+                    teamProjectApply.setFId(teamProjectApplyRequest.getFId());
+                    teamProjectApply.setUpdatedAt(LocalDateTime.now());
+                    teamProjectApply.setUpdatedBy(teamProjectApplyRequest.getUpdatedBy());
+                    return teamProjectApply;
+                }).map(teamProjectApply -> teamProjectApplyRepository.save(teamProjectApply))
+                .map(teamProjectApply -> Header.OK(response(teamProjectApply)))
+                .orElseGet(Header::ERROR);
+    }
 
+    @DeleteMapping("/delete")
+    public Header<TeamProjectApplyResponse> delete(@RequestParam Integer number) {
+        Optional<TeamProjectApply> teamProjectApplyOptional = teamProjectApplyRepository.findById(number);
+
+        teamProjectApplyOptional.ifPresent(teamProjectApply -> teamProjectApplyRepository.delete(teamProjectApply));
+
+        return Header.OK();
     }
 
     private TeamProjectApplyResponse response(TeamProjectApply teamProjectApply) {
