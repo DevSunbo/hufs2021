@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/team-project-apply")
@@ -37,6 +38,54 @@ public class TeamProjectApplyController {
             return Header.OK(response(newTeamProjectApply));
         else
             return Header.ERROR();
+    }
+
+    @GetMapping("/readall")
+    @ResponseBody
+    public Header<TeamProjectApplyResponse> readAll() {
+        List<TeamProjectApply> teamProjectApplyList = teamProjectApplyRepository.findAll();
+
+        if(teamProjectApplyList!=null){
+            teamProjectApplyList.stream().forEach(teamProjectApply -> {
+                System.out.println(teamProjectApply.getPaNumber());
+                System.out.println(teamProjectApply.getPaContent());
+                System.out.println(teamProjectApply.getPaApproved());
+                System.out.println(teamProjectApply.getFId());
+                System.out.println(teamProjectApply.getCreatedAt());
+                System.out.println(teamProjectApply.getCreatedBy());
+                System.out.println(teamProjectApply.getUpdatedAt());
+                System.out.println(teamProjectApply.getUpdatedBy());
+                System.out.println(teamProjectApply.getStudentId());
+                System.out.println(teamProjectApply.getPNumber());
+                System.out.println("------------------------------");
+            });
+            return Header.OK();
+        }
+        else
+            return Header.ERROR();
+    }
+
+    @GetMapping("/read")
+    @ResponseBody
+    public Header<TeamProjectApplyResponse> read(@RequestParam Integer number) {
+        return teamProjectApplyRepository.findById(number)
+                .map(teamProjectApply -> {
+                    System.out.println(teamProjectApply.getPaNumber());
+                    System.out.println(teamProjectApply.getPaContent());
+                    System.out.println(teamProjectApply.getPaApproved());
+                    System.out.println(teamProjectApply.getFId());
+                    System.out.println(teamProjectApply.getCreatedAt());
+                    System.out.println(teamProjectApply.getCreatedBy());
+                    System.out.println(teamProjectApply.getUpdatedAt());
+                    System.out.println(teamProjectApply.getUpdatedBy());
+                    System.out.println(teamProjectApply.getStudentId());
+                    System.out.println(teamProjectApply.getPNumber());
+                    System.out.println("--------------------------------");
+                    return teamProjectApply;
+                }).map(teamProjectApply -> Header.OK(response(teamProjectApply)))
+                .orElseGet(Header::ERROR);
+
+
     }
 
     private TeamProjectApplyResponse response(TeamProjectApply teamProjectApply) {
