@@ -12,13 +12,15 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "asset_history")
 @Builder
 public class AssetHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ahNumber; // 구분키 PK
-    private Integer aiNumber; // Asset Inventory ai_number FK
+
+    @Column(name = "ah_ai_number")
+    private Integer ahAiNumber; // Asset Inventory ai_number FK
 
     private LocalDate ahApplicationdate; // 신청한 날
     private LocalDate ahReturndate; // 반납한 날
@@ -30,4 +32,13 @@ public class AssetHistory {
 
     @Column(name = "USER_student_id")
     private int studentId; // 신청한 사람 학번 FK
+
+    /*@ManyToOne
+    @JoinColumns({
+            @JoinColumn(name = "ah_ai_number",  insertable = false, updatable = false),
+            @JoinColumn(name = "USER_student_id", referencedColumnName = "aiUser",insertable = false, updatable = false)
+
+    })
+    private AssetInventory assetInventory;*/
+
 }

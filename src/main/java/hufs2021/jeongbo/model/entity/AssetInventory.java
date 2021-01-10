@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Entity(name = "asset_inventory")
 public class AssetInventory {
     @Id
+    @Column(name = "ai_number")
     private Integer aiNumber; // 기자재 구분 번호 PK
 
     private Integer aiSerial; // 기자재 바코드
