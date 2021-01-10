@@ -2,6 +2,9 @@ package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetAllowedList;
 import hufs2021.jeongbo.model.entity.AssetAllowedListPK;
+import hufs2021.jeongbo.model.network.Header;
+import hufs2021.jeongbo.model.network.request.AssetAllowedListApiRequest;
+import hufs2021.jeongbo.model.network.response.AssetAllowedListApiResponse;
 import hufs2021.jeongbo.repository.AssetAllowedListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,54 +23,89 @@ public class AssetAllowedListController {
     @GetMapping("/all")
     @ResponseBody
     public List<AssetAllowedList> read(){
-        return assetAllowedListRepository.findAll();
+        List<AssetAllowedList> assetAllowedLists = assetAllowedListRepository.findAll();
+               // response(assetAllowedLists);
+        return assetAllowedLists;
     }
 
     @GetMapping("")
-    public Optional<AssetAllowedList> readId(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
+    public Header<AssetAllowedListApiResponse> readId(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
         AssetAllowedListPK assetAllowedListPK = new AssetAllowedListPK(id, number);
-        return assetAllowedListRepository.findById(assetAllowedListPK);
+        return assetAllowedListRepository.findById(assetAllowedListPK)
+                .map( item->response(item))
+                .map(Header::OK)
+                .orElseGet( () ->Header.ERROR("데이터 없음") );
     }
 
     @PostMapping("")
     @ResponseBody
-    public void create(@RequestBody AssetAllowedList aal){
+    public Header<AssetAllowedListApiResponse> create(@RequestBody Header<AssetAllowedListApiRequest> request){
 
+        AssetAllowedListApiRequest assetAllowedListApiRequest =request.getData();
         AssetAllowedList assetAllowedList = AssetAllowedList.builder()
-                .studentId(aal.getStudentId())
-                .caNumber(aal.getCaNumber())
+                .studentId(assetAllowedListApiRequest.getStudentId())
+                .caNumber(assetAllowedListApiRequest.getCaNumber())
                 .createdAt(LocalDateTime.now())
-                .createdBy(aal.getCreatedBy())
-                .updatedAt(aal.getUpdatedAt())
-                .updatedBy(aal.getUpdatedBy())
+                .createdBy(assetAllowedListApiRequest.getCreatedBy())
+                .updatedAt(assetAllowedListApiRequest.getUpdatedAt())
+                .updatedBy(assetAllowedListApiRequest.getUpdatedBy())
                 .build();
 
         //System.out.println(ai.getAiNumber());
         AssetAllowedList newAssetAllowedList = assetAllowedListRepository.save(assetAllowedList);
-        return ;
+        return Header.OK(response(newAssetAllowedList));
     }
 
     @PutMapping("")
-    public void update(@RequestBody AssetAllowedList aal){
-        //Optional<AssetAllowedList> assetInventoryById = assetAllowedListRepository.findById(id); // 한 raw 데이터 받기
-        AssetAllowedListPK assetAllowedListPK = new AssetAllowedListPK(aal.getStudentId(),aal.getCaNumber());
-        AssetAllowedList assetAllowedList = AssetAllowedList.builder()
-                .studentId(aal.getStudentId())
-                .caNumber(aal.getCaNumber())
-                .createdAt(assetAllowedListRepository.findById(assetAllowedListPK).get().getCreatedAt())
-                .createdBy(assetAllowedListRepository.findById(assetAllowedListPK).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(aal.getUpdatedBy())
-                .build();
-        //System.out.println(ai.getAiNumber());
-        AssetAllowedList newAssetAllowedList = assetAllowedListRepository.save(assetAllowedList);
-        return ;
+    public Header<AssetAllowedListApiResponse> update(@RequestBody Header<AssetAllowedListApiRequest> request){
+        AssetAllowedListApiRequest assetAllowedListApiRequest = request.getData();
+        AssetAllowedListPK assetAllowedListPK = new AssetAllowedListPK(assetAllowedListApiRequest.getStudentId(), assetAllowedListApiRequest.getCaNumber());
+        Optional<AssetAllowedList> optional = assetAllowedListRepository.findById(assetAllowedListPK);
+
+
+        return optional.map(list -> {
+            list
+                    .setStudentId(assetAllowedListApiRequest.getStudentId())
+                    .setCaNumber(assetAllowedListApiRequest.getCaNumber())
+                    .setCreatedAt(assetAllowedListApiRequest.getCreatedAt())
+                    .setUpdatedBy(assetAllowedListApiRequest.getUpdatedBy())
+                    .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt())
+                    .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt());
+            return list;
+        })
+                .map(list -> assetAllowedListRepository.save(list))
+                .map(list -> response(list))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
+
     }
 
     @DeleteMapping("")
-    public void delete(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
+    public Header delete(@RequestParam(name = "id") Integer id, @RequestParam(name = "number") Integer number){
         AssetAllowedListPK assetAllowedListPK = new AssetAllowedListPK(id, number);
         System.out.println("Delete id : "+id);
-        assetAllowedListRepository.deleteById(assetAllowedListPK);
+        Optional<AssetAllowedList> optional = assetAllowedListRepository.findById(assetAllowedListPK);
+
+        return optional.map( item ->{
+            assetAllowedListRepository.delete(item);
+            return Header.OK();
+        }).orElseGet(()->Header.ERROR("데이터 없음"));
+    }
+
+    public AssetAllowedListApiResponse response(AssetAllowedList assetAllowedList){
+
+        AssetAllowedListApiResponse assetAllowedListApiResponse = AssetAllowedListApiResponse.builder()
+                .studentId(assetAllowedList.getStudentId())
+                .caNumber(assetAllowedList.getCaNumber())
+                .createdAt(assetAllowedList.getCreatedAt())
+                .createdBy(assetAllowedList.getCreatedBy())
+                .updatedAt(assetAllowedList.getUpdatedAt())
+                .updatedBy(assetAllowedList.getUpdatedBy())
+                .build();
+
+
+
+
+        return assetAllowedListApiResponse;
     }
 }
