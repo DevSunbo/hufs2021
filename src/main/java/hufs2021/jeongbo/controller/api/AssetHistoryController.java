@@ -41,14 +41,14 @@ public class AssetHistoryController {
         AssetHistoryApiRequest assetHistoryApiRequest =request.getData();
 
         AssetHistory assetHistory = AssetHistory.builder()
-                .aId(assetHistoryApiRequest.getAId())
-                .aMajor(assetHistoryApiRequest.getAMajor())
-                .aGrade(assetHistoryApiRequest.getAGrade())
-                .aDeadline(assetHistoryApiRequest.getADeadline())
-                .caNumber(assetHistoryApiRequest.getCaNumber())
-                .createdAt(LocalDateTime.now())
-                .createdBy(assetHistoryApiRequest.getCreatedBy())
-                .updatedAt(assetHistoryApiRequest.getUpdatedAt())
+                .ahNumber(assetHistoryApiRequest.getAhNumber())
+                .ahAiNumber(assetHistoryApiRequest.getAhAiNumber())
+                .ahApplicationdate(assetHistoryApiRequest.getAhApplicationdate())
+                .ahReturndate(assetHistoryApiRequest.getAhReturndate())
+                .studentId(assetHistoryApiRequest.getStudentId())
+                .createdAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedAt())
+                .createdBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedBy())
+                .updatedAt(LocalDateTime.now())
                 .updatedBy(assetHistoryApiRequest.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
@@ -64,32 +64,19 @@ public class AssetHistoryController {
         //Optional<AssetHistory> assetInventoryById = assetHistoryRepository.findById(id); // 한 raw 데이터 받기
         AssetHistoryApiRequest assetHistoryApiRequest =request.getData();
 
-        AssetHistory assetHistory = AssetHistory.builder()
-                .ahNumber(assetHistoryApiRequest.getAhNumber())
-                .ahAiNumber(assetHistoryApiRequest.getAhAiNumber())
-                .ahApplicationdate(assetHistoryApiRequest.getAhApplicationdate())
-                .ahReturndate(assetHistoryApiRequest.getAhReturndate())
-                .studentId(assetHistoryApiRequest.getStudentId())
-                .createdAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedAt())
-                .createdBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(assetHistoryApiRequest.getUpdatedBy())
-                .build();
-        //System.out.println(ai.getAiNumber());
-        AssetHistory newAsset = assetHistoryRepository.save(assetHistory);
 
-        Optional<AssetHistory> optional = assetHistoryRepository.findById(assetHistoryApiRequest.getAId());
+        Optional<AssetHistory> optional = assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber());
 
 
         return optional.map(list -> {
             list
-                    .setAId(assetHistoryApiRequest.getAId())
-                    .setAMajor(assetHistoryApiRequest.getAMajor())
-                    .setAGrade(assetHistoryApiRequest.getAGrade())
-                    .setADeadline(assetHistoryApiRequest.getADeadline())
-                    .setCaNumber(assetHistoryApiRequest.getCaNumber())
-                    .setCreatedAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAId()).get().getCreatedAt())
-                    .setCreatedBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAId()).get().getCreatedBy())
+                    .setAhNumber(assetHistoryApiRequest.getAhNumber())
+                    .setAhAiNumber(assetHistoryApiRequest.getAhAiNumber())
+                    .setAhApplicationdate(assetHistoryApiRequest.getAhApplicationdate())
+                    .setAhReturndate(assetHistoryApiRequest.getAhReturndate())
+                    .setStudentId(assetHistoryApiRequest.getStudentId())
+                    .setCreatedAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedAt())
+                    .setCreatedBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedBy())
                     .setUpdatedAt(LocalDateTime.now())
                     .setUpdatedBy(assetHistoryApiRequest.getUpdatedBy());
             return list;
@@ -123,10 +110,6 @@ public class AssetHistoryController {
                 .updatedAt(assetHistory.getUpdatedAt())
                 .updatedBy(assetHistory.getUpdatedBy())
                 .build();
-
-
-
-
-        return assetAllowedListApiResponse;
+      return assetAllowedListApiResponse;
     }
 }
