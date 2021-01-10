@@ -1,6 +1,12 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetHistory;
+import hufs2021.jeongbo.model.entity.AssetHistory;
+import hufs2021.jeongbo.model.network.Header;
+import hufs2021.jeongbo.model.network.request.AssetHistoryApiRequest;
+import hufs2021.jeongbo.model.network.request.AssetHistoryApiRequest;
+import hufs2021.jeongbo.model.network.response.AssetHistoryApiResponse;
+import hufs2021.jeongbo.model.network.response.AssetHistoryApiResponse;
 import hufs2021.jeongbo.repository.AssetHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/asset/history") // localhost:8080/api/asset/history
+@RequestMapping("/api/assetHistory/history") // localhost:8080/api/assetHistory/history
 public class AssetHistoryController {
     @Autowired
     AssetHistoryRepository assetHistoryRepository;
@@ -22,53 +28,105 @@ public class AssetHistoryController {
     }
 
     @GetMapping("")
-    public Optional<AssetHistory> readId(@RequestParam(name = "id") Integer id){
-        return assetHistoryRepository.findById(id);
+    public Header<AssetHistoryApiResponse> readId(@RequestParam(name = "id") Integer id){
+        return assetHistoryRepository.findById(id)
+                .map( item->response(item))
+                .map(Header::OK)
+                .orElseGet( () ->Header.ERROR("데이터 없음") );
     }
 
     @PostMapping("")
     @ResponseBody
-    public void create(@RequestBody AssetHistory ah){
+    public Header<AssetHistoryApiResponse> create(@RequestBody Header<AssetHistoryApiRequest> request){
+        AssetHistoryApiRequest assetHistoryApiRequest =request.getData();
 
         AssetHistory assetHistory = AssetHistory.builder()
-                .ahNumber(ah.getAhNumber())
-                .ahAiNumber(ah.getAhAiNumber())
-                .ahApplicationdate(ah.getAhApplicationdate())
-                .ahReturndate(ah.getAhReturndate())
-                .studentId(ah.getStudentId())
+                .aId(assetHistoryApiRequest.getAId())
+                .aMajor(assetHistoryApiRequest.getAMajor())
+                .aGrade(assetHistoryApiRequest.getAGrade())
+                .aDeadline(assetHistoryApiRequest.getADeadline())
+                .caNumber(assetHistoryApiRequest.getCaNumber())
                 .createdAt(LocalDateTime.now())
-                .createdBy(ah.getCreatedBy())
-                .updatedAt(ah.getUpdatedAt())
-                .updatedBy(ah.getUpdatedBy())
+                .createdBy(assetHistoryApiRequest.getCreatedBy())
+                .updatedAt(assetHistoryApiRequest.getUpdatedAt())
+                .updatedBy(assetHistoryApiRequest.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetHistory newAssetHistory = assetHistoryRepository.save(assetHistory);
-        return ;
+        AssetHistory newAsset = assetHistoryRepository.save(assetHistory);
+
+
+        //System.out.println(ai.getAiNumber());
+        return Header.OK(response(newAsset));
     }
 
     @PutMapping("")
-    public void update(@RequestBody AssetHistory ah){
+    public Header<AssetHistoryApiResponse> update(@RequestBody Header<AssetHistoryApiRequest> request){
         //Optional<AssetHistory> assetInventoryById = assetHistoryRepository.findById(id); // 한 raw 데이터 받기
+        AssetHistoryApiRequest assetHistoryApiRequest =request.getData();
 
         AssetHistory assetHistory = AssetHistory.builder()
-                .ahNumber(ah.getAhNumber())
-                .ahAiNumber(ah.getAhAiNumber())
-                .ahApplicationdate(ah.getAhApplicationdate())
-                .ahReturndate(ah.getAhReturndate())
-                .studentId(ah.getStudentId())
-                .createdAt(assetHistoryRepository.findById(ah.getAhNumber()).get().getCreatedAt())
-                .createdBy(assetHistoryRepository.findById(ah.getAhNumber()).get().getCreatedBy())
+                .ahNumber(assetHistoryApiRequest.getAhNumber())
+                .ahAiNumber(assetHistoryApiRequest.getAhAiNumber())
+                .ahApplicationdate(assetHistoryApiRequest.getAhApplicationdate())
+                .ahReturndate(assetHistoryApiRequest.getAhReturndate())
+                .studentId(assetHistoryApiRequest.getStudentId())
+                .createdAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedAt())
+                .createdBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedBy())
                 .updatedAt(LocalDateTime.now())
-                .updatedBy(ah.getUpdatedBy())
+                .updatedBy(assetHistoryApiRequest.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
-        AssetHistory newAssetHistory = assetHistoryRepository.save(assetHistory);
-        return ;
+        AssetHistory newAsset = assetHistoryRepository.save(assetHistory);
+
+        Optional<AssetHistory> optional = assetHistoryRepository.findById(assetHistoryApiRequest.getAId());
+
+
+        return optional.map(list -> {
+            list
+                    .setAId(assetHistoryApiRequest.getAId())
+                    .setAMajor(assetHistoryApiRequest.getAMajor())
+                    .setAGrade(assetHistoryApiRequest.getAGrade())
+                    .setADeadline(assetHistoryApiRequest.getADeadline())
+                    .setCaNumber(assetHistoryApiRequest.getCaNumber())
+                    .setCreatedAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAId()).get().getCreatedAt())
+                    .setCreatedBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAId()).get().getCreatedBy())
+                    .setUpdatedAt(LocalDateTime.now())
+                    .setUpdatedBy(assetHistoryApiRequest.getUpdatedBy());
+            return list;
+        })
+                .map(list -> assetHistoryRepository.save(list))
+                .map(list -> response(list))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(name = "id") Integer id){
+    public Header delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
-        assetHistoryRepository.deleteById(id);
+        Optional<AssetHistory> optional = assetHistoryRepository.findById(id);
+
+        return optional.map( item ->{
+            assetHistoryRepository.delete(item);
+            return Header.OK();
+        }).orElseGet(()->Header.ERROR("데이터 없음"));
+    }
+    public AssetHistoryApiResponse response(AssetHistory assetHistory){
+
+        AssetHistoryApiResponse assetAllowedListApiResponse = AssetHistoryApiResponse.builder()
+                .ahNumber(assetHistory.getAhNumber())
+                .ahAiNumber(assetHistory.getAhAiNumber())
+                .ahApplicationdate(assetHistory.getAhApplicationdate())
+                .ahReturndate(assetHistory.getAhReturndate())
+                .studentId(assetHistory.getStudentId())
+                .createdAt(assetHistory.getCreatedAt())
+                .createdBy(assetHistory.getCreatedBy())
+                .updatedAt(assetHistory.getUpdatedAt())
+                .updatedBy(assetHistory.getUpdatedBy())
+                .build();
+
+
+
+
+        return assetAllowedListApiResponse;
     }
 }

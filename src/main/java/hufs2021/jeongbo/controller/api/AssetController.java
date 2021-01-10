@@ -64,21 +64,6 @@ public class AssetController {
     public Header<AssetApiResponse> update(@RequestBody Header<AssetApiRequest> request){
         //Optional<Asset> assetInventoryById = assetRepository.findById(id); // 한 raw 데이터 받기
         AssetApiRequest assetApiRequest =request.getData();
-
-        Asset asset = Asset.builder()
-                .aId(assetApiRequest.getAId())
-                .aMajor(assetApiRequest.getAMajor())
-                .aGrade(assetApiRequest.getAGrade())
-                .aDeadline(assetApiRequest.getADeadline())
-                .caNumber(assetApiRequest.getCaNumber())
-                .createdAt(assetRepository.findById(assetApiRequest.getAId()).get().getCreatedAt())
-                .createdBy(assetRepository.findById(assetApiRequest.getAId()).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(assetApiRequest.getUpdatedBy())
-                .build();
-        //System.out.println(ai.getAiNumber());
-        Asset newAsset = assetRepository.save(asset);
-
         Optional<Asset> optional = assetRepository.findById(assetApiRequest.getAId());
 
 
