@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Builder
 @IdClass(StudyRoomPK.class)
+@Accessors(chain=true)
 public class StudyRoom extends StudyRoomPK {
     @Id
     @Column(name = "r_id")
