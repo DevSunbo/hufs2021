@@ -1,7 +1,6 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetHistory;
-import hufs2021.jeongbo.model.entity.AssetHistory;
 import hufs2021.jeongbo.repository.AssetHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class AssetHistoryController {
 
         AssetHistory assetHistory = AssetHistory.builder()
                 .ahNumber(ah.getAhNumber())
-                .aiNumber(ah.getAiNumber())
+                .ahAiNumber(ah.getAhAiNumber())
                 .ahApplicationdate(ah.getAhApplicationdate())
                 .ahReturndate(ah.getAhReturndate())
                 .studentId(ah.getStudentId())
@@ -53,7 +52,7 @@ public class AssetHistoryController {
 
         AssetHistory assetHistory = AssetHistory.builder()
                 .ahNumber(ah.getAhNumber())
-                .aiNumber(ah.getAiNumber())
+                .ahAiNumber(ah.getAhAiNumber())
                 .ahApplicationdate(ah.getAhApplicationdate())
                 .ahReturndate(ah.getAhReturndate())
                 .studentId(ah.getStudentId())
