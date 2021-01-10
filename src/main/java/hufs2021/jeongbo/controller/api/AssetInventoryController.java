@@ -1,8 +1,15 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.AssetInventory;
+import hufs2021.jeongbo.model.entity.AssetInventory;
 import hufs2021.jeongbo.model.entity.StudyRoom;
 import hufs2021.jeongbo.model.entity.StudyRoomPK;
+import hufs2021.jeongbo.model.network.Header;
+import hufs2021.jeongbo.model.network.request.AssetInventoryApiRequest;
+import hufs2021.jeongbo.model.network.request.AssetInventoryApiRequest;
+import hufs2021.jeongbo.model.network.response.AssetInventoryApiResponse;
+import hufs2021.jeongbo.model.network.response.AssetInventoryApiResponse;
+import hufs2021.jeongbo.repository.AssetInventoryRepository;
 import hufs2021.jeongbo.repository.AssetInventoryRepository;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,57 +33,94 @@ public class AssetInventoryController {
     }
 
     @GetMapping("")
-    public Optional<AssetInventory> readId(@RequestParam(name = "id") Integer id){
-        return assetInventoryRepository.findById(id);
+    public Header<AssetInventoryApiResponse> readId(@RequestParam(name = "id") Integer id){
+        return assetInventoryRepository.findById(id)
+                .map( item->response(item))
+                .map(Header::OK)
+                .orElseGet( () ->Header.ERROR("데이터 없음") );
     }
 
     @PostMapping("")
     @ResponseBody
-    public void create(@RequestBody AssetInventory ai){
+    public Header<AssetInventoryApiResponse> create(@RequestBody Header<AssetInventoryApiRequest> request){
+        AssetInventoryApiRequest assetInventoryApiRequest =request.getData();
 
         AssetInventory assetInventory = AssetInventory.builder()
-                .aiNumber(ai.getAiNumber())
-                .aiSerial(ai.getAiSerial())
-                .aiExpiration(LocalDate.of(2021, 1, 30))
-                .aiStatus(ai.getAiStatus())
-                .aiRoom(ai.getAiRoom())
-                .aiUser(ai.getAiUser())
-                .caNumber(ai.getCaNumber())
+                .aiNumber(assetInventoryApiRequest.getAiNumber())
+                .aiSerial(assetInventoryApiRequest.getAiSerial())
+                .aiExpiration(assetInventoryApiRequest.getAiExpiration())
+                .aiStatus(assetInventoryApiRequest.getAiStatus())
+                .aiRoom(assetInventoryApiRequest.getAiRoom())
+                .aiUser(assetInventoryApiRequest.getAiUser())
+                .caNumber(assetInventoryApiRequest.getCaNumber())
                 .createdAt(LocalDateTime.now())
-                .createdBy(1234)
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(1234)
+                .createdBy(assetInventoryApiRequest.getCreatedBy())
+                .updatedAt(assetInventoryApiRequest.getUpdatedAt())
+                .updatedBy(assetInventoryApiRequest.getUpdatedBy())
                 .build();
-        //System.out.println(ai.getAiNumber());
-        AssetInventory newAssetInventory = assetInventoryRepository.save(assetInventory);
-        return ;
+        //System.out.println(assetInventoryApiRequest.getAiNumber());
+        AssetInventory newAsset = assetInventoryRepository.save(assetInventory);
+
+
+        //System.out.println(assetInventoryApiRequest.getAiNumber());
+        return Header.OK(response(newAsset));
     }
 
     @PutMapping("")
-    public void updatePut(@RequestBody AssetInventory ai){
-        System.out.println("updatePut");
-        AssetInventory assetInventory = AssetInventory.builder()
-                .aiNumber(ai.getAiNumber())
-                .aiSerial(ai.getAiSerial())
-                .aiExpiration(ai.getAiExpiration())
-                .aiStatus(ai.getAiStatus())
-                .aiRoom(ai.getAiRoom())
-                .aiUser(ai.getAiUser())
-                .caNumber(ai.getCaNumber())
-                .createdAt(assetInventoryRepository.findById(ai.getAiNumber()).get().getCreatedAt())
-                .createdBy(assetInventoryRepository.findById(ai.getAiNumber()).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(ai.getUpdatedBy())
-                .build();
-        //System.out.println(ai.getAiNumber());
-        AssetInventory newAssetInventory = assetInventoryRepository.save(assetInventory);
-        return ;
+    public Header<AssetInventoryApiResponse> update(@RequestBody Header<AssetInventoryApiRequest> request){
+        //Optional<AssetInventory> assetInventoryById = assetInventoryRepository.findById(id); // 한 raw 데이터 받기
+        AssetInventoryApiRequest assetInventoryApiRequest =request.getData();
+
+
+        Optional<AssetInventory> optional = assetInventoryRepository.findById(assetInventoryApiRequest.getAiNumber());
+
+
+        return optional.map(list -> {
+            list
+                    .setAiNumber(assetInventoryApiRequest.getAiNumber())
+                    .setAiSerial(assetInventoryApiRequest.getAiSerial())
+                    .setAiExpiration(assetInventoryApiRequest.getAiExpiration())
+                    .setAiStatus(assetInventoryApiRequest.getAiStatus())
+                    .setAiRoom(assetInventoryApiRequest.getAiRoom())
+                    .setAiUser(assetInventoryApiRequest.getAiUser())
+                    .setCaNumber(assetInventoryApiRequest.getCaNumber())
+                    .setCreatedAt(assetInventoryRepository.findById(assetInventoryApiRequest.getAiNumber()).get().getCreatedAt())
+                    .setCreatedBy(assetInventoryRepository.findById(assetInventoryApiRequest.getAiNumber()).get().getCreatedBy())
+                    .setUpdatedAt(LocalDateTime.now())
+                    .setUpdatedBy(assetInventoryApiRequest.getUpdatedBy());
+            return list;
+        })
+                .map(list -> assetInventoryRepository.save(list))
+                .map(list -> response(list))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(name = "id") Integer id){
+    public Header delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
-        assetInventoryRepository.deleteById(id);
+        Optional<AssetInventory> optional = assetInventoryRepository.findById(id);
+
+        return optional.map( item ->{
+            assetInventoryRepository.delete(item);
+            return Header.OK();
+        }).orElseGet(()->Header.ERROR("데이터 없음"));
+    }
+    public AssetInventoryApiResponse response(AssetInventory assetInventory){
+
+        AssetInventoryApiResponse assetAllowedListApiResponse = AssetInventoryApiResponse.builder()
+                .aiNumber(assetInventory.getAiNumber())
+                .aiSerial(assetInventory.getAiSerial())
+                .aiExpiration(assetInventory.getAiExpiration())
+                .aiStatus(assetInventory.getAiStatus())
+                .aiRoom(assetInventory.getAiRoom())
+                .aiUser(assetInventory.getAiUser())
+                .caNumber(assetInventory.getCaNumber())
+                .createdAt(assetInventory.getCreatedAt())
+                .createdBy(assetInventory.getCreatedBy())
+                .updatedAt(assetInventory.getUpdatedAt())
+                .updatedBy(assetInventory.getUpdatedBy())
+                .build();
+        return assetAllowedListApiResponse;
     }
 }

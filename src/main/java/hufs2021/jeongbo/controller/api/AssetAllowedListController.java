@@ -69,7 +69,7 @@ public class AssetAllowedListController {
                     .setCaNumber(assetAllowedListApiRequest.getCaNumber())
                     .setCreatedAt(assetAllowedListApiRequest.getCreatedAt())
                     .setUpdatedBy(assetAllowedListApiRequest.getUpdatedBy())
-                    .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt())
+                    .setUpdatedAt(LocalDateTime.now())
                     .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt());
             return list;
         })
@@ -102,10 +102,6 @@ public class AssetAllowedListController {
                 .updatedAt(assetAllowedList.getUpdatedAt())
                 .updatedBy(assetAllowedList.getUpdatedBy())
                 .build();
-
-
-
-
-        return assetAllowedListApiResponse;
+      return assetAllowedListApiResponse;
     }
 }

@@ -2,6 +2,13 @@ package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.Category;
 import hufs2021.jeongbo.model.entity.Category;
+import hufs2021.jeongbo.model.entity.Category;
+import hufs2021.jeongbo.model.network.Header;
+import hufs2021.jeongbo.model.network.request.CategoryApiRequest;
+import hufs2021.jeongbo.model.network.request.CategoryApiRequest;
+import hufs2021.jeongbo.model.network.response.CategoryApiResponse;
+import hufs2021.jeongbo.model.network.response.CategoryApiResponse;
+import hufs2021.jeongbo.repository.CategoryRepository;
 import hufs2021.jeongbo.repository.AssetRepository;
 import hufs2021.jeongbo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,56 +27,91 @@ public class CategoryController {
 
     @GetMapping("/all")
     @ResponseBody
-    public List<Category> read(){
+    public List<Category> read() {
         return categoryRepository.findAll();
     }
 
     @GetMapping("")
-    public Optional<Category> readId(@RequestParam(name = "id") Integer id){
-        return categoryRepository.findById(id);
+    public Header<CategoryApiResponse> readId(@RequestParam(name = "id") Integer id) {
+        return categoryRepository.findById(id)
+                .map(item -> response(item))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @PostMapping("")
     @ResponseBody
-    public void create(@RequestBody Category ca){
+    public Header<CategoryApiResponse> create(@RequestBody Header<CategoryApiRequest> request) {
+        CategoryApiRequest categoryApiRequest = request.getData();
 
         Category category = Category.builder()
-                .caNumber(ca.getCaNumber())
-                .caRental(ca.getCaRental())
-                .caKind(ca.getCaKind())
-                .caName(ca.getCaName())
+                .caNumber(categoryApiRequest.getCaNumber())
+                .caRental(categoryApiRequest.getCaRental())
+                .caKind(categoryApiRequest.getCaKind())
+                .caName(categoryApiRequest.getCaName())
                 .createdAt(LocalDateTime.now())
-                .createdBy(ca.getCreatedBy())
-                .updatedAt(ca.getUpdatedAt())
-                .updatedBy(ca.getUpdatedBy())
+                .createdBy(categoryApiRequest.getCreatedBy())
+                .updatedAt(categoryApiRequest.getUpdatedAt())
+                .updatedBy(categoryApiRequest.getUpdatedBy())
                 .build();
-        //System.out.println(ai.getAiNumber());
-        Category newCategory = categoryRepository.save(category);
-        return ;
+        //System.out.println( categoryApiRequest.getAiNumber());
+        Category newAsset = categoryRepository.save(category);
+
+
+        //System.out.println( categoryApiRequest.getAiNumber());
+        return Header.OK(response(newAsset));
     }
 
     @PutMapping("")
-    public void update(@RequestBody Category ca){
+    public Header<CategoryApiResponse> update(@RequestBody Header<CategoryApiRequest> request) {
         //Optional<Category> assetInventoryById = categoryRepository.findById(id); // 한 raw 데이터 받기
+        CategoryApiRequest categoryApiRequest = request.getData();
 
-        Category category = Category.builder()
-                .caNumber(ca.getCaNumber())
-                .caRental(ca.getCaRental())
-                .caKind(ca.getCaKind())
-                .caName(ca.getCaName())
-                .createdAt(categoryRepository.findById(ca.getCaNumber()).get().getCreatedAt())
-                .createdBy(categoryRepository.findById(ca.getCaNumber()).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
-                .updatedBy(ca.getUpdatedBy())
-                .build();
-        //System.out.println(ai.getAiNumber());
-        Category newCategory = categoryRepository.save(category);
-        return ;
+
+        Optional<Category> optional = categoryRepository.findById(categoryApiRequest.getCaNumber());
+
+
+        return optional.map(list -> {
+            list
+                    .setCaNumber(categoryApiRequest.getCaNumber())
+                    .setCaRental(categoryApiRequest.getCaRental())
+                    .setCaKind(categoryApiRequest.getCaKind())
+                    .setCaName(categoryApiRequest.getCaName())
+                    .setCreatedAt(categoryRepository.findById(categoryApiRequest.getCaNumber()).get().getCreatedAt())
+                    .setCreatedBy(categoryRepository.findById(categoryApiRequest.getCaNumber()).get().getCreatedBy())
+                    .setUpdatedAt(LocalDateTime.now())
+                    .setUpdatedBy(categoryApiRequest.getUpdatedBy());
+            return list;
+        })
+                .map(list -> categoryRepository.save(list))
+                .map(list -> response(list))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(name = "id") Integer id){
-        System.out.println("Delete id : "+id);
-        categoryRepository.deleteById(id);
+    public Header delete(@PathVariable(name = "id") Integer id) {
+        System.out.println("Delete id : " + id);
+        Optional<Category> optional = categoryRepository.findById(id);
+
+        return optional.map(item -> {
+            categoryRepository.delete(item);
+            return Header.OK();
+        }).orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
+
+    public CategoryApiResponse response(Category category) {
+
+        CategoryApiResponse assetAllowedListApiResponse = CategoryApiResponse.builder()
+                .caNumber(category.getCaNumber())
+                .caRental(category.getCaRental())
+                .caKind(category.getCaKind())
+                .caName(category.getCaName())
+                .createdAt(category.getCreatedAt())
+                .createdBy(category.getCreatedBy())
+                .updatedAt(category.getUpdatedAt())
+                .updatedBy(category.getUpdatedBy())
+                .build();
+        return assetAllowedListApiResponse;
     }
 }

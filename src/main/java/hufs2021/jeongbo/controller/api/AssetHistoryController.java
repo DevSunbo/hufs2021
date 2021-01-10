@@ -46,9 +46,9 @@ public class AssetHistoryController {
                 .ahApplicationdate(assetHistoryApiRequest.getAhApplicationdate())
                 .ahReturndate(assetHistoryApiRequest.getAhReturndate())
                 .studentId(assetHistoryApiRequest.getStudentId())
-                .createdAt(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedAt())
-                .createdBy(assetHistoryRepository.findById(assetHistoryApiRequest.getAhNumber()).get().getCreatedBy())
-                .updatedAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now())
+                .createdBy(assetHistoryApiRequest.getCreatedBy())
+                .updatedAt(assetHistoryApiRequest.getUpdatedAt())
                 .updatedBy(assetHistoryApiRequest.getUpdatedBy())
                 .build();
         //System.out.println(ai.getAiNumber());
