@@ -84,24 +84,32 @@ public class AssetController {
 
         return optional.map(list -> {
             list
-                    .setStudentId(assetAllowedListApiRequest.getStudentId())
-                    .setCaNumber(assetAllowedListApiRequest.getCaNumber())
-                    .setCreatedAt(assetAllowedListApiRequest.getCreatedAt())
-                    .setUpdatedBy(assetAllowedListApiRequest.getUpdatedBy())
-                    .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt())
-                    .setUpdatedAt(assetAllowedListApiRequest.getUpdatedAt());
+                    .setAId(assetApiRequest.getAId())
+                    .setAMajor(assetApiRequest.getAMajor())
+                    .setAGrade(assetApiRequest.getAGrade())
+                    .setADeadline(assetApiRequest.getADeadline())
+                    .setCaNumber(assetApiRequest.getCaNumber())
+                    .setCreatedAt(assetRepository.findById(assetApiRequest.getAId()).get().getCreatedAt())
+                    .setCreatedBy(assetRepository.findById(assetApiRequest.getAId()).get().getCreatedBy())
+                    .setUpdatedAt(LocalDateTime.now())
+                    .setUpdatedBy(assetApiRequest.getUpdatedBy());
             return list;
         })
-                .map(list -> assetAllowedListRepository.save(list))
+                .map(list -> assetRepository.save(list))
                 .map(list -> response(list))
                 .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(name = "id") Integer id){
+    public Header delete(@PathVariable(name = "id") Integer id){
         System.out.println("Delete id : "+id);
-        assetRepository.deleteById(id);
+        Optional<Asset> optional = assetRepository.findById(id);
+
+        return optional.map( item ->{
+            assetRepository.delete(item);
+            return Header.OK();
+        }).orElseGet(()->Header.ERROR("데이터 없음"));
     }
     public AssetApiResponse response(Asset asset){
 
