@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.network.request;
 
+import hufs2021.jeongbo.model.enumclass.QnaField;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class QnaRequest {
 
     private String qaName;
 
-    private String qaField;
+    private QnaField qaField;
 
     private String qaContent;
 

@@ -2,6 +2,7 @@ package hufs2021.jeongbo.repository;
 
 import hufs2021.jeongbo.JeongboApplicationTests;
 import hufs2021.jeongbo.model.entity.Qna;
+import hufs2021.jeongbo.model.enumclass.QnaField;
 import hufs2021.jeongbo.model.key.QnaId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class QnaRepositoryTest extends JeongboApplicationTests {
                 .qaDivision(1)
                 .qaPrivate(0)
                 .qaName("이건 진짜 몰라요")
-                .qaField("기자재")
+                .qaField(QnaField.ASSET)
                 .qaContent("기자재를 어떻게 신청해야되는지 도저히 모르겠어요")
                 .createdAt(LocalDateTime.now())
                 .createdBy(1234)
@@ -84,7 +85,7 @@ class QnaRepositoryTest extends JeongboApplicationTests {
                 .qaDivision(0)
                 .qaPrivate(1)
                 .qaName("팀플 질문이요")
-                .qaField("팀프로젝트")
+                .qaField(QnaField.TEAM_PROJECT)
                 .qaContent("팀플 신청 어떻게 해요")
                 .updatedBy(4321)
                 .build();

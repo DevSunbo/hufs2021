@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.model.entity;
 
+import hufs2021.jeongbo.model.enumclass.TeamProjectApplyApproved;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,8 @@ public class TeamProjectApply {
 
     private String paContent;
 
-    private String paApproved;
+    @Enumerated(EnumType.STRING)
+    private TeamProjectApplyApproved paApproved;
 
     private Integer fId;
 

@@ -20,6 +20,7 @@ public class TeamProject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pNumber;
 
+//    @Enumerated(EnumType.STRING)
     private String pField;
 
     private String pName;

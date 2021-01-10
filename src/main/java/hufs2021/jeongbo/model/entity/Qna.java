@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.model.entity;
 
+import hufs2021.jeongbo.model.enumclass.QnaField;
 import hufs2021.jeongbo.model.key.QnaId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +32,8 @@ public class Qna implements Serializable {
 
     private String qaName;
 
-    private String qaField;
+    @Enumerated(EnumType.STRING)
+    private QnaField qaField;
 
     private String qaContent;
 

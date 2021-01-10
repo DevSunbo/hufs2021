@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.network.request;
 
+import hufs2021.jeongbo.model.enumclass.TeamProjectApplyApproved;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class TeamProjectApplyRequest {
 
     private String paContent;
 
-    private String paApproved;
+    private TeamProjectApplyApproved paApproved;
 
     private Integer fId;
 
