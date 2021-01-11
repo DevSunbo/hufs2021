@@ -9,40 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
-    @Override
-    public void configure(WebSecurity web){
-        web.ignoring().antMatchers("/resources/**");
+@EnableRedisHttpSession
+public class Config  {
+    @Bean
+    public LettuceConnectionFactory connectionFactory(){
+        return new LettuceConnectionFactory();
     }
-
-    @Configuration
-    @Order(1)
-    public static class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter{
-        @Override
-        protected void configure(HttpSecurity http) throws Exception{
-            http.antMatcher("/api/**");
-            http.formLogin()
-                    .loginPage("/login")
-                    .permitAll();
-
-            http.formLogin()
-                    .loginProcessingUrl("/authenticate")
-                    .usernameParameter("uid")
-                    .passwordParameter("pwd")
-                    .permitAll();
-
-            http.authorizeRequests()
-                    .anyRequest().authenticated();
-        }
-    }
-   /* @Bean
-    public UserDetailsService userDetailsService() throws Exception {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
-        return manager;
-    }*/
-
-
 }
