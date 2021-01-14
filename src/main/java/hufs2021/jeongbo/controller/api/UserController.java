@@ -9,10 +9,6 @@ import hufs2021.jeongbo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -49,7 +45,7 @@ public class UserController {
     @GetMapping("/readall")
     @ResponseBody
     public Header<UserResponse> readAll() {
-        List<User> userList = userRepository.findAll();
+        /*List<User> userList = userRepository.findAll();
 
         if (userList != null) {
             userList.stream().forEach(user -> {
@@ -68,13 +64,14 @@ public class UserController {
             return Header.OK();
         }
         else
-            return Header.ERROR();
+            return Header.ERROR();*/
+        return userService.readAll();
     }
 
     @GetMapping("/read")
     @ResponseBody
     public Header<UserResponse> read(@RequestParam Integer id) {
-        return userRepository.findById(id)
+        /*return userRepository.findById(id)
                 .map(user -> {
                     System.out.println(user.getStudentId());
                     System.out.println(user.getName());
@@ -89,13 +86,14 @@ public class UserController {
                     System.out.println("-----------------------------");
                     return user;
                 }).map(user -> Header.OK(response(user)))
-                .orElseGet(Header::ERROR);
+                .orElseGet(Header::ERROR);*/
+        return userService.read(id);
     }
 
     @PutMapping("/update")
     @ResponseBody
     public Header<UserResponse> update(@RequestBody UserRequest userRequest) {
-        return userRepository.findById(userRequest.getStudentId())
+        /*return userRepository.findById(userRequest.getStudentId())
                 .map(user -> {
                     user.setStudentId(userRequest.getStudentId());
                     user.setName(userRequest.getName());
@@ -108,16 +106,18 @@ public class UserController {
                     return user;
                 }).map(user -> userRepository.save(user))
                 .map(user -> Header.OK(response(user)))
-                .orElseGet(Header::ERROR);
+                .orElseGet(Header::ERROR);*/
+        return userService.update(userRequest);
     }
 
     @DeleteMapping("/delete")
     public Header<UserResponse> delete(@RequestParam Integer id) {
-        Optional<User> userOptional = userRepository.findById(id);
+        /*Optional<User> userOptional = userRepository.findById(id);
 
         userOptional.ifPresent(user -> userRepository.delete(user));
 
-        return Header.OK();
+        return Header.OK();*/
+        return userService.delete(id);
     }
 
     private UserResponse response(User user) {
