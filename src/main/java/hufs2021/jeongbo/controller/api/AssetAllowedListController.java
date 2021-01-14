@@ -40,7 +40,7 @@ public class AssetAllowedListController {
     @PostMapping("")
     @ResponseBody
     public Header<AssetAllowedListApiResponse> create(@RequestBody Header<AssetAllowedListApiRequest> request){
-
+        System.out.println(request);
         AssetAllowedListApiRequest assetAllowedListApiRequest =request.getData();
         AssetAllowedList assetAllowedList = AssetAllowedList.builder()
                 .studentId(assetAllowedListApiRequest.getStudentId())
