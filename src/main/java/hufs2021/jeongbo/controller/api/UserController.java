@@ -5,6 +5,7 @@ import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.UserRequest;
 import hufs2021.jeongbo.network.response.UserResponse;
 import hufs2021.jeongbo.repository.UserRepository;
+import hufs2021.jeongbo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("/create")
     @ResponseBody
     public Header<UserResponse> create(@RequestBody UserRequest userRequest) {
-        User user = User.builder()
+        /*User user = User.builder()
                 .studentId(userRequest.getStudentId())
                 .name(userRequest.getName())
                 .phoneNumber(userRequest.getPhoneNumber())
@@ -38,7 +42,8 @@ public class UserController {
         if(newUser!=null)
             return Header.OK();
         else
-            return Header.ERROR();
+            return Header.ERROR();*/
+        return userService.create(userRequest);
     }
 
     @GetMapping("/readall")
