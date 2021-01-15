@@ -29,21 +29,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .successHandler(successHander())
-                    .failureHandler(failureHandler())
+                    //.successHandler(successHander())
+                    //.failureHandler(failureHandler())
                     .permitAll();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication().withUser("scott").password("tiger").roles("ROLE_USER");
-    }
 
-    @Override
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "DBA");
         auth.inMemoryAuthentication().withUser("scott").password("tiger").roles("USER", "SETTING");
     }
 
-    UserDetailsService
 }
