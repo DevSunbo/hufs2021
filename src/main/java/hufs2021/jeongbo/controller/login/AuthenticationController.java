@@ -1,2 +1,10 @@
-package hufs2021.jeongbo.controller.login;public class AuthenticationController {
+package hufs2021.jeongbo.controller.login;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/login")
+public class AuthenticationController {
+    
 }
