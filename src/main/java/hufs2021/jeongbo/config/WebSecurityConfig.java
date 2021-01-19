@@ -18,28 +18,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.httpBasic()
-                .and()
-                .authorizeRequests()
-                    .antMatchers("/users/{userId}").access("@authenticationChechHandler.checkUserId(authentication, #userId)")
-                    .antMatchers("/admin/db/**").access("hasRole('ADMIN') and hasRole('DBA') ")
-                    .antMatchers("/register/**").hasRole("ANONYMOUS")
-                .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("email")
-                    .passwordParameter("password")
-                    //.successHandler(successHander())
-                    //.failureHandler(failureHandler())
-                    .permitAll();
+
     }
 
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "DBA");
-        auth.inMemoryAuthentication().withUser("scott").password("tiger").roles("USER", "SETTING");
+      
     }
 
 }
