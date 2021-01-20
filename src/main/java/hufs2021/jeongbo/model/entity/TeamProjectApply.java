@@ -34,8 +34,6 @@ public class TeamProjectApply {
     private LocalDateTime updatedAt;
 
     private Integer updatedBy;
-<<<<<<< HEAD
-=======
 
     @Column(name = "USER_student_id")
     private Integer studentId;
@@ -50,7 +48,6 @@ public class TeamProjectApply {
     @ManyToOne
     @JoinColumn(name = "TEAM_PROJECT_p_number", insertable = false, updatable = false)
     private TeamProject teamProject;
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
 
 
 }

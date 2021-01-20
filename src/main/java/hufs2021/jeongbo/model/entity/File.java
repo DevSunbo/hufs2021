@@ -21,11 +21,8 @@ public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fId;
-<<<<<<< HEAD
 
     private Integer fNumber;
-=======
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
 
     private String fName;
 

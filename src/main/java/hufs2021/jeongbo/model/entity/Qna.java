@@ -21,19 +21,14 @@ public class Qna implements Serializable {
 
 //    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment 없음
     @Id
-<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer qaNumber;
 
-=======
-//    @EmbeddedId
-    private Integer qaNumber;
 
     @Id
 //    @EmbeddedId
     private Integer qaDivision;
 
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
     private Integer qaPrivate;
 
     private String qaName;
