@@ -1,26 +1,25 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.service;
 
 import hufs2021.jeongbo.model.entity.TeamProject;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.TeamProjectRequest;
 import hufs2021.jeongbo.network.response.TeamProjectResponse;
-import hufs2021.jeongbo.service.TeamProjectService;
+import hufs2021.jeongbo.repository.TeamProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
-@RestController
-@RequestMapping("/api/team-project")
-public class TeamProjectController {
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
-    /*@Autowired
-    private TeamProjectRepository teamProjectRepository;*/
+@Service
+public class TeamProjectService {
+
     @Autowired
-    private TeamProjectService teamProjectService;
+    private TeamProjectRepository teamProjectRepository;
 
-    @PostMapping("/create")
-    @ResponseBody
-    public Header<TeamProjectResponse> create(@RequestBody TeamProjectRequest teamProjectRequest) {
-        /*TeamProject teamProject = TeamProject.builder()
+    public Header<TeamProjectResponse> create(TeamProjectRequest teamProjectRequest) {
+        TeamProject teamProject = TeamProject.builder()
                 .pField(teamProjectRequest.getPField())
                 .pName(teamProjectRequest.getPName())
                 .pMin(teamProjectRequest.getPMin())
@@ -40,15 +39,13 @@ public class TeamProjectController {
         if(newTeamProject!=null)
             return Header.OK();
         else
-            return Header.ERROR();*/
+            return Header.ERROR();
 
-        return teamProjectService.create(teamProjectRequest);
+//        return teamProjectRequest;
     }
 
-    @GetMapping("/readall")
-    @ResponseBody
     public Header<TeamProjectResponse> readAll() {
-        /*List<TeamProject> teamProjectList = teamProjectRepository.findAll();
+        List<TeamProject> teamProjectList = teamProjectRepository.findAll();
 
         if (teamProjectList != null) {
             teamProjectList.stream().forEach(teamProject -> {
@@ -71,14 +68,11 @@ public class TeamProjectController {
             return Header.OK();
         }
         else
-            return Header.ERROR();*/
-        return teamProjectService.readAll();
+            return Header.ERROR();
     }
 
-    @GetMapping("/read")
-    @ResponseBody
-    public Header<TeamProjectResponse> read(@RequestParam Integer number) {
-        /*return teamProjectRepository.findById(number)
+    public Header<TeamProjectResponse> read(Integer number) {
+        return teamProjectRepository.findById(number)
                 .map(teamProject -> {
                     System.out.println(teamProject.getPNumber());
                     System.out.println(teamProject.getPName());
@@ -96,14 +90,11 @@ public class TeamProjectController {
                     System.out.println(teamProject.getStudentId());
                     return teamProject;
                 }).map(teamProject -> Header.OK(response(teamProject)))
-                .orElseGet(Header::ERROR);*/
-        return teamProjectService.read(number);
+                .orElseGet(Header::ERROR);
     }
 
-    @PutMapping("/update")
-    @ResponseBody
-    public Header<TeamProjectResponse> update(@RequestBody TeamProjectRequest teamProjectRequest) {
-        /*return teamProjectRepository.findById(teamProjectRequest.getPNumber())
+    public Header<TeamProjectResponse> update(TeamProjectRequest teamProjectRequest) {
+        return teamProjectRepository.findById(teamProjectRequest.getPNumber())
                 .map(teamProject -> {
                     teamProject.setPName(teamProjectRequest.getPName());
                     teamProject.setPMin(teamProjectRequest.getPMin());
@@ -118,21 +109,17 @@ public class TeamProjectController {
                     return teamProject;
                 }).map(teamProject -> teamProjectRepository.save(teamProject))
                 .map(teamProject -> Header.OK(response(teamProject)))
-                .orElseGet(Header::ERROR);*/
-        return teamProjectService.update(teamProjectRequest);
+                .orElseGet(Header::ERROR);
     }
 
-    @DeleteMapping("/delete")
-    @ResponseBody
-    public Header<TeamProjectResponse> delete(@RequestParam Integer number) {
-        /*Optional<TeamProject> teamProjectOptional = teamProjectRepository.findById(number);
+    public Header<TeamProjectResponse> delete(Integer number) {
+        Optional<TeamProject> teamProjectOptional = teamProjectRepository.findById(number);
 
         teamProjectOptional.ifPresent(teamProject -> teamProjectRepository.delete(teamProject));
 
         Optional<TeamProject> deletedTeamProject = teamProjectRepository.findById(number);
 
-        return Header.OK();*/
-        return teamProjectService.delete(number);
+        return Header.OK();
     }
 
     private TeamProjectResponse response(TeamProject teamProject) {

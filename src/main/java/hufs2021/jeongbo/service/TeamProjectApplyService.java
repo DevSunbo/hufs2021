@@ -1,26 +1,25 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.service;
 
 import hufs2021.jeongbo.model.entity.TeamProjectApply;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.TeamProjectApplyRequest;
 import hufs2021.jeongbo.network.response.TeamProjectApplyResponse;
-import hufs2021.jeongbo.service.TeamProjectApplyService;
+import hufs2021.jeongbo.repository.TeamProjectApplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
-@RestController
-@RequestMapping("/api/team-project-apply")
-public class TeamProjectApplyController {
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
-    /*@Autowired
-    private TeamProjectApplyRepository teamProjectApplyRepository;*/
+@Service
+public class TeamProjectApplyService {
+
     @Autowired
-    private TeamProjectApplyService teamProjectApplyService;
+    private TeamProjectApplyRepository teamProjectApplyRepository;
 
-    @PostMapping("/create")
-    @ResponseBody
-    public Header<TeamProjectApplyResponse> create(@RequestBody TeamProjectApplyRequest teamProjectApplyRequest) {
-        /*TeamProjectApply teamProjectApply = TeamProjectApply.builder()
+    public Header<TeamProjectApplyResponse> create(TeamProjectApplyRequest teamProjectApplyRequest) {
+        TeamProjectApply teamProjectApply = TeamProjectApply.builder()
 //                .paNumber(teamProjectApplyRequest.getPaNumber())
                 .paContent(teamProjectApplyRequest.getPaContent())
                 .paApproved(teamProjectApplyRequest.getPaApproved())
@@ -36,14 +35,11 @@ public class TeamProjectApplyController {
         if(newTeamProjectApply!=null)
             return Header.OK(response(newTeamProjectApply));
         else
-            return Header.ERROR();*/
-        return teamProjectApplyService.create(teamProjectApplyRequest);
+            return Header.ERROR();
     }
 
-    @GetMapping("/readall")
-    @ResponseBody
     public Header<TeamProjectApplyResponse> readAll() {
-        /*List<TeamProjectApply> teamProjectApplyList = teamProjectApplyRepository.findAll();
+        List<TeamProjectApply> teamProjectApplyList = teamProjectApplyRepository.findAll();
 
         if(teamProjectApplyList!=null){
             teamProjectApplyList.stream().forEach(teamProjectApply -> {
@@ -62,14 +58,11 @@ public class TeamProjectApplyController {
             return Header.OK();
         }
         else
-            return Header.ERROR();*/
-        return teamProjectApplyService.readAll();
+            return Header.ERROR();
     }
 
-    @GetMapping("/read")
-    @ResponseBody
-    public Header<TeamProjectApplyResponse> read(@RequestParam Integer number) {
-        /*return teamProjectApplyRepository.findById(number)
+    public Header<TeamProjectApplyResponse> read(Integer number) {
+        return teamProjectApplyRepository.findById(number)
                 .map(teamProjectApply -> {
                     System.out.println(teamProjectApply.getPaNumber());
                     System.out.println(teamProjectApply.getPaContent());
@@ -84,14 +77,11 @@ public class TeamProjectApplyController {
                     System.out.println("--------------------------------");
                     return teamProjectApply;
                 }).map(teamProjectApply -> Header.OK(response(teamProjectApply)))
-                .orElseGet(Header::ERROR);*/
-        return teamProjectApplyService.read(number);
+                .orElseGet(Header::ERROR);
     }
 
-    @PutMapping("/update")
-    @ResponseBody
-    public Header<TeamProjectApplyResponse> update(@RequestBody TeamProjectApplyRequest teamProjectApplyRequest) {
-        /*return teamProjectApplyRepository.findById(teamProjectApplyRequest.getPaNumber())
+    public Header<TeamProjectApplyResponse> update(TeamProjectApplyRequest teamProjectApplyRequest) {
+        return teamProjectApplyRepository.findById(teamProjectApplyRequest.getPaNumber())
                 .map(teamProjectApply -> {
                     teamProjectApply.setPaContent(teamProjectApplyRequest.getPaContent());
                     teamProjectApply.setPaApproved(teamProjectApplyRequest.getPaApproved());
@@ -101,18 +91,15 @@ public class TeamProjectApplyController {
                     return teamProjectApply;
                 }).map(teamProjectApply -> teamProjectApplyRepository.save(teamProjectApply))
                 .map(teamProjectApply -> Header.OK(response(teamProjectApply)))
-                .orElseGet(Header::ERROR);*/
-        return teamProjectApplyService.update(teamProjectApplyRequest);
+                .orElseGet(Header::ERROR);
     }
 
-    @DeleteMapping("/delete")
-    public Header<TeamProjectApplyResponse> delete(@RequestParam Integer number) {
-        /*Optional<TeamProjectApply> teamProjectApplyOptional = teamProjectApplyRepository.findById(number);
+    public Header<TeamProjectApplyResponse> delete(Integer number) {
+        Optional<TeamProjectApply> teamProjectApplyOptional = teamProjectApplyRepository.findById(number);
 
         teamProjectApplyOptional.ifPresent(teamProjectApply -> teamProjectApplyRepository.delete(teamProjectApply));
 
-        return Header.OK();*/
-        return teamProjectApplyService.delete(number);
+        return Header.OK();
     }
 
     private TeamProjectApplyResponse response(TeamProjectApply teamProjectApply) {

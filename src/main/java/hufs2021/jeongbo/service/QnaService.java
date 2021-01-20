@@ -1,26 +1,26 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.service;
 
 import hufs2021.jeongbo.model.entity.Qna;
+import hufs2021.jeongbo.model.key.QnaId;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.QnaRequest;
 import hufs2021.jeongbo.network.response.QnaResponse;
-import hufs2021.jeongbo.service.QnaService;
+import hufs2021.jeongbo.repository.QnaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
-@RestController
-@RequestMapping("/api/qna")
-public class QnaController {
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
-    /*@Autowired
-    private QnaRepository qnaRepository;*/
+@Service
+public class QnaService {
+
     @Autowired
-    private QnaService qnaService;
+    private QnaRepository qnaRepository;
 
-    @PostMapping("/create")
-    @ResponseBody
-    public Header<QnaResponse> create(@RequestBody QnaRequest qnaRequest) {
-        /*Qna qna = Qna.builder()
+    public Header<QnaResponse> create(QnaRequest qnaRequest) {
+        Qna qna = Qna.builder()
                 .qaNumber(qnaRequest.getQaNumber())
                 .qaDivision(qnaRequest.getQaDivision())
                 .qaPrivate(qnaRequest.getQaPrivate())
@@ -38,14 +38,11 @@ public class QnaController {
         if(newQna!=null)
             return Header.OK(response(qna));
         else
-            return Header.ERROR();*/
-        return qnaService.create(qnaRequest);
+            return Header.ERROR();
     }
 
-    @GetMapping("/readall")
-    @ResponseBody
     public Header<QnaResponse> readAll() {
-        /*List<Qna> qnaList = qnaRepository.findAll();
+        List<Qna> qnaList = qnaRepository.findAll();
 
         if (qnaList != null) {
             qnaList.stream().forEach(qna -> {
@@ -66,14 +63,11 @@ public class QnaController {
             return Header.OK();
         }
         else
-            return Header.ERROR();*/
-        return qnaService.readAll();
+            return Header.ERROR();
     }
 
-    @GetMapping("/read")
-    @ResponseBody
-    public Header<QnaResponse> read(@RequestParam Integer number, @RequestParam Integer division) {
-        /*return qnaRepository.findById(new QnaId(number, division))
+    public Header<QnaResponse> read(Integer number, Integer division) {
+        return qnaRepository.findById(new QnaId(number, division))
                 .map(qna -> {
                     System.out.println(qna.getQaNumber());
                     System.out.println(qna.getQaDivision());
@@ -89,15 +83,12 @@ public class QnaController {
                     System.out.println(qna.getStudent_id());
                     return qna;
                 }).map(qna -> Header.OK(response(qna)))
-                .orElseGet(Header::ERROR);*/
-        return qnaService.read(number, division);
+                .orElseGet(Header::ERROR);
     }
 
-    @PutMapping("/update")
-    @ResponseBody
-    public Header<QnaResponse> update(@RequestBody QnaRequest qnaRequest) {
+    public Header<QnaResponse> update(QnaRequest qnaRequest) {
 
-        /*return qnaRepository.findById(new QnaId(qnaRequest.getQaNumber(), qnaRequest.getQaDivision())).map(qna -> {
+        return qnaRepository.findById(new QnaId(qnaRequest.getQaNumber(), qnaRequest.getQaDivision())).map(qna -> {
             qna.setQaPrivate(qnaRequest.getQaPrivate());
             qna.setQaName(qnaRequest.getQaName());
             qna.setQaField(qnaRequest.getQaField());
@@ -109,18 +100,15 @@ public class QnaController {
             return qna;
         }).map(qna -> qnaRepository.save(qna))
                 .map(qna -> Header.OK(response(qna)))
-                .orElseGet(Header::ERROR);*/
-        return qnaService.update(qnaRequest);
+                .orElseGet(Header::ERROR);
     }
 
-    @DeleteMapping("/delete")
-    public Header<QnaResponse> delete(@RequestParam Integer number, @RequestParam Integer division) {
-        /*Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(number, division));
+    public Header<QnaResponse> delete(Integer number, Integer division) {
+        Optional<Qna> qnaOptional = qnaRepository.findById(new QnaId(number, division));
 
         qnaOptional.ifPresent(qna -> qnaRepository.delete(qna));
 
-        return Header.OK();*/
-        return qnaService.delete(number, division);
+        return Header.OK();
     }
 
     private QnaResponse response(Qna qna) {

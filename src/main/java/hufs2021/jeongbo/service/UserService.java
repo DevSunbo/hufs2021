@@ -6,6 +6,8 @@ import hufs2021.jeongbo.network.request.UserRequest;
 import hufs2021.jeongbo.network.response.UserResponse;
 import hufs2021.jeongbo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,13 +20,18 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    PasswordEncoder passwordEncoder;
+
     public Header<UserResponse> create(UserRequest userRequest) {
+        PasswordEncoder passwordEncoder = passwordEncoder();
+        String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
+
         User user = User.builder()
                 .studentId(userRequest.getStudentId())
                 .name(userRequest.getName())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .email(userRequest.getEmail())
-                .password(userRequest.getPassword())
+                .password(encodedPassword)
                 .createdAt(LocalDateTime.now())
                 .createdBy(userRequest.getCreatedBy())
                 .mCode(userRequest.getMCode())
@@ -36,6 +43,10 @@ public class UserService {
             return Header.OK();
         else
             return Header.ERROR();
+    }
+
+    private PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     public Header<UserResponse> readAll() {
@@ -118,6 +129,15 @@ public class UserService {
                 .updatedBy(user.getUpdatedBy())
                 .mCode(user.getMCode())
                 .build();
+    }
+
+    public Header<UserResponse> authenticate(String email, String password) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if(passwordEncoder().matches(password, user.getPassword()))
+            return Header.OK(response(user));
+        return Header.ERROR();
+//        passwordEncoder().matches(password, user.getPassword()); //후자는 암호화된 패스워드 익셉션 필요
 
     }
 }
