@@ -19,13 +19,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
 
+        //잔디
     }
 
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-      
+
     }
 
 }
