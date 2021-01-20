@@ -3,19 +3,19 @@ package hufs2021.jeongbo.controller.api;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.UserRequest;
 import hufs2021.jeongbo.network.response.UserResponse;
-import hufs2021.jeongbo.service.UserService;
+import hufs2021.jeongbo.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/account")
 public class SessionController {
 
+    /*@Autowired
+    private UserService userService;*/
+
     @Autowired
-    private UserService userService;
+    private SessionService sessionService;
 
     /*@PostMapping("/session")
     public ResponseEntity<SessionResponseDto> create(
@@ -35,8 +35,15 @@ public class SessionController {
                         .build());
     }*/
 
-    @PostMapping("/login")
+    @PostMapping("/register")
+    @ResponseBody
+    public Header<UserResponse> register(@RequestBody UserRequest userRequest) {
+        return sessionService.register(userRequest);
+    }
+
+
+    /*@PostMapping("/login")
     public Header<UserResponse> login(@RequestBody UserRequest userRequest) {
         return userService.authenticate(userRequest.getEmail(), userRequest.getPassword());
-    }
+    }*/
 }
