@@ -17,11 +17,6 @@ import java.util.List;
 public class User {
 
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-=======
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
     private Integer studentId;
 
     private String name;
@@ -39,8 +34,7 @@ public class User {
     private LocalDateTime updatedAt;
 
     private Integer updatedBy;
-<<<<<<< HEAD
-=======
+
 
     @Column(name = "major_m_code")
     private Integer mCode;
@@ -58,5 +52,4 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<TeamProjectApply> teamProjectApplyList;
 
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
 }

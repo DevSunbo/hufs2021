@@ -1,6 +1,5 @@
 package hufs2021.jeongbo.service;
 
-<<<<<<< HEAD
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +18,6 @@ public class UserService implements UserDetailsService {
 
 }
 */
-=======
 import hufs2021.jeongbo.model.entity.User;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.UserRequest;
@@ -161,4 +159,3 @@ public class UserService {
 
     }
 }
->>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
