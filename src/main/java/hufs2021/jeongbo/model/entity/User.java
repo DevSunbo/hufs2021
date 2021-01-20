@@ -5,11 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +17,11 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+>>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
     private Integer studentId;
 
     private String name;
@@ -28,6 +30,8 @@ public class User {
 
     private String email;
 
+    private String password;
+
     private LocalDateTime createdAt;
 
     private Integer createdBy;
@@ -35,4 +39,24 @@ public class User {
     private LocalDateTime updatedAt;
 
     private Integer updatedBy;
+<<<<<<< HEAD
+=======
+
+    @Column(name = "major_m_code")
+    private Integer mCode;
+
+    @ManyToOne
+    @JoinColumn(name = "major_m_code", insertable = false, updatable = false)
+    private Major major;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<TeamProject> teamProjectList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Qna> qnaList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<TeamProjectApply> teamProjectApplyList;
+
+>>>>>>> e7a89746a63ddf192d5d7359afcc5dfcd971df8d
 }
