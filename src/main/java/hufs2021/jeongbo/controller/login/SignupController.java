@@ -24,11 +24,13 @@ public class SignupController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @PostMapping("/")
-    public Header<UserResponse> signup(@RequestBody UserRequest userRequest){
+    @PostMapping("")
+    public Header<UserResponse> signup(@RequestBody UserRequest userRequest) {
         String encodedPassword = passwordEncoder.encode(userRequest.getPassword());  //BCryptPasswordEncoder
 
-        User user = User.builder()
+        System.out.println(userRequest.getEmail());
+        System.out.println(encodedPassword);
+        /*User user = User.builder()
                 .studentId(userRequest.getStudentId())
                 .name(userRequest.getName())
                 .phoneNumber(userRequest.getPhoneNumber())
@@ -37,13 +39,26 @@ public class SignupController {
                 .createdAt(LocalDateTime.now())
                 .createdBy(userRequest.getCreatedBy())
                 .mCode(userRequest.getMCode())
-                .build();
+                .build();*/
 
+        User user = new User();
+        user.setStudentId(userRequest.getStudentId());
+        user.setName(userRequest.getName());
+        user.setPhoneNumber(userRequest.getPhoneNumber());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(encodedPassword);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setCreatedBy(userRequest.getCreatedBy());
+        user.setMCode(userRequest.getMCode());
+
+
+        System.out.println("user + " + user.getEmail());
         User newUser = userRepository.save(user);
 
-        if(newUser!=null)
+        if (newUser != null)
             return Header.OK();
         else
             return Header.ERROR("error");
     }
+
 }
