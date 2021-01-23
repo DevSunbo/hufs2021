@@ -2,6 +2,7 @@ package hufs2021.jeongbo.controller.login;
 
 import hufs2021.jeongbo.model.entity.User;
 import hufs2021.jeongbo.model.network.Header;
+import hufs2021.jeongbo.model.network.request.StudyRoomApiRequest;
 import hufs2021.jeongbo.network.request.UserRequest;
 import hufs2021.jeongbo.network.response.UserResponse;
 import hufs2021.jeongbo.repository.UserRepository;
@@ -26,11 +27,12 @@ public class SignupController {
 
     @PostMapping("")
     public Header<UserResponse> signup(@RequestBody UserRequest userRequest) {
+        System.out.println(userRequest);
         String encodedPassword = passwordEncoder.encode(userRequest.getPassword());  //BCryptPasswordEncoder
 
         System.out.println(userRequest.getEmail());
         System.out.println(encodedPassword);
-        /*User user = User.builder()
+        User user = User.builder()
                 .studentId(userRequest.getStudentId())
                 .name(userRequest.getName())
                 .phoneNumber(userRequest.getPhoneNumber())
@@ -38,10 +40,10 @@ public class SignupController {
                 .password(encodedPassword)
                 .createdAt(LocalDateTime.now())
                 .createdBy(userRequest.getCreatedBy())
-                .mCode(userRequest.getMCode())
-                .build();*/
+                .mCode(1)
+                .build();
 
-        User user = new User();
+        /*User user = new User();
         user.setStudentId(userRequest.getStudentId());
         user.setName(userRequest.getName());
         user.setPhoneNumber(userRequest.getPhoneNumber());
@@ -49,7 +51,7 @@ public class SignupController {
         user.setPassword(encodedPassword);
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy(userRequest.getCreatedBy());
-        user.setMCode(userRequest.getMCode());
+        user.setMCode(userRequest.getMCode());*/
 
 
         System.out.println("user + " + user.getEmail());
