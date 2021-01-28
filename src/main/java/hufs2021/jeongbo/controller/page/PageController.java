@@ -25,7 +25,9 @@ public class PageController {
         System.out.println(httpSession);
         SessionDto sessionItem = (SessionDto) httpSession.getAttribute("USER");
         System.out.println(sessionItem);
-        return new ModelAndView("/mypage");
+        return new ModelAndView("/mypage")
+                .addObject("sid", sessionItem.getSId())
+                .addObject("name", sessionItem.getName());
     }
 
     @GetMapping("/mypage/changepassword")
