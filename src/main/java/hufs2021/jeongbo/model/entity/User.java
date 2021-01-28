@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.model.entity;
 
+import hufs2021.jeongbo.model.enumclass.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,9 @@ public class User {
     private String email;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
 
     private LocalDateTime createdAt;
 

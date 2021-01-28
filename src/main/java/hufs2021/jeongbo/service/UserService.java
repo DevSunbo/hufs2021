@@ -1,6 +1,7 @@
 package hufs2021.jeongbo.service;
 
 import hufs2021.jeongbo.model.entity.User;
+import hufs2021.jeongbo.model.enumclass.RoleEnum;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.UserRequest;
 import hufs2021.jeongbo.network.response.UserResponse;
@@ -32,6 +33,7 @@ public class UserService {
                 .phoneNumber(userRequest.getPhoneNumber())
                 .email(userRequest.getEmail())
                 .password(encodedPassword)
+                .role(RoleEnum.USER)
                 .createdAt(LocalDateTime.now())
                 .createdBy(userRequest.getCreatedBy())
                 .mCode(userRequest.getMCode())

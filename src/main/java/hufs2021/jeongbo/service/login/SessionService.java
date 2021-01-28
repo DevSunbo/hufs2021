@@ -1,5 +1,6 @@
-package hufs2021.jeongbo.service;
+package hufs2021.jeongbo.service.login;
 
+import hufs2021.jeongbo.model.dto.SessionDto;
 import hufs2021.jeongbo.model.entity.User;
 import hufs2021.jeongbo.network.Header;
 import hufs2021.jeongbo.network.request.UserRequest;
@@ -45,6 +46,45 @@ public class SessionService {
 
     }
 
+    /*public String login(SessionRequestVo sessionRequestVo) {
+        HttpServletRequest request;
+        Integer studentId = sessionRequestVo.getStudentId();
+        String password = sessionRequestVo.getPassword();
+
+        SessionDto authResult = this.authentication(studentId, password);
+
+
+        if(authResult!=null){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("student_id", );
+        }
+        else
+            return "error";
+
+
+        return null;
+    }*/
+
+    public SessionDto authentication(Integer studentId, String password) {
+        User user = userRepository.findById(studentId).orElse(null);
+
+        if (user == null)
+            return null;
+
+        if(!passwordEncoder().matches(password, user.getPassword()))
+            return null;
+        else{
+            SessionDto sessionDto = SessionDto.builder()
+                    .studentId(user.getStudentId())
+                    .name(user.getName())
+                    .role(user.getRole())
+                    .build();
+
+            return sessionDto;
+        }
+
+    }
+
     private UserResponse response(User user) {
         return UserResponse.builder()
                 .studentId(user.getStudentId())
@@ -59,5 +99,4 @@ public class SessionService {
                 .mCode(user.getMCode())
                 .build();
     }
-
 }

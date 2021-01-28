@@ -12,10 +12,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .cors().disable()
-                .csrf().disable()
-                .formLogin().disable()
-                .headers().frameOptions().disable();
-
+                .cors()
+                    .disable()
+                .csrf()
+                    .disable()
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                    .anyRequest().permitAll()
+                .and()
+                .formLogin().disable();
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/login/process")
+//                    .usernameParameter("student_id")
+//                    .passwordParameter("password")
+//                    .defaultSuccessUrl("/success");
+//                .headers().frameOptions().disable();
     }
 }
