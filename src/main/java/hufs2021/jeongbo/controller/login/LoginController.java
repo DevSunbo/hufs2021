@@ -88,5 +88,15 @@ public class LoginController {
         //System.out.println("Login success");
     }
 
+    @PostMapping("/logout")
+    //@RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public RedirectView logout(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+
+        return new RedirectView("index");
+
+    }
+
 
 }
