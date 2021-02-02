@@ -18,8 +18,9 @@ import java.time.LocalDateTime;
 @Accessors(chain=true)
 public class Asset {
     @Id
+    @Column(name = "a_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer aId; // Asset PK 구분하기 위해 사용
+    private Integer assetId; // Asset PK 구분하기 위해 사용
     private String aMajor; // 해당 Asset을 사용할 수 있는 전공
     private Integer aGrade; // Asset 학년 제한
     private LocalDate aDeadline; // Asset 반납일
