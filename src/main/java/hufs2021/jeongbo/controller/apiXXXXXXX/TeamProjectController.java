@@ -137,7 +137,7 @@ public class TeamProjectController {
 
     private TeamProjectResponse response(TeamProject teamProject) {
         return TeamProjectResponse.builder()
-                .pNumber(teamProject.getPNumber())
+                .pNumber(teamProject.getProjectNumber())
                 .pField(teamProject.getPField())
                 .pName(teamProject.getPName())
                 .pMin(teamProject.getPMin())
