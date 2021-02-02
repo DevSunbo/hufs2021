@@ -1,6 +1,7 @@
 package hufs2021.jeongbo.network.request;
 
 
+import hufs2021.jeongbo.model.enumclass.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class UserRequest {
     private String email;
 
     private String password;
+
+    private RoleEnum role;
 
     private LocalDateTime createdAt;
 

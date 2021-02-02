@@ -3,9 +3,9 @@ package hufs2021.jeongbo.network.request;
 import lombok.Data;
 
 @Data
-public class SessionRequestDto {
+public class SessionRequestVo {
 
-    private String email;
+    private Integer studentId;
 
     private String password;
 }

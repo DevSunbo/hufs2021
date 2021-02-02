@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+//<<<<<<< HEAD:src/main/java/hufs2021/jeongbo/config/WebSecurityConfig.java
                 .cors().disable()
                 .csrf().disable()
                 .formLogin().disable()
@@ -34,5 +35,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+//=======
+//                .cors()
+//                    .disable()
+//                .csrf()
+//                    .disable()
+//                .authorizeRequests()
+//                .antMatchers("/login").permitAll()
+//                    .anyRequest().permitAll()
+//                .and()
+//                .formLogin().disable();
+////                    .loginPage("/login")
+////                    .loginProcessingUrl("/login/process")
+////                    .usernameParameter("student_id")
+////                    .passwordParameter("password")
+////                    .defaultSuccessUrl("/success");
+////                .headers().frameOptions().disable();
+//>>>>>>> jungho:src/main/java/hufs2021/jeongbo/config/SecurityConfig.java
     }
 }
