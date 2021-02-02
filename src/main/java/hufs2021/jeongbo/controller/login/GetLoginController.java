@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/Getlogin")
 public class GetLoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
