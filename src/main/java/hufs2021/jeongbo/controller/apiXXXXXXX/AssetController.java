@@ -38,7 +38,7 @@ public class AssetController {
         AssetApiRequest assetApiRequest =request.getData();
 
         Asset asset = Asset.builder()
-                .aId(assetApiRequest.getAId())
+                .assetId(assetApiRequest.getAId())
                 .aMajor(assetApiRequest.getAMajor())
                 .aGrade(assetApiRequest.getAGrade())
                 .aDeadline(assetApiRequest.getADeadline())
@@ -65,7 +65,7 @@ public class AssetController {
 
         return optional.map(list -> {
             list
-                    .setAId(assetApiRequest.getAId())
+                    .setAssetId(assetApiRequest.getAId())
                     .setAMajor(assetApiRequest.getAMajor())
                     .setAGrade(assetApiRequest.getAGrade())
                     .setADeadline(assetApiRequest.getADeadline())
@@ -95,7 +95,7 @@ public class AssetController {
     public AssetApiResponse response(Asset asset){
 
         AssetApiResponse assetAllowedListApiResponse = AssetApiResponse.builder()
-                .aId(asset.getAId())
+                .aId(asset.getAssetId())
                 .aMajor(asset.getAMajor())
                 .aGrade(asset.getAGrade())
                 .aDeadline(asset.getADeadline())
