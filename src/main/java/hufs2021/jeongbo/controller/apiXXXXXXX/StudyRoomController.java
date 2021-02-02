@@ -1,21 +1,14 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
-import hufs2021.jeongbo.model.entity.StudyRoom;
-import hufs2021.jeongbo.model.entity.StudyRoomPK;
 import hufs2021.jeongbo.model.entity.StudyRoom;
 import hufs2021.jeongbo.model.entity.StudyRoomPK;
 import hufs2021.jeongbo.model.network.Header;
 import hufs2021.jeongbo.model.network.request.StudyRoomApiRequest;
-import hufs2021.jeongbo.model.network.request.StudyRoomApiRequest;
 import hufs2021.jeongbo.model.network.response.StudyRoomApiResponse;
-import hufs2021.jeongbo.model.network.response.StudyRoomApiResponse;
-import hufs2021.jeongbo.repository.StudyRoomRepository;
 import hufs2021.jeongbo.repository.StudyRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;

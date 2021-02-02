@@ -1,15 +1,9 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
-import hufs2021.jeongbo.model.entity.Category;
-import hufs2021.jeongbo.model.entity.Category;
 import hufs2021.jeongbo.model.entity.Category;
 import hufs2021.jeongbo.model.network.Header;
 import hufs2021.jeongbo.model.network.request.CategoryApiRequest;
-import hufs2021.jeongbo.model.network.request.CategoryApiRequest;
 import hufs2021.jeongbo.model.network.response.CategoryApiResponse;
-import hufs2021.jeongbo.model.network.response.CategoryApiResponse;
-import hufs2021.jeongbo.repository.CategoryRepository;
-import hufs2021.jeongbo.repository.AssetRepository;
 import hufs2021.jeongbo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

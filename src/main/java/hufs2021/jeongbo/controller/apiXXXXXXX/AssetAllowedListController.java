@@ -1,4 +1,4 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
 import hufs2021.jeongbo.model.entity.AssetAllowedList;
 import hufs2021.jeongbo.model.entity.AssetAllowedListPK;

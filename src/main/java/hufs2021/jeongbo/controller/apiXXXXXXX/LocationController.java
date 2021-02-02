@@ -1,15 +1,9 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
-import hufs2021.jeongbo.model.entity.Location;
-import hufs2021.jeongbo.model.entity.Location;
 import hufs2021.jeongbo.model.entity.Location;
 import hufs2021.jeongbo.model.network.Header;
 import hufs2021.jeongbo.model.network.request.LocationApiRequest;
-import hufs2021.jeongbo.model.network.request.LocationApiRequest;
 import hufs2021.jeongbo.model.network.response.LocationApiResponse;
-import hufs2021.jeongbo.model.network.response.LocationApiResponse;
-import hufs2021.jeongbo.repository.AssetRepository;
-import hufs2021.jeongbo.repository.LocationRepository;
 import hufs2021.jeongbo.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

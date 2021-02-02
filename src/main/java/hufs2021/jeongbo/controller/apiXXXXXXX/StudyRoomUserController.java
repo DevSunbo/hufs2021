@@ -1,15 +1,9 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
-import hufs2021.jeongbo.model.entity.StudyRoomUser;
-import hufs2021.jeongbo.model.entity.StudyRoomUser;
 import hufs2021.jeongbo.model.entity.StudyRoomUser;
 import hufs2021.jeongbo.model.network.Header;
 import hufs2021.jeongbo.model.network.request.StudyRoomUserApiRequest;
-import hufs2021.jeongbo.model.network.request.StudyRoomUserApiRequest;
 import hufs2021.jeongbo.model.network.response.StudyRoomUserApiResponse;
-import hufs2021.jeongbo.model.network.response.StudyRoomUserApiResponse;
-import hufs2021.jeongbo.repository.AssetRepository;
-import hufs2021.jeongbo.repository.StudyRoomUserRepository;
 import hufs2021.jeongbo.repository.StudyRoomUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,16 +1,10 @@
-package hufs2021.jeongbo.controller.api;
+package hufs2021.jeongbo.controller.apiXXXXXXX;
 
-import hufs2021.jeongbo.model.entity.AssetNotice;
-import hufs2021.jeongbo.model.entity.AssetNotice;
 import hufs2021.jeongbo.model.entity.AssetNotice;
 import hufs2021.jeongbo.model.network.Header;
 import hufs2021.jeongbo.model.network.request.AssetNoticeApiRequest;
-import hufs2021.jeongbo.model.network.request.AssetNoticeApiRequest;
-import hufs2021.jeongbo.model.network.response.AssetNoticeApiResponse;
 import hufs2021.jeongbo.model.network.response.AssetNoticeApiResponse;
 import hufs2021.jeongbo.repository.AssetNoticeRepository;
-import hufs2021.jeongbo.repository.AssetNoticeRepository;
-import hufs2021.jeongbo.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
