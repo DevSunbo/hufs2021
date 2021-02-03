@@ -19,11 +19,9 @@ public class AssetDto {
 
     private Integer aiNumber; // 기자재 구분 번호 PK
 
-    private Integer assetId; // Asset PK 구분하기 위해 사용
-
     private Integer restAsset; // 남은 재고 계산해서 입력
 
-    private LocalDate assetDeadline; // Asset 반납일
+    private LocalDate assetDeadline; // Asset 반납일 값을 입력 받음
 
 
 
