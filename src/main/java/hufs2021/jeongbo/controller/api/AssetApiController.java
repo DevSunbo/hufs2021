@@ -9,8 +9,10 @@ import hufs2021.jeongbo.repository.AssetRepository;
 import hufs2021.jeongbo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,9 +33,11 @@ public class AssetApiController {
     List<AssetInventory> assetInventorieList;
     List<Category> categoryList;
 
-    public void read(){
+    public void read(@RequestParam(name = "caRental" String caRental )){
         //assetList = assetRepository.findAll();
         //assetInventorieList = assetInventoryRepository.findAll();
+        List<Integer> caNumbers = new ArrayList<>();
+        ca
     }
 
 }
