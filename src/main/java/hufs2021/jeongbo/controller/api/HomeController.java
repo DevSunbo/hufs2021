@@ -38,7 +38,7 @@ public class HomeController {
     @GetMapping("")
     public void home(){
 
-        List<Qna> qnas = readQnA();
+        //List<Qna> qnas = readQnA();
         List<AssetNotice> assets = readAssetnotice();
         List<TeamProject> teamProjects = readTeamProject();
         assets.stream().forEach(System.out::println);
