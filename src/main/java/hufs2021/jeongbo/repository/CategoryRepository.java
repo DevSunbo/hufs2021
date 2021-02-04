@@ -6,13 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-    public List<Category> findByCaRentals(String caRental);
-    public List<Category> findByCaKinds(String caRental, String caKind);
-    public List<Category> findByCaNames(String caRental, String caKind, String caName);
+    public List<Category> findByCaRental(String caRental);
+    public List<Category> findByCaRentalAndCaKind(String caRental, String caKind);
+    public List<Category> findByCaRentalAndCaKindAndCaName(String caRental, String caKind, String caName);
 
-    public Integer findByCaRental(String caRental);
-    public Integer findByCaKind(String caRental, String caKind);
-    public Integer findByCaName(String caRental, String caKind, String caName);
+   /* public Integer findByCaRental(String caRental);
+
+    public Integer findByCaRentalAndCaKind(String caRental, String caKind);
+    public Integer findByCaRentalAndCaKindAndCaName(String caRental, String caKind, String caName);*/
+
 
 
 }
