@@ -1,10 +1,13 @@
 package hufs2021.jeongbo.controller.api;
 
 import hufs2021.jeongbo.model.entity.Asset;
+import hufs2021.jeongbo.model.entity.AssetNotice;
 import hufs2021.jeongbo.model.entity.Qna;
+import hufs2021.jeongbo.model.entity.TeamProject;
 import hufs2021.jeongbo.model.network.Header;
-import hufs2021.jeongbo.repository.AssetRepository;
+import hufs2021.jeongbo.repository.AssetNoticeRepository;
 import hufs2021.jeongbo.repository.QnaRepository;
+import hufs2021.jeongbo.repository.TeamProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,39 +26,62 @@ public class HomeController {
     QnaRepository qnaRepository;
 
     @Autowired
-    AssetRepository assetRepository;
+    AssetNoticeRepository assetNoticeRepository;
+
+    @Autowired
+    TeamProjectRepository teamProjectRepository;
 
     List<Qna> qnaList;
-    List<Asset> assetList;
+    List<AssetNotice> assetNoticeList;
+    List<TeamProject> teamProjectList;
 
     @GetMapping("")
     public void home(){
-        //qnaList = readQnA();
-        assetList = readAsset();
 
-        List<Asset> assets = new ArrayList<>();
-        assetList.stream().forEach(asset -> {
-            Asset newAsset = new Asset();
-            newAsset.setAssetId(asset.getAssetId());
-            newAsset.setAGrade(asset.getAGrade());
-            assets.add(newAsset);
-            //asset.getAssetId();
-        });
-
+        //List<Qna> qnas = readQnA();
+        List<AssetNotice> assets = readAssetnotice();
+        List<TeamProject> teamProjects = readTeamProject();
         assets.stream().forEach(System.out::println);
     }
 
     private List<Qna> readQnA(){
 
         qnaList = qnaRepository.findTop20ByOrderByQaNumberDesc();
-        System.out.println(qnaList);
-        qnaList.stream().forEach(System.out::println);
+        List<Qna> qnas = new ArrayList<>();
+        qnaList.stream().forEach(q ->{
+            Qna newQna = new Qna();
+            newQna.setQaContent(q.getQaContent());
+            newQna.setCreatedAt(q.getCreatedAt());
+            qnas.add(newQna);
+        });
+
         return qnaList;
     }
 
-    private List<Asset> readAsset(){
-        assetList = assetRepository.findTop20ByOrderByAssetIdDesc();
-        return assetList;
+    private List<AssetNotice> readAssetnotice(){
+        assetNoticeList = assetNoticeRepository.findTop20ByOrderByAnNumberDesc();
+        List<AssetNotice> assets = new ArrayList<>();
+        assetNoticeList.stream().forEach(a -> {
+            AssetNotice newAssetNotice = new AssetNotice();
+            newAssetNotice.setAnContent(a.getAnContent());
+            newAssetNotice.setCreatedAt(a.getCreatedAt());
+            assets.add(newAssetNotice);
+            //asset.getAssetId();
+        });
+        return assets;
+    }
+
+    private List<TeamProject> readTeamProject(){
+        teamProjectList = teamProjectRepository.findTop20ByOrderByProjectNumberDesc();
+        List<TeamProject> teamProjects = new ArrayList<>();
+        teamProjectList.stream().forEach(a -> {
+            TeamProject newTeamProject = new TeamProject();
+            newTeamProject.setPContent(a.getPContent());
+            newTeamProject.setCreatedAt(a.getCreatedAt());
+            teamProjects.add(newTeamProject);
+            //asset.getAssetId();
+        });
+        return teamProjectList;
     }
 
 }

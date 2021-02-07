@@ -18,7 +18,8 @@ public class TeamProject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer pNumber;
+    @Column(name = "p_number")
+    private Integer projectNumber;
 
 //    @Enumerated(EnumType.STRING)
     private String pField;

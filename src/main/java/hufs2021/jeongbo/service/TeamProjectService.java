@@ -49,7 +49,7 @@ public class TeamProjectService {
 
         if (teamProjectList != null) {
             teamProjectList.stream().forEach(teamProject -> {
-                System.out.println(teamProject.getPNumber());
+                System.out.println(teamProject.getProjectNumber());
                 System.out.println(teamProject.getPName());
                 System.out.println(teamProject.getPMin());
                 System.out.println(teamProject.getPMax());
@@ -74,7 +74,7 @@ public class TeamProjectService {
     public Header<TeamProjectResponse> read(Integer number) {
         return teamProjectRepository.findById(number)
                 .map(teamProject -> {
-                    System.out.println(teamProject.getPNumber());
+                    System.out.println(teamProject.getProjectNumber());
                     System.out.println(teamProject.getPName());
                     System.out.println(teamProject.getPMin());
                     System.out.println(teamProject.getPMax());
@@ -124,7 +124,7 @@ public class TeamProjectService {
 
     private TeamProjectResponse response(TeamProject teamProject) {
         return TeamProjectResponse.builder()
-                .pNumber(teamProject.getPNumber())
+                .pNumber(teamProject.getProjectNumber())
                 .pField(teamProject.getPField())
                 .pName(teamProject.getPName())
                 .pMin(teamProject.getPMin())
