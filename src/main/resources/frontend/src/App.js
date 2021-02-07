@@ -1,9 +1,14 @@
-import logo from './logo.svg';
+// import _ from './logo.svg';
+import React from 'react';
 import './App.css';
+// import { Route } from 'react-router-dom';
+import Home from './components/Header';
 
 function App() {
   return (
-    <div>안녕하세요</div>
+    <div>
+      <Home />
+    </div>
   );
 }
 
