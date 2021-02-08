@@ -20,7 +20,7 @@ public class HeaderApiController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/userInfo")
+    @GetMapping("/userinfo")
     public Map<String, String > userInfo(){
         HashMap<String, String> map = new HashMap<>();
         User user = userRepository.findByStudentId(201601806);
