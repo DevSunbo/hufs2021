@@ -17,6 +17,12 @@ configurations {
 repositories {
 	mavenCentral()
 }
+bootJar{
+	archiveBaseName='-'
+	archiveFileName = '-.jar'
+	archiveVersion = "0.0.0"
+}
+
 
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-security"
