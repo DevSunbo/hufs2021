@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Table, ListGroup } from 'react-bootstrap';
 // import {Link} from 'react-router-dom'
 
 const HomeLink = styled.div`
-    font-size: 30px;
+    font-size: 35px;
 `;
+
+const BarLink = styled.div`
+    font-size: 25px;
+`
 
 function header() {
     return (
@@ -19,13 +23,15 @@ function header() {
                     <Button variant="danger">회원가입</Button>
                 </Col>
             </Row>
-            <Row className="justify-content-center mt-3">
+            <Row className="justify-content-center mt-4">
                 <Col md={{span:8}} className="border text-center">
-                    <Button className="m-2">기자재</Button>
-                    <Button className="m-2">스터디룸</Button>
-                    <Button className="m-2">팀프로젝트</Button>
-                    <Button className="m-2">QnA</Button>
-                    <Button className="m-2">마이페이지</Button>
+                    <div className="d-flex justify-content-around">
+                        <BarLink md={{span: 3}}>기자재</BarLink>
+                        <BarLink md={{span: 3}}>스터디룸</BarLink>
+                        <BarLink md={{span: 3}}>팀프로젝트</BarLink>
+                        <BarLink md={{span: 3}}>QnA</BarLink>
+                        <BarLink md={{span: 3}}>마이페이지</BarLink>
+                    </div>
                 </Col>
             </Row>
         </Container>
