@@ -21,7 +21,7 @@ const Header = () => {
                 </Col>
                 <Col md={{span: 4, offset: 2}} className="text-center">
                     <Button variant="light" className="mr-2"><Link to="/login">로그인</Link></Button>
-                    <Button variant="light">회원가입</Button>
+                    <Button variant="light"><Link to="/join">회원가입</Link></Button>
                 </Col>
             </Row>
             <Row className="justify-content-center mt-4">
