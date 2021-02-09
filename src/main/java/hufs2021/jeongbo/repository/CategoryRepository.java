@@ -7,7 +7,14 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     public List<Category> findByCaRental(String caRental);
-    public List<Category> findByCaKind(String caKind);
-    public List<Category> findByCaName(String caName);
+    public List<Category> findByCaRentalAndCaKind(String caRental, String caKind);
+    public List<Category> findByCaRentalAndCaKindAndCaName(String caRental, String caKind, String caName);
+
+   /* public Integer findByCaRental(String caRental);
+
+    public Integer findByCaRentalAndCaKind(String caRental, String caKind);
+    public Integer findByCaRentalAndCaKindAndCaName(String caRental, String caKind, String caName);*/
+
+
 
 }

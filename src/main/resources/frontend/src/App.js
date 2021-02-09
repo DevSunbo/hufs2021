@@ -1,9 +1,18 @@
-import logo from './logo.svg';
+// import _ from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Route } from 'react-router-dom';
+import Home from './page/Home';
+import Login from './page/Login';
+import Join from './page/Join';
 
-function App() {
+const App = () => {
   return (
-    <div>안녕하세요</div>
+    <>
+      <Route path="/" component={Home} exact={true} />
+      <Route path="/login" component={Login}/>
+      <Route path="/join" component={Join}/>
+    </>
   );
 }
 
