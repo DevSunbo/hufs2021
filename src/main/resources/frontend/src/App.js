@@ -1,13 +1,15 @@
 // import _ from './logo.svg';
 import React from 'react';
 import './App.css';
-// import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from './page/Home';
+import Login from './page/Login';
 
-function App() {
+const App = () => {
   return (
     <>
-      <Home />
+      <Route path="/" component={Home} exact={true} />
+      <Route path="/login" component={Login}/>
     </>
   );
 }

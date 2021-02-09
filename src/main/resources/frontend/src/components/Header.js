@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Row, Col } from 'react-bootstrap';
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const HomeLink = styled.div`
     font-size: 35px;
+    text-color: black;
 `;
 
 const BarLink = styled.div`
@@ -16,10 +17,10 @@ const Header = () => {
         <>
             <Row className="mt-4">
                 <Col md={{span: 4, offset: 2}}>
-                    <HomeLink>컴퓨터 공학부</HomeLink>
+                    <HomeLink><Link to="/">컴퓨터 공학부</Link></HomeLink>
                 </Col>
                 <Col md={{span: 4, offset: 2}} className="text-center">
-                    <Button variant="light" className="mr-2">로그인</Button>
+                    <Button variant="light" className="mr-2"><Link to="/login">로그인</Link></Button>
                     <Button variant="light">회원가입</Button>
                 </Col>
             </Row>
