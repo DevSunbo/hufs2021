@@ -118,7 +118,7 @@ public class AssetApiController {
             assetDtoList.add(newAssetDto);
         });
 
-        //TODO: caNum 분류 3개에 맞춰 추가하기 OR category assetinventory 합쳐서 분류 3개 만으로 find 하기
+        //TODO: 2021.02.06 caNum 분류 3개에 맞춰 추가하기 OR category assetinventory 합쳐서 분류 3개 만으로 find 하기 -sunbo
         assetDtoList.stream().forEach(System.out::println);
 
 
