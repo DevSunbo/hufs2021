@@ -7,13 +7,7 @@ import Join from './page/Join';
 import TeamSearch from './page/TeamProjectSearch';
 
 
-async function App() {
-  const [message, setMessage] = useState("");
-  const response = await axios.get('http://localhots:8080/api/hello');
-  setMessage(response.data);
-  useEffect(() => {
-
-  })
+const App = () => {
   return (
     <>
       <Route path="/" component={Home} exact={true} />
