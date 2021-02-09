@@ -25,6 +25,7 @@ bootJar{
 
 
 dependencies {
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
 	compile "org.springframework.boot:spring-boot-starter-security"
 	compile 'mysql:mysql-connector-java'
 	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'

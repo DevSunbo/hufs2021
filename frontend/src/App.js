@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import AssetPage from "./AssetPage";
+import Header from "./Header";
 
 function App() {
   return (
-    <>
-        <User/>
+    <div>
+        <Header />
         <AssetPage />
-    </>
+    </div>
   );
 }
 
