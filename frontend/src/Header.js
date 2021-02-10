@@ -7,7 +7,7 @@ handler = async (event) => {
         statusCode: 200,
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": "https://www.example.com",
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
         body: JSON.stringify('Hello from Lambda!'),
@@ -31,13 +31,13 @@ function Users() {
 
                 const response = await axios.get(
 
-                    /*{'access-control-allow-origin':'http://localhost:8080/api/userinfo',
+                    {'access-control-allow-origin':'http://localhost:8080/api/userinfo',
                         "Access-Control-Allow-Headers" : "Content-Type",
                         "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-                    }*/
+                    }
                     // 'https://jsonplaceholder.typicode.com/users'
                     //{'access-control-allow-origin':'http://localhost:8080/api/userinfo'}
-                    'http://localhost:8080/api/userinfo'
+                    //'http://localhost:8080/api/userinfo'
                 );
                 console.log("response : " + response)
                 console.log(response.data)

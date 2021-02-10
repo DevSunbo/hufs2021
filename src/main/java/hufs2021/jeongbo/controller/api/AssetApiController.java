@@ -11,14 +11,13 @@ import hufs2021.jeongbo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-=======
+
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
->>>>>>> f6984fa18eb1c90e7000f8ff2cfa307df1089678
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -48,13 +47,7 @@ public class AssetApiController {
         this.entityManager = entityManager;
     }
 
-<<<<<<< HEAD
-//    public void read(@RequestParam(name = "caRental" String caRental )){
-//        //assetList = assetRepository.findAll();
-//        //assetInventorieList = assetInventoryRepository.findAll();
-//        List<Integer> caNumbers = new ArrayList<>();
-//    }
-=======
+
     @GetMapping("/read")
     public void read(
             @RequestParam(name = "caRental") String caRental,
@@ -125,6 +118,5 @@ public class AssetApiController {
 
 
     }
->>>>>>> f6984fa18eb1c90e7000f8ff2cfa307df1089678
 
 }
