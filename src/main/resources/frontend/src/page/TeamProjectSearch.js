@@ -7,14 +7,6 @@ import styled from 'styled-components';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import Header from "../components/Header";
 
-const TeamProjectSearch = () => {
-    return (
-        <>
-            <Header />
-            TeamProjectSearch
-        </>
-    )
-}
 
 const TeamFont1 = styled.div`
     font-size: 30px;
