@@ -2,11 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Route, Link} from 'react-router-dom';
 import {Container, Row, Col} from 'react-bootstrap';
-import Header from '../components/Header';import React from 'react';
-import styled from 'styled-components';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import Header from "../components/Header";
-
+import Header from '../components/Header';
 
 const TeamFont1 = styled.div`
     font-size: 30px;

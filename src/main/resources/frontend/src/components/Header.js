@@ -27,7 +27,12 @@ const Header = () => {
             <Row className="justify-content-center mt-4">
                 <Col md={{span:8}} className="border text-center">
                     <div className="d-flex justify-content-around">
-                        <BarLink md={{span: 3}}>기자재</BarLink>
+                        <BarLink md={{span: 3}}>기자재
+                            <ul className="dropdown-menu">
+                                <li><Link to="/asset">기자재조회</Link></li>
+                                <li><Link to="/asset/apply">기자재신청</Link></li>
+                            </ul>
+                        </BarLink>
                         <BarLink md={{span: 3}}>스터디룸</BarLink>
                         <BarLink md={{span: 3}}>팀프로젝트</BarLink>
                         <BarLink md={{span: 3}}>QnA</BarLink>

@@ -7,7 +7,13 @@ const AssetSearch = () => {
     return (
         <>
             <Header />A
-            AssetSearch
+            <Container>
+                <div>
+                    <form action="asset">
+                        <div></div>
+                    </form>
+                </div>
+            </Container>
         </>
     )
 }
