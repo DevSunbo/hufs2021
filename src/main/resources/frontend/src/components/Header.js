@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Row, Col } from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 const HomeLink = styled.div`
@@ -25,18 +25,23 @@ const Header = () => {
                 </Col>
             </Row>
             <Row className="justify-content-center mt-4">
-                <Col md={{span:8}} className="border text-center">
+                <Col md={{span: 8}} className="border text-center">
                     <div className="d-flex justify-content-around">
-                        <BarLink md={{span: 3}}>기자재
-                            <ul className="dropdown-menu">
-                                <li><Link to="/asset">기자재조회</Link></li>
-                                <li><Link to="/asset/apply">기자재신청</Link></li>
-                            </ul>
+                        <BarLink to={"/asset"} md={{span: 3}}>
+                            <Link to="/asset">기자재</Link>
                         </BarLink>
-                        <BarLink md={{span: 3}}>스터디룸</BarLink>
-                        <BarLink md={{span: 3}}>팀프로젝트</BarLink>
-                        <BarLink md={{span: 3}}>QnA</BarLink>
-                        <BarLink md={{span: 3}}>마이페이지</BarLink>
+                        <BarLink md={{span: 3}}>
+                            <Link to="/studyroom">스터디룸</Link>
+                        </BarLink>
+                        <BarLink md={{span: 3}}>
+                            <Link to="/team-project">팀프로젝트</Link>
+                        </BarLink>
+                        <BarLink md={{span: 3}}>
+                            <Link to="/QnA">QnA</Link>
+                        </BarLink>
+                        <BarLink md={{span: 3}}>
+                            <Link to="/user/change/userinfo">마이페이지</Link>
+                        </BarLink>
                     </div>
                 </Col>
             </Row>
