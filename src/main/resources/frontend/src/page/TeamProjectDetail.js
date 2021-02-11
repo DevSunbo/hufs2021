@@ -11,3 +11,5 @@ const TeamProjectDetail = () => {
         </>
     )
 }
+
+export default TeamProjectDetail;

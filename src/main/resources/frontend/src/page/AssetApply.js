@@ -11,3 +11,5 @@ const AssetApply = () => {
         </>
     )
 }
+
+export default AssetApply;

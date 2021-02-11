@@ -11,3 +11,5 @@ const AssetRegister = () => {
         </>
     )
 }
+
+export default AssetRegister;

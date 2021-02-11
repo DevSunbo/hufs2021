@@ -11,3 +11,5 @@ const StudyroomHistory = () => {
         </>
     )
 }
+
+export default StudyroomHistory;

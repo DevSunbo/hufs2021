@@ -11,3 +11,5 @@ const FindPW = () => {
         </>
     )
 }
+
+export default FindPW;

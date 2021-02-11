@@ -11,3 +11,5 @@ const AssetMyInfo = () => {
         </>
     )
 }
+
+export default AssetMyInfo;

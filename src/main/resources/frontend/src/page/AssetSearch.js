@@ -11,3 +11,5 @@ const AssetSearch = () => {
         </>
     )
 }
+
+export default AssetSearch;

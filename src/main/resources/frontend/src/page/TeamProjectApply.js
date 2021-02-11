@@ -11,3 +11,5 @@ const TeamProjectApply = () => {
         </>
     )
 }
+
+export default TeamProjectApply;

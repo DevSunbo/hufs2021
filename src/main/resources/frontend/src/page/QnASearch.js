@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import Header from "../components/Header";
 
-const AssetApply = () => {
+const QnASearch = () => {
     return (
         <>
             <Header />
-            AssetApply
+            QnASearch
         </>
     )
 }
+
+export default QnASearch;

@@ -11,3 +11,5 @@ const TeamProjectRegister = () => {
         </>
     )
 }
+
+export default TeamProjectRegister;

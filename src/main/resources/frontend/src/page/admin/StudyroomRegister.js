@@ -11,3 +11,5 @@ const StudyroomRegister = () => {
         </>
     )
 }
+
+export default StudyroomRegister;

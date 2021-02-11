@@ -11,3 +11,5 @@ const StudyroomSearch = () => {
         </>
     )
 }
+
+export default StudyroomSearch;
