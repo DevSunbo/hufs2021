@@ -64,6 +64,19 @@ const Home = () => {
                         </div>
                     </Col>
                 </Row>
+                <ListGroup className="mt-3">
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                    <ListGroup.Item></ListGroup.Item>
+                </ListGroup>
             </Container>
 
         </>
