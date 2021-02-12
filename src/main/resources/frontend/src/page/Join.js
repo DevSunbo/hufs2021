@@ -56,7 +56,9 @@ const Join = () => {
                                 </Col>                         
                                 <Col></Col>                         
                             </Form.Row>
-                            <Button type="submit" className="text-center">로그인</Button>
+                            <div className="text-right">
+                                <Button type="submit" className="">회원가입</Button>
+                            </div>
                         </Form>
                     </div>
                 </Col>

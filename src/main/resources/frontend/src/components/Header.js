@@ -20,8 +20,12 @@ const Header = () => {
                     <HomeLink><Link to="/">컴퓨터 공학부</Link></HomeLink>
                 </Col>
                 <Col md={{span: 4, offset: 2}} className="text-center">
-                    <Button variant="light" className="mr-2"><Link to="/login">로그인</Link></Button>
-                    <Button variant="light"><Link to="/join">회원가입</Link></Button>
+                    <Link to="/login">
+                        <Button variant="light" className="mr-2">로그인</Button>                
+                    </Link>
+                    <Link to="/join">
+                        <Button variant="light">회원가입</Button>
+                    </Link>
                 </Col>
             </Row>
             <Row className="justify-content-center mt-4">
