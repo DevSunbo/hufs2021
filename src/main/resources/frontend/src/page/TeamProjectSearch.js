@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Route, Link} from 'react-router-dom';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import Header from '../components/Header';
 
 const TeamFont1 = styled.div`
@@ -37,8 +37,28 @@ const TeamSearch = () => {
                         </TeamFont3>
                     </Col>
                     <Col className="border">
-                        
+                        <Form className="mt-3">
+                            <Form.Row>
+                                <Form.Group as={Col} md="3">
+                                    <Form.Control as="select" defaultValue="전체">
+                                        <option>전체</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group as={Col} md="6">
+                                    <Form.Control placeholder="제목 검색" />
+                                </Form.Group>
+                                <Form.Group as={Col} md="3">
+                                    <Button type="submit">검색</Button>
+                                </Form.Group>
+                            </Form.Row>
+                        </Form>
                     </Col>
+                </Row>
+                <Row>
+                    
                 </Row>
             </Container>
         </>
