@@ -1,43 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
 import Header from '../components/Header';
+import TeamProjectSideBar from '../components/TeamProjectSideBar';
 
-const TeamFont1 = styled.div`
-    font-size: 30px;
-    margin-top: 10px;
-    font-weight: bold;
-`;
-
-const TeamFont2 = styled.div`
-    font-size: 25px;
-    font-weight: normal;
-    margin-top: 40px;
-    vertical-align: middle;
-`;
-
-const TeamFont3 = styled.div`
-    height: 500px;
-`;
+const containerStyle = {
+    marginLeft: "100px",
+    marginRight: "100px"
+}
 
 const TeamSearch = () => {
+
+
     return (
         <>
             <Header />
             <Container className="mt-5">
-                <Row className="border mb-5 pt-3">
-                    <Col md={{span: 3}}>
-                        <TeamFont3 className="text-center">
-                            <TeamFont1>팀 프로젝트</TeamFont1>
-                            <TeamFont2 className="align-self-center">
-                                <Link to="/team-project">
-                                    <div className="text-danger">조회</div>
-                                </Link>
-                                <div className="mt-3">등록</div>
-                            </TeamFont2>
-                        </TeamFont3>
-                    </Col>
+                <Row className="border pt-3 mb-5">
+                    <TeamProjectSideBar searchColor="text-danger" registerColor="text-body"/>
                     <Col className="border">
                         <Form className="mt-3">
                             <Form.Row>
@@ -80,7 +60,9 @@ const TeamSearch = () => {
                                             <td>{index}</td>
                                             <td>웹</td>
                                             <td>김정호</td>
-                                            <td>유튜브 만들기</td>
+                                            <td>
+                                                <Link to="team-project/detail">유튜브 만들기</Link>
+                                            </td>
                                             <td>4</td>
                                             <td>5</td>
                                             <td>12/25</td>
