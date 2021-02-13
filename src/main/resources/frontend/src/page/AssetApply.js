@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 import Header from "../components/Header";
 import {Link} from "react-router-dom";
+import AssetSidebar from "../components/AssetSidebar";
 
 const ApplyFont = styled.div`
     font-size: 30px;
@@ -17,15 +18,7 @@ const AssetApply = () => {
                     <ApplyFont>기자재신청</ApplyFont>
                 </Row>
                 <Row>
-                    <Col>
-                        <div className="border text-center">
-                            <div>기자재</div>
-                            <div className="align-self-center">
-                                <div className="text-danger"><Link to="/asset">조회</Link></div>
-                                <div className="mt-3"><Link to="/asset/apply">신청</Link></div>
-                            </div>
-                        </div>
-                    </Col>
+                    <AssetSidebar/>
                     <Col>
 
                         <div className="mt-2 border p-4">
