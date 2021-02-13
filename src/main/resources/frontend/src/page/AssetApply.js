@@ -18,7 +18,7 @@ const AssetApply = () => {
                     <ApplyFont>기자재신청</ApplyFont>
                 </Row>
                 <Row>
-                    <AssetSidebar/>
+                    <AssetSidebar/>git 
                     <Col>
 
                         <div className="mt-2 border p-4">
