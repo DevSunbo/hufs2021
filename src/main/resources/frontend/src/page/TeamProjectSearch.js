@@ -1,10 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button, Table, Modal} from 'react-bootstrap';
 import Header from '../components/Header';
 import TeamProjectSideBar from '../components/TeamProjectSideBar';
 
+const BodyModalFont = styled.div`
+    font-size: 20px;
+`;
+
+const ConfirmRegister = (props) => {
+    return (
+        <Modal {...props} size="sm" centered>
+            <Modal.Body>
+                <BodyModalFont className="text-center">프로젝트를 삭제하시겠습니까?</BodyModalFont>
+            </Modal.Body>
+            <Modal.Footer>
+                {/* todo: 삭제 절차 */}
+                <div className="m-auto">
+                    <Button variant="danger" className="mr-2" onClick={props.onHide}>취소</Button>
+                    <Button onClick={props.onHide}>지원</Button>
+                </div>
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
 const TeamSearch = () => {
+
+    const [modalState, setModalState] = useState(false);
+
     return (
         <>
             <Header />
@@ -67,7 +92,7 @@ const TeamSearch = () => {
                                                 </Link>
                                             </td>
                                             <td>
-                                                <Button>삭제</Button>
+                                                <Button onClick={() => setModalState(true)}>삭제</Button>
                                             </td>
                                         </tr>
                                     ))}
@@ -76,6 +101,7 @@ const TeamSearch = () => {
                         </Row>
                     </Col>
                 </Row>
+                <ConfirmRegister show={modalState} onHide={() => setModalState(false)} />
             </Container>
         </>
     );
