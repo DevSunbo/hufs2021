@@ -4,14 +4,7 @@ import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
 import Header from '../components/Header';
 import TeamProjectSideBar from '../components/TeamProjectSideBar';
 
-const containerStyle = {
-    marginLeft: "100px",
-    marginRight: "100px"
-}
-
 const TeamSearch = () => {
-
-
     return (
         <>
             <Header />
@@ -69,7 +62,9 @@ const TeamSearch = () => {
                                             <td>java</td>
                                             <td>학교</td>
                                             <td>
-                                                <Button>지원</Button>
+                                                <Link to="team-project/apply">
+                                                    <Button>지원</Button>
+                                                </Link>
                                             </td>
                                             <td>
                                                 <Button>삭제</Button>

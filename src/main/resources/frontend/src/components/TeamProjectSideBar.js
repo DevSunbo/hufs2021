@@ -29,7 +29,7 @@ const TeamProjectSideBar = ({searchColor, registerColor}) => {
                     <TeamFont1>팀 프로젝트</TeamFont1>
                     <TeamFont2 className="align-self-center">
                         <Link to="/team-project">
-                            <div className={searchColor}>조회</div>
+                            <div className={searchColor}>조회 및 지원</div>
                         </Link>
                         <Link to="/team-project/register">
                             <div className={"mt-3 " + registerColor}>등록</div>
