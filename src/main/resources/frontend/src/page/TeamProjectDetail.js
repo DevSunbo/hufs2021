@@ -14,7 +14,7 @@ const TeamProjectDetail = () => {
             <Header />
             <Container className="mt-5">
                 <Row className="border pt-5 pr-5 pb-5 mb-5">
-                    <TeamProjectSideBar searchColor="text-danger" registerColor="text-body" />
+                    <TeamProjectSideBar searchColor="text-danger" />
                     <Col>
                         <LoginFont>상세 조회</LoginFont>
                         <div className="mt-2 border p-4">

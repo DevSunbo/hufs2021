@@ -31,12 +31,19 @@ const TeamProjectSideBar = ({searchColor, registerColor}) => {
                         <Link to="/team-project">
                             <div className={searchColor}>조회</div>
                         </Link>
-                        <div className={"mt-3 " + registerColor}>등록</div>
+                        <Link to="/team-project/register">
+                            <div className={"mt-3 " + registerColor}>등록</div>
+                        </Link>
                     </TeamFont2>
                 </TeamFont3>
             </Col>        
         </>
     );
+}
+
+TeamProjectSideBar.defaultProps = {
+    searchColor: "text-body",
+    registerColor: "text-body"
 }
 
 export default TeamProjectSideBar;

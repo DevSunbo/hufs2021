@@ -17,7 +17,7 @@ const TeamSearch = () => {
             <Header />
             <Container className="mt-5">
                 <Row className="border pt-3 mb-5">
-                    <TeamProjectSideBar searchColor="text-danger" registerColor="text-body"/>
+                    <TeamProjectSideBar searchColor="text-danger"/>
                     <Col className="border">
                         <Form className="mt-3">
                             <Form.Row>
