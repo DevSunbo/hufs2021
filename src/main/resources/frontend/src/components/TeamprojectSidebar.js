@@ -5,18 +5,19 @@ import {Container, Row, Col, Form, Button, Dropdown, FormControl, ListGroup} fro
 import Header from "../components/Header";
 import {Link} from "react-router-dom";
 
-const AssetSidebar = () => {
+const TeamprojectSidebar = () => {
     return (
         <Col md={{span: 3}}>
             <div className="border text-center">
-                <div>기자재</div>
+                <div>팀프로젝트</div>
                 <div className="align-self-center">
-                    <div className="text-danger"><Link to="/asset">기자재조회</Link></div>
-                    <div className="mt-3"><Link to="/asset/apply">기자재신청</Link></div>
+                    <div className="text-danger"><Link to="/team-project">팀프로젝트조회</Link></div>
+                    <div className="mt-3"><Link to="/team-project/apply">팀프로젝트신청</Link></div>
+                    <div className="mt-3"><Link to="/team-project/register">팀프로젝트등록</Link></div>
                 </div>
             </div>
         </Col>
     );
 }
 
-export default AssetSidebar;
+export default TeamprojectSidebar;

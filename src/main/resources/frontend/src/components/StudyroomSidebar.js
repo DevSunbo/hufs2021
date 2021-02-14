@@ -5,18 +5,18 @@ import {Container, Row, Col, Form, Button, Dropdown, FormControl, ListGroup} fro
 import Header from "../components/Header";
 import {Link} from "react-router-dom";
 
-const AssetSidebar = () => {
+const StudyroomSidebar = () => {
     return (
         <Col md={{span: 3}}>
             <div className="border text-center">
-                <div>기자재</div>
+                <div>스터디룸</div>
                 <div className="align-self-center">
-                    <div className="text-danger"><Link to="/asset">기자재조회</Link></div>
-                    <div className="mt-3"><Link to="/asset/apply">기자재신청</Link></div>
+                    <div className="text-danger"><Link to="/studyroom">스터디룸조회</Link></div>
+                    <div className="mt-3"><Link to="/studyroom/reserve">스터디룸예약</Link></div>
                 </div>
             </div>
         </Col>
     );
 }
 
-export default AssetSidebar;
+export default StudyroomSidebar;
