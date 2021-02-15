@@ -1,11 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Container, Row, Col, Form, Button, FormGroup} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button, FormGroup, Modal} from 'react-bootstrap';
 import Header from "../components/Header";
 import StudyroomSidebar from "../components/StudyroomSidebar";
 import AssetSidebar from "../components/AssetSidebar";
 
+const BodyModalFont = styled.div`
+    font-size: 20px;
+`;
+
+
+const ConfirmRegister = (props) => {
+
+    return (
+        <Modal {...props} size="sm" centered>
+            <Modal.Body>
+                <BodyModalFont className="text-center">예약하시겠습니까?</BodyModalFont>
+            </Modal.Body>
+            <Modal.Footer>
+                <div className="m-auto">
+                    <Button variant="danger" className="mr-2" onClick={props.onHide}>취소</Button>
+                    <Button onClick={props.onHide}>예약</Button>
+                </div>
+            </Modal.Footer>
+        </Modal>
+    );
+}
+
 const StudyroomReserve = () => {
+    const [modalState, setModalState] = useState(false);
+
     return (
         <>
             <Header/>
@@ -65,11 +89,12 @@ const StudyroomReserve = () => {
                                     <Form.Control  className="border" plaintext readOnly defaultValue="주의 사항 내용"/>
                                 </Form.Group>
 
-                                <Button type="submit" className="text-center">예약</Button>
+                                <Button size="lg" onClick={() => setModalState(true)}>예약</Button>
                             </Form>
                         </div>
                     </Col>
                 </Row>
+                <ConfirmRegister show={modalState} onHide={() => setModalState(false)} />
             </Container>
         </>
     )
