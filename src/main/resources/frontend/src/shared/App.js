@@ -91,9 +91,6 @@ const App = () => {
             <Route path="/user/team-project/apply-info" component={TeamProjectMyApplyInfo} />
             <Route path="/user/team-project/mydetail" component={TeamProjectMyDetail} />
             <Route path="/user/team-project/info" component={TeamProjectMyInfo} />
-
-
-
         </>
     );
 }
