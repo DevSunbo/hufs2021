@@ -26,7 +26,6 @@ const AssetDetail = () => {
 
                 </Row>
 
-                <ConfirmRegister show={modalState} onHide={() => setModalState(false)} />
             </Container>
         </>
     )
