@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, Table, ButtonToolbar} from 'react-bootstrap';
 import Header from "../../components/Header";
 import MyPageSideBar from "../../components/MyPageSideBar"
+import {Link} from 'react-router-dom';
 
 const LoginFont = styled.div`
     font-size: 30px;
@@ -94,7 +95,11 @@ const TeamProjectMyDetail = () => {
                                             {Array.from({ length: 3}).map((_, index) => (
                                                 <tr className="text-center">
                                                     <td>{index}</td>
-                                                    <td>김정호</td>
+                                                    <td>
+                                                        <Link to="/user/team-project/apply-info">
+                                                            김정호
+                                                        </Link>
+                                                    </td>
                                                     <td>01075492337</td>
                                                     <td>
                                                         <Button>취소</Button>
@@ -120,7 +125,11 @@ const TeamProjectMyDetail = () => {
                                             {Array.from({length: 4}).map((_, index) => (
                                                 <tr className="text-center">
                                                     <td>{index}</td>
-                                                    <td>김정호</td>
+                                                    <td>
+                                                        <Link to="/user/team-project/apply-info">
+                                                            김정호
+                                                        </Link>
+                                                    </td>
                                                     <td>01075492337</td>
                                                     <td>
                                                         <Button>승인</Button>
