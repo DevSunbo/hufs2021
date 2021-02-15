@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import AdminSidebar from "../../components/AdminSidebar";
 import AssetSidebar from "../../components/AssetSidebar";
 import Select from "react-select";
+import {Link} from "react-router-dom";
 
 const groupStyles = {
     display: 'flex',
@@ -90,19 +91,22 @@ const AssetManage = () => {
                         <Row>
                             <div>
                                 {/*//TODO: 2021.02.12 새로운 jsdㅔ ListGroup Data를 받는 컴포넌트 만들기 - sunbo*/}
-                                <ListGroup horizontal className="mt-3">
-                                    <ListGroup.Item>1</ListGroup.Item>
-                                    <ListGroup.Item>2</ListGroup.Item>
-                                    <ListGroup.Item>3</ListGroup.Item>
-                                    <ListGroup.Item>4</ListGroup.Item>
-                                    <ListGroup.Item>5</ListGroup.Item>
-                                    <ListGroup.Item>6</ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                </ListGroup>
+                                <Link to="/admin/asset/detail">
+                                    <ListGroup horizontal className="mt-3">
+
+                                        <ListGroup.Item>대여여부</ListGroup.Item>
+                                        <ListGroup.Item>기자재종류</ListGroup.Item>
+                                        <ListGroup.Item>기자재이름</ListGroup.Item>
+                                        <ListGroup.Item>등록일</ListGroup.Item>
+                                        <ListGroup.Item>만료일</ListGroup.Item>
+                                        <ListGroup.Item>신청일</ListGroup.Item>
+                                        <ListGroup.Item>반납일</ListGroup.Item>
+                                        <ListGroup.Item>상태</ListGroup.Item>
+                                        <ListGroup.Item>사용자학과</ListGroup.Item>
+                                        <ListGroup.Item>사용자이름</ListGroup.Item>
+                                    </ListGroup>
+                                </Link>
+
                             </div>
 
                         </Row>

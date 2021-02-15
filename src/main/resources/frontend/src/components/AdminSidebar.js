@@ -20,7 +20,6 @@ const AdminSidebar = () => {
                 </div>
                 <h3>스터디룸</h3>
                 <div className="align-self-center">
-                    <div className="text-danger"><Link to="/admin/studyroom/register">스터디룸등록</Link></div>
                     <div className="mt-3"><Link to="/admin/studyroom/manage">스터디룸관리</Link></div>
                     <div className="mt-3"><Link to="/admin/studyroom/history">스터디룸히스토리</Link></div>
                 </div>
