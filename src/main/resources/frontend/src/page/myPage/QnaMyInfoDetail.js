@@ -1,21 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import Header from "../components/Header";
-import QnaSideBar from "../components/QnaSideBar";
+import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
+import Header from "../../components/Header";
+import MyPageSideBar from '../../components/MyPageSideBar';
+import {Link} from 'react-router-dom';
 
 const LoginFont = styled.div`
     font-size: 30px;
 `;
 
-const QnADetail = () => {
+const QnaMyInfoDetail = () => {
     return (
         <>
             <Header />
             <Container className="mt-5">
-                <Row className="border pt-5 pr-5 pb-5 mb-5">
-                    <QnaSideBar searchColor="text-danger" />
-                    <Col>
+                <Row className="border pt-3 mb-5">
+                    <MyPageSideBar qnaColor="text-danger"/>
+                    <Col className="border">
                         <LoginFont>상세 조회</LoginFont>
                         <div className="mt-2 border p-4">
                             <Form>
@@ -78,4 +79,4 @@ const QnADetail = () => {
     )
 }
 
-export default QnADetail;
+export default QnaMyInfoDetail;

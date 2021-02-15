@@ -46,7 +46,7 @@ const MyPageSideBar = (props) => {
                         <Link to="/user/team-project/apply-info">
                             <div className={"mt-3 " + applyColor}>신청한 팀 프로젝트</div>
                         </Link>
-                        <Link to="/qna/register">
+                        <Link to="/user/qna/info">
                             <div className={"mt-3 " + qnaColor}>나의 질문</div>
                         </Link>
                     </QnaFont2>
