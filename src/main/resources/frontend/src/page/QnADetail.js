@@ -14,7 +14,7 @@ const QnADetail = () => {
             <Header />
             <Container className="mt-5">
                 <Row className="border pt-5 pr-5 pb-5 mb-5">
-                    <QnaSideBar registerColor="text-danger" />
+                    <QnaSideBar searchColor="text-danger" />
                     <Col>
                         <LoginFont>상세 조회</LoginFont>
                         <div className="mt-2 border p-4">
@@ -63,6 +63,10 @@ const QnADetail = () => {
                                 </Form.Row>
                                 <Form.Row>
                                     <Form.Label>상세 설명</Form.Label>
+                                    <Form.Control disabled as="textarea" row={5} />
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Label>답변</Form.Label>
                                     <Form.Control disabled as="textarea" row={5} />
                                 </Form.Row>
                             </Form>

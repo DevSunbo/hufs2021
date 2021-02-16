@@ -2,16 +2,16 @@ import React from 'react';
 // import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
 import Header from "../../components/Header";
-import MyPageSideBar from '../../components/MyPageSideBar';
+import MyPageSideBar from "../../components/MyPageSideBar";
 import {Link} from 'react-router-dom';
 
-const QnAMyInfo = () => {
+const MyRegisterTeamProject = () => {
     return (
         <>
             <Header />
             <Container className="mt-5">
                 <Row className="border pt-3 mb-5">
-                    <MyPageSideBar qnaColor="text-danger"/>
+                    <MyPageSideBar registerColor="text-danger" />
                     <Col className="border">
                         <Form className="mt-3">
                             <Form.Row>
@@ -33,32 +33,34 @@ const QnAMyInfo = () => {
                         </Form>
                         <Row>
                             <Table responsive>
-                                <thead>
+                            <thead>
                                     <tr className="text-center">
                                         <th>번호</th>
-                                        <th>비공개</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
                                         <th>분야</th>
-                                        <th>마감일</th>
-                                        <th>해결여부</th>
+                                        <th>팀장</th>
+                                        <th>프로젝트 명</th>
+                                        <th>최소</th>
+                                        <th>최대</th>
+                                        <th>마감</th>
+                                        <th>주언어</th>
+                                        <th>장소</th>
                                         <th>삭제</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Array.from({ length: 10}).map((_, index) => (
+                                    {Array.from({ length: 10 }).map((_, index) => (
                                         <tr className="text-center">
                                             <td>{index}</td>
-                                            <td>아이콘</td>
-                                            <td>
-                                                <Link to="/user/qna/detail">
-                                                    유튜브
-                                                </Link>
-                                            </td>
+                                            <td>웹</td>
                                             <td>김정호</td>
-                                            <td>기자재</td>
+                                            <td>
+                                                <Link to="/user/team-project/my-register/detail">유튜브 만들기</Link>
+                                            </td>
+                                            <td>4</td>
+                                            <td>5</td>
                                             <td>12/25</td>
-                                            <td>해결</td>
+                                            <td>java</td>
+                                            <td>학교</td>
                                             <td>
                                                 <Button>삭제</Button>
                                             </td>
@@ -74,4 +76,4 @@ const QnAMyInfo = () => {
     )
 }
 
-export default QnAMyInfo;
+export default MyRegisterTeamProject;

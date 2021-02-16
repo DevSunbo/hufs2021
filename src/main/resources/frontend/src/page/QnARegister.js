@@ -47,13 +47,13 @@ const QnARegister = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>이름</Form.Label>
-                                            <Form.Control disabled value="김정호입니다."/>
+                                            <Form.Control value="김정호입니다."/>
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>학번</Form.Label>
-                                            <Form.Control disabled value="웹"/>
+                                            <Form.Control value="웹"/>
                                         </Form.Group>
                                     </Col>
                                 </Form.Row>
@@ -61,13 +61,13 @@ const QnARegister = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>제목</Form.Label>
-                                            <Form.Control disabled value="4 - 5"/>
+                                            <Form.Control value="4 - 5"/>
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>분야</Form.Label>
-                                            <Form.Control disabled value="Java"/>
+                                            <Form.Control value="Java"/>
                                         </Form.Group>
                                     </Col>
                                 </Form.Row>
@@ -76,19 +76,19 @@ const QnARegister = () => {
                                     {/* todo: datepicker 고쳐야됨 */}
                                         <Form.Group>
                                             <Form.Label>비공개</Form.Label>
-                                            <Form.Control disabled value=""/>
+                                            <Form.Control value=""/>
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>파일</Form.Label>
-                                            <Form.Control disabled value="웹"/>
+                                            <Form.Control value="웹"/>
                                         </Form.Group>
                                     </Col>
                                 </Form.Row>
                                 <Form.Row>
                                     <Form.Label>상세 설명</Form.Label>
-                                    <Form.Control disabled as="textarea" row={5}/>
+                                    <Form.Control as="textarea" row={5}/>
                                 </Form.Row>
                                 <div className="text-right mt-3">
                                     <Button size="lg" onClick={() => setModalState(true)}>등록</Button>
