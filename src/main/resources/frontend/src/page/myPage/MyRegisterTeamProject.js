@@ -5,15 +5,15 @@ import Header from "../../components/Header";
 import MyPageSideBar from "../../components/MyPageSideBar";
 import {Link} from 'react-router-dom';
 
-const TeamProjectApplication = () => {
+const MyRegisterTeamProject = () => {
     return (
         <>
             <Header />
             <Container className="mt-5">
                 <Row className="border pt-3 mb-5">
-                    <MyPageSideBar applyColor="text-danger" />
+                    <MyPageSideBar registerColor="text-danger" />
                     <Col className="border">
-                    <Form className="mt-3">
+                        <Form className="mt-3">
                             <Form.Row>
                                 <Form.Group as={Col} md="3">
                                     <Form.Control as="select" defaultValue="전체">
@@ -32,8 +32,8 @@ const TeamProjectApplication = () => {
                             </Form.Row>
                         </Form>
                         <Row>
-                            <Table responsive className="">
-                                <thead>
+                            <Table responsive>
+                            <thead>
                                     <tr className="text-center">
                                         <th>번호</th>
                                         <th>분야</th>
@@ -54,7 +54,7 @@ const TeamProjectApplication = () => {
                                             <td>웹</td>
                                             <td>김정호</td>
                                             <td>
-                                                <Link to="/user/team-project/apply-info">유튜브 만들기</Link>
+                                                <Link to="/user/team-project/my-register/detail">유튜브 만들기</Link>
                                             </td>
                                             <td>4</td>
                                             <td>5</td>
@@ -76,4 +76,4 @@ const TeamProjectApplication = () => {
     )
 }
 
-export default TeamProjectApplication;
+export default MyRegisterTeamProject;

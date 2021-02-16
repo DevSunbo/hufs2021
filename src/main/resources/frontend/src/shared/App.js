@@ -36,6 +36,7 @@ import TeamProjectApplication from "../page/myPage/TeamProjectApplication";
 import TeamProjectMyApplyInfo from "../page/myPage/TeamProjectMyApplyInfo";
 import TeamProjectMyInfo from "../page/myPage/TeamProjectMyInfo";
 import UserInfoModify from "../page/myPage/UserInfoModify";
+import MyRegisterTeamProject from "../page/myPage/MyRegisterTeamProject";
 
 
 const App = () => {
@@ -89,10 +90,12 @@ const App = () => {
             <Route path="/user/studyroom/info" component={StudyroomMyInfo} />
             <Route path="/user/qna/info" component={QnAMyInfo} />
             <Route path="/user/qna/detail" component={QnaMyInfoDetail} />
+            <Route path="/user/team-project/my-register" component={MyRegisterTeamProject} exact={true}/>
+            <Route path="/user/team-project/my-register/detail" component={TeamProjectMyDetail} />
+            <Route path="/user/team-project/my-register/apply-info" component={TeamProjectMyInfo} />
             <Route path="/user/team-project/application" component={TeamProjectApplication} />
             <Route path="/user/team-project/apply-info" component={TeamProjectMyApplyInfo} />
-            <Route path="/user/team-project/mydetail" component={TeamProjectMyDetail} />
-            <Route path="/user/team-project/info" component={TeamProjectMyInfo} />
+            {/* <Route path="/user/team-project/info" component={TeamProjectMyInfo} /> */}
         </>
     );
 }

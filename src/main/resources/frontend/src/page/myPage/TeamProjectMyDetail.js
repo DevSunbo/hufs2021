@@ -96,7 +96,7 @@ const TeamProjectMyDetail = () => {
                                                 <tr className="text-center">
                                                     <td>{index}</td>
                                                     <td>
-                                                        <Link to="/user/team-project/apply-info">
+                                                        <Link to="/user/team-project/my-register/apply-info">
                                                             김정호
                                                         </Link>
                                                     </td>
@@ -126,7 +126,7 @@ const TeamProjectMyDetail = () => {
                                                 <tr className="text-center">
                                                     <td>{index}</td>
                                                     <td>
-                                                        <Link to="/user/team-project/apply-info">
+                                                        <Link to="/user/team-project/my-register/apply-info">
                                                             김정호
                                                         </Link>
                                                     </td>

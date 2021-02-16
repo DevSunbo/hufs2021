@@ -40,10 +40,10 @@ const MyPageSideBar = (props) => {
                         <Link to="/user/studyroom/info">
                             <div className={"mt-3 " + studyColor}>스터디룸 예약 현황</div>
                         </Link>
-                        <Link to="/user/team-project/application">
+                        <Link to="/user/team-project/my-register">
                             <div className={"mt-3 " + registerColor}>등록한 팀 프로젝트</div>
                         </Link>
-                        <Link to="/user/team-project/apply-info">
+                        <Link to="/user/team-project/application">
                             <div className={"mt-3 " + applyColor}>신청한 팀 프로젝트</div>
                         </Link>
                         <Link to="/user/qna/info">
