@@ -16,7 +16,10 @@ const StudyroomSearch = () => {
                 <Row>
                     <StudyroomSidebar/>
                     <Col>
-
+                        <Row>
+                            <input type="date" value="예약날짜"/>
+                            <Button type="submint">검색</Button>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
