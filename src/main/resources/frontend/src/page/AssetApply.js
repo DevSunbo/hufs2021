@@ -1,14 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button, Modal} from 'react-bootstrap';
 import Header from "../components/Header";
 import {Link} from "react-router-dom";
+import AssetSidebar from "../components/AssetSidebar";
 
 const ApplyFont = styled.div`
     font-size: 30px;
 `;
+const BodyModalFont = styled.div`
+    font-size: 20px;
+`;
+
+
+const ConfirmRegister = (props) => {
+    return (
+        <Modal {...props} size="sm" centered>
+            <Modal.Body>
+                <BodyModalFont className="text-center">신청하시겠습니까?</BodyModalFont>
+            </Modal.Body>
+            <Modal.Footer>
+                <div className="m-auto">
+                    <Button variant="danger" className="mr-2" onClick={props.onHide}>취소</Button>
+                    <Button onClick={props.onHide}>신청</Button>
+                </div>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 
 const AssetApply = () => {
+    const [modalState, setModalState] = useState(false);
+
     return (
         <>
             <Header/>
@@ -17,15 +40,7 @@ const AssetApply = () => {
                     <ApplyFont>기자재신청</ApplyFont>
                 </Row>
                 <Row>
-                    <Col>
-                        <div className="border text-center">
-                            <div>기자재</div>
-                            <div className="align-self-center">
-                                <div className="text-danger"><Link to="/asset">조회</Link></div>
-                                <div className="mt-3"><Link to="/asset/apply">신청</Link></div>
-                            </div>
-                        </div>
-                    </Col>
+                    <AssetSidebar/>
                     <Col>
 
                         <div className="mt-2 border p-4">
@@ -65,11 +80,12 @@ const AssetApply = () => {
                                     <Form.Control  className="border" plaintext readOnly defaultValue="주의 사항 내용"/>
                                 </Form.Group>
 
-                                <Button type="submit" className="text-center">신청</Button>
+                                <Button size="lg" onClick={() => setModalState(true)}>신청</Button>
                             </Form>
                         </div>
                     </Col>
                 </Row>
+                <ConfirmRegister show={modalState} onHide={() => setModalState(false)} />
             </Container>
         </>
     )

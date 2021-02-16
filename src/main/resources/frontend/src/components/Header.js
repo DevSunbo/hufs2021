@@ -37,6 +37,9 @@ const Header = () => {
                     <HomeLink><Link to="/">컴퓨터 공학부</Link></HomeLink>
                 </Col>
                 <Col md={{span: 4, offset: 2}} className="text-center">
+                    <Link to="/admin/asset/manage">
+                        <Button  variant="light">Admin</Button>
+                    </Link>
                     <Link to="/login">
                         <Button variant="light" className="mr-2">로그인</Button>                
                     </Link>
