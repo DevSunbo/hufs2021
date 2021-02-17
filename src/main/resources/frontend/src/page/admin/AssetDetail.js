@@ -52,8 +52,6 @@ const AssetDetail = () => {
         <>
             <Header/>
             <Container>
-
-
                 <Row>
                     <AdminSidebar/>
                     <Col>
