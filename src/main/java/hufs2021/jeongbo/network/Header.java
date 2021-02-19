@@ -24,6 +24,8 @@ public class Header<T> {
 
     private List<T> dataList;
 
+    private Pagination pagination;
+
     public static <T> Header<T> OK() {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
@@ -41,14 +43,16 @@ public class Header<T> {
                 .build();
     }
 
-    public static <T> Header<T> OK(List<T> dataList){
+    private static <T> Header<T> OK(T data, Pagination pagination) {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
-                .dataList((List<Object>) dataList)
+                .data(data)
+                .pagination(pagination)
                 .build();
     }
+
     public static <T> Header<T> ERROR() {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())

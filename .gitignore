@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+src/main/resources/frontend/package-lock.json
+src/main/resources/frontend/node_modules
+src/main/resources/frontend/eslintcache

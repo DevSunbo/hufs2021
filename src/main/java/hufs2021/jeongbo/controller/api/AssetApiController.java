@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class AssetApiController {
     public AssetApiController(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
 
     @GetMapping("/read")
     public void read(
