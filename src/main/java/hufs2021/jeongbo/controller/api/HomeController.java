@@ -39,9 +39,11 @@ public class HomeController {
     public void home(){
 
         //List<Qna> qnas = readQnA();
-        List<AssetNotice> assets = readAssetnotice();
-        List<TeamProject> teamProjects = readTeamProject();
-        assets.stream().forEach(System.out::println);
+//        List<AssetNotice> assets = readAssetnotice();
+//        List<TeamProject> teamProjects = readTeamProject();
+//        assets.stream().forEach(System.out::println);
+
+//        return "teamproject";
     }
 
     private List<Qna> readQnA(){

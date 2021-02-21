@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Select from 'react-select';
-import styled from 'styled-components';
-import {Container, Row, Col, Form, Button, Dropdown, FormControl, ListGroup} from 'react-bootstrap';
+import {Container, Row, Col, ListGroup} from 'react-bootstrap';
 import Header from "../components/Header";
-import {Link} from "react-router-dom";
 import AssetSidebar from "../components/AssetSidebar";
 
 const groupStyles = {

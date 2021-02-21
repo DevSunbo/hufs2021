@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Container, Row, Col, Form, Button, Table} from 'react-bootstrap';
+import {Container, Row, Col, Form} from 'react-bootstrap';
 import Header from "../../components/Header";
 import MyPageSideBar from '../../components/MyPageSideBar';
-import {Link} from 'react-router-dom';
 
 const LoginFont = styled.div`
     font-size: 30px;

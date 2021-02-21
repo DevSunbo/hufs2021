@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, ListGroup} from 'react-bootstrap';
 import Header from "../../components/Header";
 import AdminSidebar from "../../components/AdminSidebar";
 import Select from "react-select";
-import StudyroomRegister from "./StudyroomRegister";
 
 const groupStyles = {
     display: 'flex',
