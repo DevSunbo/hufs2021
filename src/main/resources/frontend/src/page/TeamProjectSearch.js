@@ -34,17 +34,22 @@ const TeamSearch = () => {
 
     useEffect(() => {
         const teamList = async () => {
+
             try{
-                const url = "http://localhost:8080/team-project/search";
+                const url = 'http://localhost:8080/team-project/search';
                 const response = await axios.get(url);
                 setTeamProjectList(response.data);
+debugger
                 console.log(teamProjectList);
+                // console.log(typeof([1,2,3,4,5]))
+
             } catch (e) {
                 console.log(e);
             }
         };
         teamList();
-    }, []);
+
+    }, [teamProjectList]);
 
     return (
         <>
@@ -89,9 +94,9 @@ const TeamSearch = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Array.from({ length: 12 }).map((_, index) => (
-                                        <tr className="text-center">
-                                            <td>{index}</td>
+                                    {teamProjectList.map(item => (
+                                        <tr key={item} className="text-center">
+                                            <td>{item.pnumber}</td>
                                             <td>웹</td>
                                             <td>김정호</td>
                                             <td>
