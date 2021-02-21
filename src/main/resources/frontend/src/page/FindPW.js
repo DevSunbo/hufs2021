@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, Modal} from 'react-bootstrap';
 import Header from "../components/Header";
-import { Link } from 'react-router-dom';
 
 const Font1 = styled.div`
     font-size: 30px;
@@ -29,7 +28,7 @@ const PwModal = (props) => {
     );
 }
 
-const StModal = (props) => {
+/*const StModal = (props) => {
     return (
         <Modal {...props} size="sm" centered>
             <Modal.Body>
@@ -42,9 +41,9 @@ const StModal = (props) => {
             </Modal.Footer>
         </Modal> 
     );
-}
+}*/
 
-const SuccessModal = (props) => {
+/*const SuccessModal = (props) => {
     return (
         <Modal {...props} size="sm" centered>
             <Modal.Body>
@@ -59,21 +58,21 @@ const SuccessModal = (props) => {
             </Modal.Footer>
         </Modal> 
     );
-}
+}*/
 
 const FindPW = () => {
     const [pwModalState, setPwModalState] = useState(false);
-    const [stModalState, setStModalState] = useState(false);
-    const [successModalState, setSuccessModalState] = useState(false);
+    // const [stModalState, setStModalState] = useState(false);
+    // const [successModalState, setSuccessModalState] = useState(false);
 
-    const openPwModal = () => {
+    /*const openPwModal = () => {
         setPwModalState(true);
         console.log("true");
     }
 
     const closePwModal = () => {
         setPwModalState(false);
-    }
+    }*/
 
     return (
         <>

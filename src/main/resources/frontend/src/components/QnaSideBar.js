@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Row, Col} from 'react-bootstrap';
+import { Col} from 'react-bootstrap';
 
 const QnaFont1 = styled.div`
     font-size: 30px;

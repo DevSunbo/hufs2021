@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, Modal} from 'react-bootstrap';
 import Header from "../components/Header";
-import {Link} from "react-router-dom";
 import AssetSidebar from "../components/AssetSidebar";
 
 const ApplyFont = styled.div`

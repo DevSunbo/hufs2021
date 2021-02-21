@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import {Container, Row, Col, Form, Button, Modal} from 'react-bootstrap';
-import Header from "../../components/Header";
+import {Row, Col, Form, Button, Modal} from 'react-bootstrap';
 import Select from "react-select";
 
 const groupStyles = {

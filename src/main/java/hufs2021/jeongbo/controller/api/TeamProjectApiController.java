@@ -21,6 +21,7 @@ public class TeamProjectApiController {
     @Autowired
     private TeamProjectRepository teamProjectRepository;
 
+    @CrossOrigin
     @GetMapping("/search")
     public List<TeamProjectResponse> teamProjectSearch(@PageableDefault(sort = "projectNumber", direction = Sort.Direction.ASC, size = 5) Pageable pageable) {
         Page<TeamProject> teamProjects = teamProjectRepository.findAll(pageable);

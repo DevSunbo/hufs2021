@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {Container, Row, Col, Form, Button, Table, Modal} from 'react-bootstrap';
 import Header from '../components/Header';
 import TeamProjectSideBar from '../components/TeamProjectSideBar';
+import axios from 'axios';
 
 const BodyModalFont = styled.div`
     font-size: 20px;
@@ -29,6 +30,21 @@ const ConfirmRegister = (props) => {
 const TeamSearch = () => {
 
     const [modalState, setModalState] = useState(false);
+    const [teamProjectList, setTeamProjectList] = useState(null);
+
+    useEffect(() => {
+        const teamList = async () => {
+            try{
+                const url = "http://localhost:8080/team-project/search";
+                const response = await axios.get(url);
+                setTeamProjectList(response.data);
+                console.log(teamProjectList);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        teamList();
+    }, []);
 
     return (
         <>

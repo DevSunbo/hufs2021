@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {Container, Row, Col, Form, Button, FormGroup, Modal} from 'react-bootstrap';
 import Header from "../components/Header";
 import StudyroomSidebar from "../components/StudyroomSidebar";
-import AssetSidebar from "../components/AssetSidebar";
 
 const BodyModalFont = styled.div`
     font-size: 20px;
