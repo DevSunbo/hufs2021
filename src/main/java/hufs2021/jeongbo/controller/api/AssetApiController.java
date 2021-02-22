@@ -1,5 +1,6 @@
 package hufs2021.jeongbo.controller.api;
 
+import com.google.gson.JsonObject;
 import hufs2021.jeongbo.exceptions.NotExistDBException;
 import hufs2021.jeongbo.model.dto.AssetDto;
 import hufs2021.jeongbo.model.entity.Asset;
@@ -47,6 +48,14 @@ public class AssetApiController {
         this.entityManager = entityManager;
     }
 
+    @GetMapping("/test/read")
+    public String testRead(){
+        JsonObject obj = new JsonObject();
+        obj.addProperty("id", "201601806");
+        obj.addProperty("name", "심선보");
+
+        return obj.toString();
+    }
 
     @GetMapping("/read")
     public void read(

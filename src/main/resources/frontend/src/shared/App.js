@@ -37,6 +37,7 @@ import TeamProjectMyApplyInfo from "../page/myPage/TeamProjectMyApplyInfo";
 import TeamProjectMyInfo from "../page/myPage/TeamProjectMyInfo";
 import UserInfoModify from "../page/myPage/UserInfoModify";
 import MyRegisterTeamProject from "../page/myPage/MyRegisterTeamProject";
+import Assets from "../server/AssetSearchController";
 
 
 const App = () => {
@@ -96,6 +97,10 @@ const App = () => {
             <Route path="/user/team-project/application" component={TeamProjectApplication} />
             <Route path="/user/team-project/apply-info" component={TeamProjectMyApplyInfo} />
             {/* <Route path="/user/team-project/info" component={TeamProjectMyInfo} /> */}
+
+            <Route path="/test/read" component={Assets} exact={true}/>
+
+
         </>
     );
 }
