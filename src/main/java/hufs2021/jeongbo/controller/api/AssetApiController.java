@@ -49,12 +49,16 @@ public class AssetApiController {
     }
 
     @GetMapping("/test/read")
-    public String testRead(){
+    public List<JsonObject> testRead(){
+        List<JsonObject> jobj = new ArrayList<>();
         JsonObject obj = new JsonObject();
         obj.addProperty("id", "201601806");
         obj.addProperty("name", "심선보");
 
-        return obj.toString();
+        jobj.add(obj);
+        System.out.println("ddd " + jobj );
+
+        return jobj;
     }
 
     @GetMapping("/read")

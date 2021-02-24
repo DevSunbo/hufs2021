@@ -6,6 +6,10 @@ const Assets = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const getMyData = async () => {
+        const data = await axios.get('localhost:8080/api/asset/test/read');
+        console.log('data is ' + JSON.stringify(data));
+    };
     useEffect(() => {
         const fatchAssets = async () => {
             try {
@@ -14,9 +18,10 @@ const Assets = () => {
                 setAssets(null);
                 // loading 상태를 true 로 바꿉니다.
                 setLoading(true);
-                const response = await axios.get(
+                let response = await axios.get(
                     'localhost:8080/api/asset/test/read'
                 );
+
                 setAssets(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
                 setError(e);
